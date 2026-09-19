@@ -3,7 +3,7 @@
 ## Flag
 
 ```
-zdk{8ac2c2027b2da48051044be68ab11d1a73c184a6827b0b3d8deb65a306ba185e}
+zdk{52e38f85819f184cd265679fddc30349d71d82fb46144b4f6a798668fb840803}
 ```
 
 ---
@@ -100,21 +100,24 @@ own identifier, so both are reproduced verbatim, with no URL and no extra prefix
 
 ## 5. Building the ledger
 
-- `<x>,<y>` → `478,508`
-- `<timestamp>` → given time truncated to the whole minute → `2022-04-03t18:46:00z`
-  (the accession spells the format in lowercase, `yyyy-mm-ddthh:mm:00z`, so `t`/`z`
-  are lowercase)
+The two time fields refer to different facts:
+
+- `<x>,<y>` → crop origin `478,508`
+- `<timestamp>` → completion/publication time of the `record`. Niconico reports
+  `sm8628149` as uploaded at `2009-10-27 03:13:22 JST`, which is
+  `2009-10-26 18:13:22 UTC`; truncating to the required whole minute gives
+  `2009-10-26t18:13:00z`.
 - `<record>` → `sm8628149`
 - `<root>` → `nm3601701`
-- `<n>` → whole seconds since epoch for what `lead.png` was cut from, i.e. the
-  frame time 2022-04-03 18:46:22 UTC → `1649011582`
+- `<n>` → whole seconds since epoch for the crop’s source frame, i.e. the given
+  2022-04-03 18:46:22 UTC → `1649011582`
 
 Exact bytes hashed (LF after every line, including the last):
 
 ```
 pentimento/witness/v1
 origin=478,508
-completed_utc=2022-04-03t18:46:00z
+completed_utc=2009-10-26t18:13:00z
 record=sm8628149
 root=nm3601701
 snapshot_unix=1649011582
@@ -125,7 +128,7 @@ import hashlib
 ledger = (
     "pentimento/witness/v1\n"
     "origin=478,508\n"
-    "completed_utc=2022-04-03t18:46:00z\n"
+    "completed_utc=2009-10-26t18:13:00z\n"
     "record=sm8628149\n"
     "root=nm3601701\n"
     "snapshot_unix=1649011582\n"
@@ -134,7 +137,7 @@ print("zdk{%s}" % hashlib.sha256(ledger.encode()).hexdigest())
 ```
 
 ```
-zdk{8ac2c2027b2da48051044be68ab11d1a73c184a6827b0b3d8deb65a306ba185e}
+zdk{52e38f85819f184cd265679fddc30349d71d82fb46144b4f6a798668fb840803}
 ```
 
 ## Integrity
