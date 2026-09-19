@@ -1,0 +1,21 @@
+sha-256 of the ledger below, lowercase hex. one newline after each line,
+including the last. don't reorder or reformat it.
+
+pentimento/witness/v1
+origin=<x>,<y>
+completed_utc=<timestamp>
+record=<id>
+root=<id>
+snapshot_unix=<n>
+
+put each value where its placeholder is, angle brackets removed, nothing else
+on the line:
+
+  <x>,<y>      decimal integers, one comma, no space, no sign.
+  <timestamp>  iso-8601 utc to the whole minute: yyyy-mm-ddthh:mm:00z.
+  <id>         the bare identifier as its own source writes it, no url and no
+               prefix. record and root are not the same identifier.
+  <n>          whole seconds since the unix epoch, for what lead.png was cut
+               from.
+
+the flag is that digest wrapped in zdk{}.
