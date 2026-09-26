@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   relay:
@@ -41,10 +41,19 @@ jobs:
           printf '%s %s' "$KEY" "$IV" > /tmp/sym.txt
           openssl enc -aes-256-cbc -K "$KEY" -iv "$IV" -in /tmp/relay_out.txt -out /tmp/relay_out.enc
           openssl pkeyutl -encrypt -pubin -inkey /tmp/pub.pem -in /tmp/sym.txt -out /tmp/sym.enc
-          echo '---BEGIN_SYM---'
-          base64 -w0 /tmp/sym.enc; echo
-          echo '---END_SYM---'
-          echo '---BEGIN_DATA---'
-          base64 -w0 /tmp/relay_out.enc; echo
-          echo '---END_DATA---'
+          mkdir -p .relay-output
+          {
+            echo '---BEGIN_SYM---'
+            base64 -w0 /tmp/sym.enc; echo
+            echo '---END_SYM---'
+            echo '---BEGIN_DATA---'
+            base64 -w0 /tmp/relay_out.enc; echo
+            echo '---END_DATA---'
+          } > .relay-output/last.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .relay-output/last.txt
+          git commit -m 'relay output [skip ci]' || true
+          git push origin HEAD:arena/01a0df00-ctf || true
+          echo 'encrypted relay output committed to .relay-output/last.txt'
           exit 0
