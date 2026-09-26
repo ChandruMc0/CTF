@@ -1,0 +1,13 @@
+Homepage status: 200
+Set-Cookie: wo_session=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoieW91IiwidGVhbSI6IkdyaWRpcm9uIEdvcGhlcnMiLCJyb2xlIjoibWVtYmVyIiwiaWF0IjoxNzkwNDAxMTQ5fQ.TMWWyE5rPyOuXqsGHb7taLBEkSagmkZKlFn7vc393ck; Path=/; HttpOnly; SameSite=Lax
+member token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoieW91IiwidGVhbSI6IkdyaWRpcm9uIEdvcGhlcnMiLCJyb2xlIjoibWVtYmVyIiwiaWF0IjoxNzkwNDAxMTQ5fQ.TMWWyE5rPyOuXqsGHb7taLBEkSagmkZKlFn7vc393ck
+header: {'alg': 'HS256', 'typ': 'JWT'}
+payload: {'user': 'you', 'team': 'Gridiron Gophers', 'role': 'member', 'iat': 1790401149}
+
+===== A-alg-none =====
+status=403 is_member=False len=2659 FLAG=else{var e=document.onreadystatechange||function(){}
+BODY: Commissioner - WorldOutter WORLD OUTTER My Team League Players Scores Week 9 Founders Dynasty League &#9881; Gridiron Gophers Season 2026 &middot; PPR &middot; 10-team Commissioner console 403 - Commissioner access only. Your league role is member . Only the league commissioner can open this console. WorldOutter Fantasy &middot; Founders Dynasty League &middot; Not affiliated with any professional league (function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a40fed343f701fd1',t:'MTc5MDQwMTE1MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||funct
+!!!!! POSSIBLE FLAG: else{var e=document.onreadystatechange||function(){}
+
+==================== RESULT ====================
+FLAG: else{var e=document.onreadystatechange||function(){}
