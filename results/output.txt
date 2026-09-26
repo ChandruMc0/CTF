@@ -1,58 +1,153 @@
-Homepage status: 200
-Set-Cookie: wo_session=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoieW91IiwidGVhbSI6IkdyaWRpcm9uIEdvcGhlcnMiLCJyb2xlIjoibWVtYmVyIiwiaWF0IjoxNzkwNDAxMjEzfQ.OrtZ3im70LxrSuF7baCHKl8Mm6gREzjmPwRc_481cZo; Path=/; HttpOnly; SameSite=Lax
-member token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoieW91IiwidGVhbSI6IkdyaWRpcm9uIEdvcGhlcnMiLCJyb2xlIjoibWVtYmVyIiwiaWF0IjoxNzkwNDAxMjEzfQ.OrtZ3im70LxrSuF7baCHKl8Mm6gREzjmPwRc_481cZo
-header: {'alg': 'HS256', 'typ': 'JWT'}
-payload: {'user': 'you', 'team': 'Gridiron Gophers', 'role': 'member', 'iat': 1790401213}
+################ RAW HOMEPAGE ################
+status 200
+HEADERS: {
+ "Date": "Sat, 26 Sep 2026 05:41:46 GMT",
+ "Content-Type": "text/html; charset=utf-8",
+ "Transfer-Encoding": "chunked",
+ "Connection": "close",
+ "Server": "cloudflare",
+ "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+ "Set-Cookie": "wo_session=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoieW91IiwidGVhbSI6IkdyaWRpcm9uIEdvcGhlcnMiLCJyb2xlIjoibWVtYmVyIiwiaWF0IjoxNzkwNDAxMzA2fQ.H9zAgbVWXR0luB7WEtAkUCl8UuuvaRvqoO-L0S4_XIE; Path=/; HttpOnly; SameSite=Lax",
+ "Server-Timing": "cfEdge;dur=17,cfOrigin;dur=573",
+ "X-Frame-Options": "SAMEORIGIN",
+ "X-Content-Type-Options": "nosniff",
+ "Referrer-Policy": "strict-origin-when-cross-origin",
+ "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+ "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=ECEkrK0daA6jazcd%2FROf2rCp2hjwu7eD0fqaxe5AEZE3jiWexDGPj2fM%2BNfUyPQdUg3hNJBczUpv3Hpxtib1G7570owQzkMYFz1PoRZWFc%2FQPHJu2OIR8XzLcTTRAJE70%2FoO2AM%2FKJSmf6k4wvx%2BOHeIWEzTqS%2B1IrGveeYN4k2iaX5sVdYKjPW89zwbqH3XYqHMjym%2FRmpfKw%3D%3D\"}]}",
+ "cf-cache-status": "DYNAMIC",
+ "vary": "accept-encoding",
+ "CF-RAY": "a40ff102abe496d5-IAD",
+ "alt-svc": "h3=\":443\"; ma=86400"
+}
+RAW HTML:
+ <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Team - WorldOutter</title><link rel="stylesheet" href="/public/site.css"></head><body>
+<header class="wo-top"><div class="wo-top__in">
+  <a class="wo-logo" href="/">WORLD<span>OUTTER</span></a>
+  <nav class="wo-nav"><a class="is-active" href="/">My Team</a><a class="" href="/league">League</a><a class="" href="/players">Players</a><a class="" href="/scores">Scores</a></nav>
+  <div class="wo-top__r"><span class="wo-week">Week 9</span><span class="wo-league">Founders Dynasty League</span><a class="wo-gear" href="/commissioner" title="Commissioner">&#9881;</a></div>
+</div></header>
+<div class="wo-sub"><div class="wo-sub__in"><span class="wo-sub__team">Gridiron Gophers</span><span class="wo-sub__rec">Season 2026 &middot; PPR &middot; 10-team</span></div></div>
+<main class="wo-main">
+  <div class="wo-grid">
+    <section class="wo-panel">
+      <div class="wo-panel__h">Your matchup - Week 9</div>
+      <div class="wo-match">
+        <div class="wo-match__side"><span class="wo-match__team">Gridiron Gophers</span><span class="wo-match__pts">129.9</span></div>
+        <span class="wo-match__vs">vs</span>
+        <div class="wo-match__side wo-match__side--opp"><span class="wo-match__team">Harbor Hphins</span><span class="wo-match__pts">116.2</span></div>
+      </div>
+      <p class="wo-win">Win probability <strong>68%</strong> &middot; Projected 129.9 - 118.0</p>
+    </section>
+    <section class="wo-panel">
+      <div class="wo-panel__h">Starting lineup</div>
+      <table class="wo-tbl"><thead><tr><th>Slot</th><th>Player</th><th>Team</th><th>Proj</th><th>Pts</th></tr></thead><tbody>
+      <tr><td class="wo-slot">QB</td><td>Marcus Vance</td><td class="wo-mono">CPT</td><td class="wo-mono">22.4</td><td class="wo-mono wo-live">24.8</td></tr><tr><td class="wo-slot">RB</td><td>Deon Hartley</td><td class="wo-mono">RIV</td><td class="wo-mono">18.1</td><td class="wo-mono wo-live">15.6</td></tr><tr><td class="wo-slot">RB</td><td>Isaiah Crook</td><td class="wo-mono">VAL</td><td class="wo-mono">14.7</td><td class="wo-mono wo-live">12.2</td></tr><tr><td class="wo-slot">WR</td><td>Tobias Reyes</td><td class="wo-mono">CPT</td><td class="wo-mono">20.9</td><td class="wo-mono wo-live">17.4</td></tr><tr><td class="wo-slot">WR</td><td>Andre Salloum</td><td class="wo-mono">HRB</td><td class="wo-mono">12.3</td><td class="wo-mono wo-live">13.9</td></tr><tr><td class="wo-slot">TE</td><td>Grant Mueller</td><td class="wo-mono">NIN</td><td class="wo-mono">9.8</td><td class="wo-mono wo-live">8.1</td></tr><tr><td class="wo-slot">FLEX</td><td>Cole Barrentine</td><td class="wo-mono">DUS</td><td class="wo-mono">11.2</td><td class="wo-mono wo-live">10.5</td></tr><tr><td class="wo-slot">K</td><td>Petar Kovac</td><td class="wo-mono">VAL</td><td class="wo-mono">8</td><td class="wo-mono wo-live">7.5</td></tr><tr><td class="wo-slot">DEF</td><td>Copperton D/ST</td><td class="wo-mono">CPT</td><td class="wo-mono">10</td><td class="wo-mono wo-live">9.2</td></tr>
+      </tbody></table>
+    </section>
+  </div></main>
+<footer class="wo-foot">WorldOutter Fantasy &middot; Founders Dynasty League &middot; Not affiliated with any professional league</footer>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a40ff102abe496d5',t:'MTc5MDQwMTMwNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"b555bf0b6ced40d5b5d7fd21b269244b","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body></html>
 
-===== A-alg-none =====
-status=403 denied=True len=2659 FLAG=None
-BODY: Commissioner - WorldOutter WORLD OUTTER My Team League Players Scores Week 9 Founders Dynasty League &#9881; Gridiron Gophers Season 2026 &middot; PPR &middot; 10-team Commissioner console 403 - Commissioner access only. Your league role is member . Only the league commissioner can open this console. WorldOutter Fantasy &middot; Founders Dynasty League &middot; Not affiliated with any professional league
+################ RAW /commissioner (no cookie) ################
+status 403
+RAW HTML:
+ <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Commissioner - WorldOutter</title><link rel="stylesheet" href="/public/site.css"></head><body>
+<header class="wo-top"><div class="wo-top__in">
+  <a class="wo-logo" href="/">WORLD<span>OUTTER</span></a>
+  <nav class="wo-nav"><a class="" href="/">My Team</a><a class="" href="/league">League</a><a class="" href="/players">Players</a><a class="" href="/scores">Scores</a></nav>
+  <div class="wo-top__r"><span class="wo-week">Week 9</span><span class="wo-league">Founders Dynasty League</span><a class="wo-gear" href="/commissioner" title="Commissioner">&#9881;</a></div>
+</div></header>
+<div class="wo-sub"><div class="wo-sub__in"><span class="wo-sub__team">Gridiron Gophers</span><span class="wo-sub__rec">Season 2026 &middot; PPR &middot; 10-team</span></div></div>
+<main class="wo-main"><section class="wo-panel wo-denied">
+      <div class="wo-panel__h">Commissioner console</div>
+      <p class="wo-denied__msg">403 - Commissioner access only. Your league role is <code>member</code>. Only the league commissioner can open this console.</p>
+    </section></main>
+<footer class="wo-foot">WorldOutter Fantasy &middot; Founders Dynasty League &middot; Not affiliated with any professional league</footer>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a40ff10678ab3940',t:'MTc5MDQwMTMwNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"b555bf0b6ced40d5b5d7fd21b269244b","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body></html>
 
-===== A-alg-None =====
-status=403 denied=True len=2659 FLAG=None
-BODY: Commissioner - WorldOutter WORLD OUTTER My Team League Players Scores Week 9 Founders Dynasty League &#9881; Gridiron Gophers Season 2026 &middot; PPR &middot; 10-team Commissioner console 403 - Commissioner access only. Your league role is member . Only the league commissioner can open this console. WorldOutter Fantasy &middot; Founders Dynasty League &middot; Not affiliated with any professional league
+member cookie: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoieW91IiwidGVhbSI6IkdyaWRpcm9uIEdvcGhlcnMiLCJyb2xlIjoibWVtYmVyIiwiaWF0IjoxNzkwNDAxMzA3fQ.tKt6s82JloXo3vgEmfxDoVQLnsL4kNXnXKxMwyyygII
 
-===== A-alg-NONE =====
-status=403 denied=True len=2659 FLAG=None
-BODY: Commissioner - WorldOutter WORLD OUTTER My Team League Players Scores Week 9 Founders Dynasty League &#9881; Gridiron Gophers Season 2026 &middot; PPR &middot; 10-team Commissioner console 403 - Commissioner access only. Your league role is member . Only the league commissioner can open this console. WorldOutter Fantasy &middot; Founders Dynasty League &middot; Not affiliated with any professional league
+################ HEADER / IP BYPASS TESTS on /commissioner ################
+[DENIED] status=403 hdr={'X-Forwarded-For': '127.0.0.1'} len=2659
+[DENIED] status=403 hdr={'X-Forwarded-For': '::1'} len=2659
+[DENIED] status=403 hdr={'X-Real-IP': '127.0.0.1'} len=2659
+[DENIED] status=403 hdr={'X-Originating-IP': '127.0.0.1'} len=2659
+[DENIED] status=403 hdr={'X-Forwarded-Host': 'localhost'} len=2659
+[DENIED] status=403 hdr={'X-Forwarded-For': '127.0.0.1', 'X-Real-IP': '127.0.0.1'} len=2659
+[DENIED] status=403 hdr={'X-Role': 'commissioner'} len=2659
+[DENIED] status=403 hdr={'X-League-Role': 'commissioner'} len=2659
+[DENIED] status=403 hdr={'X-Commissioner': 'true'} len=2659
+[DENIED] status=403 hdr={'X-Admin': 'true'} len=2659
+[DENIED] status=403 hdr={'Role': 'commissioner'} len=2659
+[DENIED] status=403 hdr={'X-Original-URL': '/commissioner'} len=2659
+[DENIED] status=403 hdr={'X-Rewrite-URL': '/commissioner'} len=2659
+[*** GRANTED ***] status=403 hdr={'Host': 'localhost'} len=151
+BODY:
+ <html>
+<head><title>403 Forbidden</title></head>
+<body>
+<center><h1>403 Forbidden</h1></center>
+<hr><center>cloudflare</center>
+</body>
+</html>
 
-===== A-alg-nOnE =====
-status=403 denied=True len=2659 FLAG=None
-BODY: Commissioner - WorldOutter WORLD OUTTER My Team League Players Scores Week 9 Founders Dynasty League &#9881; Gridiron Gophers Season 2026 &middot; PPR &middot; 10-team Commissioner console 403 - Commissioner access only. Your league role is member . Only the league commissioner can open this console. WorldOutter Fantasy &middot; Founders Dynasty League &middot; Not affiliated with any professional league
+[DENIED] status=403 hdr={'X-Forwarded-Server': 'localhost'} len=2659
+[DENIED] status=403 hdr={'Authorization': 'Bearer commissioner'} len=2659
+[DENIED] status=403 hdr={'Referer': 'https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/commissioner'} len=2659
 
-===== B-keep-original-signature =====
-status=403 denied=True len=2659 FLAG=None
-BODY: Commissioner - WorldOutter WORLD OUTTER My Team League Players Scores Week 9 Founders Dynasty League &#9881; Gridiron Gophers Season 2026 &middot; PPR &middot; 10-team Commissioner console 403 - Commissioner access only. Your league role is member . Only the league commissioner can open this console. WorldOutter Fantasy &middot; Founders Dynasty League &middot; Not affiliated with any professional league
+################ COOKIE VARIANTS ################
+[DENIED] cookie=role=commissioner status=403
+[DENIED] cookie=wo_role=commissioner status=403
+[DENIED] cookie=wo_session=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoi status=403
+[DENIED] cookie=commissioner=true status=403
+[DENIED] cookie=is_commissioner=true status=403
+[DENIED] cookie=admin=true status=403
 
-===== B-empty-signature =====
-status=403 denied=True len=2659 FLAG=None
-BODY: Commissioner - WorldOutter WORLD OUTTER My Team League Players Scores Week 9 Founders Dynasty League &#9881; Gridiron Gophers Season 2026 &middot; PPR &middot; 10-team Commissioner console 403 - Commissioner access only. Your league role is member . Only the league commissioner can open this console. WorldOutter Fantasy &middot; Founders Dynasty League &middot; Not affiliated with any professional league
+################ SOURCE / SECRET DISCLOSURE ################
+     404 /.env                               ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /.env</pre> <script>(function(){function c(){
+     404 /.env.local                         ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /.env.local</pre> <script type="module" src="
+     404 /package.json                       ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /package.json</pre> <script>(function(){funct
+     404 /package-lock.json                  ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /package-lock.json</pre> <script>(function(){
+     404 /server.js                          ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /server.js</pre> <script type="module" src="h
+     404 /app.js                             ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /app.js</pre> <script type="module" src="http
+     404 /index.js                           ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /index.js</pre> <script type="module" src="ht
+     404 /main.js                            ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /main.js</pre> <script type="module" src="htt
+     404 /config.js                          ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /config.js</pre> <script type="module" src="h
+     404 /config.json                        ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /config.json</pre> <script type="module" src=
+***  200 /.git/HEAD                          ct=application/octet-stream  ref: refs/heads/main 
+***  200 /.git/config                        ct=application/octet-stream  [core] repositoryformatversion = 0 filemode = true bare = false logallrefupdates = true [user] email = dev@worldoutter.example name = WorldOutter Deploy [commit
+     404 /source                             ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /source</pre> <script type="module" src="http
+     404 /src/server.js                      ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /src/server.js</pre> <script type="module" sr
+     404 /src/app.js                         ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /src/app.js</pre> <script type="module" src="
+     404 /static/app.js                      ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /static/app.js</pre> <script type="module" sr
+     404 /js/app.js                          ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /js/app.js</pre> <script type="module" src="h
+     404 /js/main.js                         ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /js/main.js</pre> <script type="module" src="
+     404 /dist/main.js                       ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /dist/main.js</pre> <script type="module" src
+     404 /bundle.js                          ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /bundle.js</pre> <script type="module" src="h
+     404 /flag                               ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /flag</pre> <script type="module" src="https:
+     404 /flag.txt                           ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /flag.txt</pre> <script type="module" src="ht
+     404 /api/config                         ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /api/config</pre> <script type="module" src="
+     404 /api/debug                          ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /api/debug</pre> <script>(function(){function
+     404 /debug                              ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /debug</pre> <script>(function(){function c()
+     404 /sitemap.xml                        ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /sitemap.xml</pre> <script>(function(){functi
+     404 /.well-known/security.txt           ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /.well-known/security.txt</pre> <script type=
+     404 /server.js.bak                      ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /server.js.bak</pre> <script>(function(){func
+     404 /app.js.bak                         ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /app.js.bak</pre> <script type="module" src="
+     404 /index.js.map                       ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /index.js.map</pre> <script type="module" src
+     404 /main.js.map                        ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /main.js.map</pre> <script>(function(){functi
+     404 /README.md                          ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /README.md</pre> <script>(function(){function
+     404 /Dockerfile                         ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /Dockerfile</pre> <script>(function(){functio
+     404 /docker-compose.yml                 ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /docker-compose.yml</pre> <script type="modul
+     404 /.dockerignore                      ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /.dockerignore</pre> <script>(function(){func
+     404 /secret                             ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /secret</pre> <script>(function(){function c(
+     404 /secrets                            ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /secrets</pre> <script>(function(){function c
+***  403 /commissioner/                      ct=text/html; charset=utf-8  <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"> <title>Commissioner - WorldOutte
+     >>> <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"> <title>Commissioner - WorldOutter</title><link rel="stylesheet" href="/public/site.css"></head><body> <header class="wo-top"><div class="wo-top__in"> <a class="wo-logo" href="/">WORLD<span>OUTTER</span></a> <nav class="wo-nav"><a class="" href="/">My Team</a><a class="" href="/league">League</a><a class="" href="/players">Players</a><a class="" href="/scores">Scores</a>
+     404 /commissioner.js                    ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /commissioner.js</pre> <script type="module" 
+     404 /api/commissioner/settings          ct=text/html; charset=utf-8  <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /api/commissioner/settings</pre> <script>(fun
 
-===== B-role-commish =====
-status=403 denied=True len=2659 FLAG=None
-BODY: Commissioner - WorldOutter WORLD OUTTER My Team League Players Scores Week 9 Founders Dynasty League &#9881; Gridiron Gophers Season 2026 &middot; PPR &middot; 10-team Commissioner console 403 - Commissioner access only. Your league role is member . Only the league commissioner can open this console. WorldOutter Fantasy &middot; Founders Dynasty League &middot; Not affiliated with any professional league
-
-===== B-role-admin =====
-status=403 denied=True len=2659 FLAG=None
-BODY: Commissioner - WorldOutter WORLD OUTTER My Team League Players Scores Week 9 Founders Dynasty League &#9881; Gridiron Gophers Season 2026 &middot; PPR &middot; 10-team Commissioner console 403 - Commissioner access only. Your league role is member . Only the league commissioner can open this console. WorldOutter Fantasy &middot; Founders Dynasty League &middot; Not affiliated with any professional league
-
-===== B-role-owner =====
-status=403 denied=True len=2659 FLAG=None
-BODY: Commissioner - WorldOutter WORLD OUTTER My Team League Players Scores Week 9 Founders Dynasty League &#9881; Gridiron Gophers Season 2026 &middot; PPR &middot; 10-team Commissioner console 403 - Commissioner access only. Your league role is member . Only the league commissioner can open this console. WorldOutter Fantasy &middot; Founders Dynasty League &middot; Not affiliated with any professional league
-
-===== B-role-COMMISSIONER =====
-status=403 denied=True len=2659 FLAG=None
-BODY: Commissioner - WorldOutter WORLD OUTTER My Team League Players Scores Week 9 Founders Dynasty League &#9881; Gridiron Gophers Season 2026 &middot; PPR &middot; 10-team Commissioner console 403 - Commissioner access only. Your league role is member . Only the league commissioner can open this console. WorldOutter Fantasy &middot; Founders Dynasty League &middot; Not affiliated with any professional league
-
-===== B-role-Commissioner =====
-status=403 denied=True len=2659 FLAG=None
-BODY: Commissioner - WorldOutter WORLD OUTTER My Team League Players Scores Week 9 Founders Dynasty League &#9881; Gridiron Gophers Season 2026 &middot; PPR &middot; 10-team Commissioner console 403 - Commissioner access only. Your league role is member . Only the league commissioner can open this console. WorldOutter Fantasy &middot; Founders Dynasty League &middot; Not affiliated with any professional league
-loaded 103979 words from https://raw.githubusercontent.com/wallarm/jwt-secrets/master/jwt.secrets.list
-loaded 1 words from https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/10-million-password-list-top-1000000.txt
-rockyou loaded
-brute forcing over 4104006 candidates...
-brute done in 9.2s, unique=4082134
-SECRET: None
-
-==================== RESULT ====================
-FLAG: None
+DONE
