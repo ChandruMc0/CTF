@@ -1,0 +1,23 @@
+05:33:30 -> DOWN (404)
+
+__RELAY_EXIT__=124
++ set -e
++ echo '=== relay start, SHA=e966cb7fe4fbb93058d709442afba4641d332f5d'
+++ gh api 'repos/ChandruMc0/CTF/contents/relay/cmd?ref=e966cb7fe4fbb93058d709442afba4641d332f5d' --jq '.[].name'
+++ grep '\.py$'
+++ sort
+++ tail -1
++ CMD=005_poll1.py
++ echo 'CMD=[005_poll1.py]'
+++ echo 005_poll1.py
+++ sed 's/\.py$//'
++ OUTNAME=005_poll1
++ '[' -z 005_poll1.py ']'
++ gh api 'repos/ChandruMc0/CTF/contents/relay/cmd/005_poll1.py?ref=e966cb7fe4fbb93058d709442afba4641d332f5d' --jq .content
++ base64 -d
++ set +e
++ timeout 300 python3 /tmp/cmd.py
++ RC=124
++ set -e
++ printf '\n__RELAY_EXIT__=%s\n' 124
++ cat /tmp/diag.txt
