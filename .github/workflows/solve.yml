@@ -22,12 +22,6 @@ jobs:
           cp -f flag.txt results/flag.txt 2>/dev/null || true
           echo "----- OUTPUT -----"
           cat results/output.txt
-      - name: Emit annotations
-        if: always()
-        run: |
-          while IFS= read -r line; do
-            echo "::notice::${line}"
-          done < results/output.txt
       - name: Commit results back
         if: always()
         continue-on-error: true
