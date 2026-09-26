@@ -1,22 +1,205 @@
-===== COMMAND-INJECTION TIMING ORACLE via upload extension =====
-baseline .wav render 1.71s ok=True
 
-shell-semicolon-sleep: fn='clip.wav;sleep 12;x.wav'
-   render=1.56s ok=True inputseen=''
+===== upload null-byte filename -> 500 ct=text/html; charset=utf-8 len=1453 =====
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Internal Server Error</pre>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a41083336fbb9acd',t:'MTc5MDQwNzI5Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"b555bf0b6ced40d5b5d7fd21b269244b","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
 
-shell-dollar-sleep: fn='clip.wav$(sleep 12).wav'
-   render=1.97s ok=True inputseen=''
 
-shell-backtick-sleep: fn='clip.wav`sleep 12`.wav'
-   render=1.68s ok=True inputseen=''
+===== render malformed json -> 400 ct=text/html; charset=utf-8 len=1443 =====
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Bad Request</pre>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a41083385f9320b2',t:'MTc5MDQwNzI5NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"b555bf0b6ced40d5b5d7fd21b269244b","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
 
-shell-and-sleep: fn='clip.wav&&sleep 12&&.wav'
-   render=1.82s ok=True inputseen=''
 
-shell-pipe-sleep: fn='clip.wav|sleep 12|.wav'
-   render=1.48s ok=True inputseen=''
+===== render {"slug":{"a":1},"theme":"midnight"} -> 200 ct=application/json; charset=utf- len=54 =====
+{"ok":false,"outputs":[],"errors":"No clip uploaded."}
 
-===== also: what exact input path does ffmpeg report for a weird ext (to confirm tail kept) =====
-input path echoed: /opt/app/media/18e49c2d59fe945b/source.mp3  (ext tail preserved?)
+===== render {"slug":["x"],"theme":"midnight"} -> 200 ct=application/json; charset=utf- len=54 =====
+{"ok":false,"outputs":[],"errors":"No clip uploaded."}
+
+===== render {"slug":123,"theme":"midnight"} -> 200 ct=application/json; charset=utf- len=54 =====
+{"ok":false,"outputs":[],"errors":"No clip uploaded."}
+
+===== render {"theme":"midnight"} -> 200 ct=application/json; charset=utf- len=54 =====
+{"ok":false,"outputs":[],"errors":"No clip uploaded."}
+
+===== render {"slug":null,"theme":null} -> 200 ct=application/json; charset=utf- len=54 =====
+{"ok":false,"outputs":[],"errors":"No clip uploaded."}
+
+===== render 5000-char slug -> 200 ct=application/json; charset=utf- len=54 =====
+{"ok":false,"outputs":[],"errors":"No clip uploaded."}
+
+===== render no-upload -> 200 ct=application/json; charset=utf- len=54 =====
+{"ok":false,"outputs":[],"errors":"No clip uploaded."}
+
+===== upload wrong field name -> 200 ct=text/html; charset=utf-8 len=7318 =====
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Studio — Tapedeck</title>
+  <link rel="stylesheet" href="/public/css/site.css">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark"></span>
+        <span class="brand-word">Tapedeck</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/features" class="">Features</a>
+        <a href="/pricing"  class="">Pricing</a>
+        <a href="/about"    class="">About</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-ghost" href="/studio">Sign in</a>
+        <a class="btn btn-solid" href="/studio">Open Studio</a>
+      </div>
+    </div>
+  </header>
+  <main>
+
+
+<section class="studio">
+  <div class="wrap">
+    <div class="studio-head">
+      <div>
+        <span class="eyebrow">Clip Studio</span>
+        <h1>Turn a clip into an audiogram</h1>
+        <p>Upload a short piece of audio and Tapedeck renders a shareable waveform poster. Name your export, pick a look, and download it for social.</p>
+      </div>
+      <div class="studio-ws">Workspace <span class="mono">b1d5b7</span></div>
+    </div>
+
+    <div class="alert alert-err">That clip is too large. Keep uploads under 12 MB.</div>
+
+    <div class="studio-grid">
+      <div class="panel">
+        <h2>1. Upload a clip</h2>
+        <p class="sub">MP3, WAV, or M4A. Up to 12 MB, we use the first 20 seconds.</p>
+        <form method="post" action="/studio/upload" enctype="multipart/form-data" class="uploader">
+          <input type="file" name="clip" accept="audio/*" required>
+          <button class="btn btn-solid" type="submit">Upload clip</butto
+
+===== GET /studio/upload -> 404 ct=text/html; charset=utf-8 len=3274 =====
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Not found — Tapedeck</title>
+  <link rel="stylesheet" href="/public/css/site.css">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark"></span>
+        <span class="brand-word">Tapedeck</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/features" class="">Features</a>
+        <a href="/pricing"  class="">Pricing</a>
+        <a href="/about"    class="">About</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-ghost" href="/studio">Sign in</a>
+        <a class="btn btn-solid" href="/studio">Open Studio</a>
+      </div>
+    </div>
+  </header>
+  <main>
+
+<section class="page">
+  <div class="wrap errpage">
+    <div class="errcode mono">404</div>
+    <h1>We could not find that page</h1>
+    <p><a class="btn btn-ghost" href="/">Back to home</a></p>
+  </div>
+</section>
+  </main>
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <div class="foot-brand">
+        <span class="brand-mark"></span>
+        <span>Tapedeck</span>
+        <p class="foot-tag">Podcast hosting, analytics, and shareable audiograms. Independent since 2016.</p>
+      </div>
+      <div class="foot-col"><h4>Product</h4><a href="/features">Features</a><a href="/pricing">Pricing</a><a href="/studio">Studio</a></div>
+      <div class="foot-col"><h4>Company</h4><a href="/about">About</a><a href="/about">Careers</a><a href="/about">Contact</a></div>
+      <div class="foot-col"><h4>Creators</h4><a href="/studio">Open Studio</a><a href="/features">Audiograms</a><a href="/pricing">Plans</a></div>
+    </div>
+    <d
+
+===== 404 page -> 404 ct=text/html; charset=utf-8 len=3274 =====
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Not found — Tapedeck</title>
+  <link rel="stylesheet" href="/public/css/site.css">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark"></span>
+        <span class="brand-word">Tapedeck</span>
+      </a>
+      <nav class="nav-links">
+        <a href="/features" class="">Features</a>
+        <a href="/pricing"  class="">Pricing</a>
+        <a href="/about"    class="">About</a>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-ghost" href="/studio">Sign in</a>
+        <a class="btn btn-solid" href="/studio">Open Studio</a>
+      </div>
+    </div>
+  </header>
+  <main>
+
+<section class="page">
+  <div class="wrap errpage">
+    <div class="errcode mono">404</div>
+    <h1>We could not find that page</h1>
+    <p><a class="btn btn-ghost" href="/">Back to home</a></p>
+  </div>
+</section>
+  </main>
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <div class="foot-brand">
+        <span class="brand-mark"></span>
+        <span>Tapedeck</span>
+        <p class="foot-tag">Podcast hosting, analytics, and shareable audiograms. Independent since 2016.</p>
+      </div>
+      <div class="foot-col"><h4>Product</h4><a href="/features">Features</a><a href="/pricing">Pricing</a><a href="/studio">Studio</a></div>
+      <div class="foot-col"><h4>Company</h4><a href="/about">About</a><a href="/about">Careers</a><a href="/about">Contact</a></div>
+      <div class="foot-col"><h4>Creators</h4><a href="/studio">Open Studio</a><a href="/features">Audiograms</a><a href="/pricing">Plans</a></div>
+    </div>
+    <d
 
 DONE
