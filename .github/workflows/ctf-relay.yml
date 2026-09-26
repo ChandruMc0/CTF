@@ -1,0 +1,22 @@
+name: ctf-relay
+
+on:
+  workflow_dispatch:
+    inputs:
+      script:
+        description: 'base64-encoded python script to run against the CTF target'
+        required: true
+
+permissions: {}
+
+jobs:
+  relay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Run relay script
+        env:
+          SCRIPT: ${{ github.event.inputs.script }}
+        run: |
+          echo "$SCRIPT" | base64 -d > /tmp/relay.py
+          python3 /tmp/relay.py 2>&1
