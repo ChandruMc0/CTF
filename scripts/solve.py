@@ -31,27 +31,19 @@ def render(**kw):
     try: return st, json.loads(b)
     except: return st, b.decode('utf-8','replace')
 
-# install OCR
-subprocess.run("sudo apt-get update -qq && sudo apt-get install -y -qq tesseract-ocr >/dev/null 2>&1", shell=True)
-subprocess.run(f"{sys.executable} -m pip install --quiet pytesseract pillow", shell=True)
-
+import base64, os
 do("/studio")
-upload("FILEMARKER.wav")
-st,j = render(slug="SLUGMARKER", theme="midnight")
+upload("FILEMARKER_ZZZ.wav")
+st,j = render(slug="SLUGMARKER_YYY", theme="midnight")
 print("render:", j)
 url = j["outputs"][0]["url"]
 st,h,png = do(url)
-open("poster.png","wb").write(png)
+os.makedirs("results", exist_ok=True)
+open("results/poster.b64","w").write(base64.b64encode(png).decode())
 print("poster bytes:", len(png), "ct", h.get("Content-Type"))
-try:
-    import pytesseract
-    from PIL import Image
-    txt = pytesseract.image_to_string(Image.open("poster.png"))
-    print("\n######## OCR OF POSTER ########")
-    print(repr(txt))
-    print(txt)
-except Exception as e:
-    print("OCR failed:", e)
+print("POSTER_B64_START")
+print(base64.b64encode(png).decode())
+print("POSTER_B64_END")
 
 print("\n######## caption-param filtergraph injection probes ########")
 for key in ["caption","title","text","label","name","watermark","subtitle","credit","byline","tag"]:
