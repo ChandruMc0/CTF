@@ -1,22 +1,29 @@
 name: ctf-relay
 
 on:
-  workflow_dispatch:
-    inputs:
-      script:
-        description: 'base64-encoded python script to run against the CTF target'
-        required: true
+  push:
+    branches: [arena/01a0dc09-ctf]
+  pull_request:
+    branches: [main]
 
-permissions: {}
+permissions:
+  contents: read
 
 jobs:
   relay:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Run relay script
+      - name: Run relay command
         env:
-          SCRIPT: ${{ github.event.inputs.script }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.event.pull_request.head.sha || github.sha }}
         run: |
-          echo "$SCRIPT" | base64 -d > /tmp/relay.py
-          python3 /tmp/relay.py 2>&1
+          set -e
+          # list command files at this SHA, pick the newest
+          FILES=$(gh api "repos/$REPO/contents/relay/cmd?ref=$SHA" --jq '.[].name' | grep '\.py$' | sort | tail -1)
+          if [ -z "$FILES" ]; then echo "no command file at $SHA"; exit 0; fi
+          echo ">>> Running relay/cmd/$FILES"
+          gh api "repos/$REPO/contents/relay/cmd/$FILES?ref=$SHA" --jq '.content' | base64 -d > /tmp/cmd.py
+          python3 /tmp/cmd.py 2>&1
