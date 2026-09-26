@@ -1,33 +1,36 @@
+WS= 19284cf8dca7db04
 
- file:///opt/app/flag.txt#x.wav OK False
-[hls @ 0x648ef5820b80] Failed to open segment 0 of playlist 0
-[hls @ 0x648ef5820b80] Error when loading first segment 'file:///opt/app/flag.txt#x.wav'
+#### A_data_only ok=False  seg=data:audio/wav;base64,UklGRvQHAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YdAHAACAl63A0Nzi49/VxrSeh3FaRjQnHxwfJzRGWnGHnr
+  | [hls @ 0x61d5164e9b80] detected format wav extension none mismatches allowed extensions in url data:audio/wav;base64,UklGRvQHAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YdAHAACAl63A0Nzi49/VxrSeh3FaRjQnHxwfJzRGWnGHnrTG1d/j4tzQwK2XgGlTQDAkHh0hKzpMYnmPprrM2eHk4dnMuqaPeWJMOishHR4kMEBTaYCXrcDQ3OLj39XGtJ6HcVpGNCcfHB8nNEZacYeetMbV3+Pi3NDArZeAaVNAMCQeHSErOkxieY+muszZ4eTh2cy6po95Ykw6KyEdHiQwQFNpgJetwNDc4uPf1ca0nodxWkY0Jx8cHyc0Rlpxh560xtXf4+Lc0MCtl4BpU0AwJB4dISs6TGJ5j6a6zNnh5OHZzLqmj3liTDorIR0eJDBAU2mAl63A0Nzi49/VxrSeh3FaRjQnHxwfJzRGWnGHnrTG1d/j4tzQwK2XgGlTQDAkHh0hKzpMYnmPprrM2eHk4dnMuqaPeWJMOishHR4kMEBTaYCXrcDQ3OLj39XGtJ6HcVpGNCcfHB8nNEZacYeetMbV3+Pi3NDArZeAaVNAMCQeHSErOkxieY+muszZ4eTh2cy6po95Ykw6KyEdHiQwQFNpgJetwNDc4uPf1ca0nodxWkY0Jx8cHyc0Rlpxh560xtXf4+Lc0MCtl4BpU0AwJB4dISs6TGJ5j6a6zNnh5OHZzLqmj3liTDorIR0eJDBAU2mAl63A0Nzi49/VxrSeh3FaRjQnHxwfJzRGWnGHnrTG1d/j4tzQwK2XgGlTQDAkHh0hKzpMYnmPprrM2eHk4dnMuqaPeWJMOishHR4kMEBTaYCXrcDQ3OLj39XGtJ6HcVpGNCcfHB8nNEZacYeetMbV3+Pi3NDArZeAaVNAMCQeHSErOkxieY+muszZ4eTh2cy6po95Ykw6KyEdHiQwQFNpgJetwNDc4uPf1ca0nodxWkY0Jx8cHyc0Rlpxh560xtXf4+Lc0MCtl4BpU0AwJB4dISs6TGJ5j6a6zNnh5OHZzLqmj3liTDorIR0eJDBAU2mAl63A0Nzi49/VxrSeh3FaRjQnHxwfJzRGWnGHnrTG1d/j4tzQwK2XgGlTQDAkHh0hKzpMYnmPprrM2eHk4dnMuqaPeWJMOishHR4kMEBTaYCXrcDQ3OLj39XGtJ6HcVpGNCcfHB8nNEZacYeetMbV3+Pi3NDArZeAaVNAMCQeHSErOkxieY+muszZ4eTh2cy6po95Ykw6KyEdHiQwQFNpgJetwNDc4uPf1ca0nodxWkY0Jx8cHyc0Rlpxh560xtXf4+Lc0MCtl4BpU0AwJB4dISs6TGJ5j6a6zNnh5OHZzLqmj3liTDorIR0eJDBAU2mAl63A0Nzi49/VxrSeh3FaRjQnHxwfJzRGWnGHnrTG1d/j4tzQwK2XgGlTQDAkHh0hKzpMYnmPprrM2eHk4dnMuqaPeWJMOishHR4kMEBTaYCXrcDQ3OLj39XGtJ6HcVpGNCcfHB8nNEZacYeetMbV3+Pi3NDArZeAaVNAMCQeHSErOkxieY+muszZ4eTh2cy6po95Ykw6KyEdHiQwQFNpgJetwNDc4uPf1ca0nodxWkY0Jx8cHyc0Rlpxh560xtXf4+Lc0MCtl4BpU0AwJB4dISs6TGJ5j6a6zNnh5OHZzLqmj3liTDorIR0eJDBAU2mAl63A0Nzi49/VxrSeh3FaRjQnHxwfJzRGWnGHnrTG1d/j4tzQwK2XgGlTQDAkHh0hKzpMYnmPprrM2eHk4dnMuqaPeWJMOishHR4kMEBTaYCXrcDQ3OLj39XGtJ6HcVpGNCcfHB8nNEZacYeetMbV3+Pi3NDArZeAaVNAMCQeHSErOkxieY+muszZ4eTh2cy6po95Ykw6KyEdHiQwQFNpgJetwNDc4uPf1ca0nodxWkY0Jx8cHyc0Rlpxh560xtXf4+Lc0MCtl4BpU0AwJB4dISs6TGJ5j6a6zNnh5OHZzLqmj3liTDorIR0eJDBAU2mAl63A0Nzi49/VxrSeh3FaRjQnHxwfJzRGWnGHnrTG1d/j4tzQwK2XgGlTQDAkHh0hKzpMYnmPprrM2eHk4dnMuqaPeWJMOishHR4kMEBTaYCXrcDQ3OLj39XGtJ6HcVpGNCcfHB8nNEZacYeetMbV3+Pi3NDArZeAaVNAMCQeHSErOkxieY+muszZ4eTh2cy6po95Ykw6KyEdHiQwQFNpgJetwNDc4uPf1ca0nodxWkY0Jx8cHyc0Rlpxh560xtXf4+Lc0MCtl4BpU0AwJB4dISs6TGJ5j6a6zNnh5OHZzLqmj3liTDorIR0eJDBAU2mAl63A0Nzi49/VxrSeh3FaRjQnHxwfJzRGWnGHnrTG1d/j4tzQwK2XgGlTQDAkHh0hKzpMYnmPprrM2eHk4dnMuqaPeWJMOishHR4kMEBTaYCXrcDQ3OLj39XGtJ6HcVpGNCcfHB8nNEZacYeetMbV3+Pi3NDArZeAaVNAMCQeHSErOkxieY+muszZ4eTh2cy6po95Ykw6KyEdHiQwQFNpgJetwNDc4uPf1ca0nodxWkY0Jx8cHyc0Rlpxh560xtXf4+Lc0MCtl4BpU0AwJB4dISs6TGJ5j6a6zNnh5OHZzLqmj3liTDorIR0eJDBAU2mAl63A0Nzi49/VxrSeh3FaRjQnHxwfJzRGWnGHnrTG1d/j4tzQwK2XgGlTQDAkHh0hKzpMYnmPprrM2eHk4dnMuqaPeWJMOishHR4kMEBTaQ==#x.wav
+  | [hls @ 0x61d5164e9b80] Error when loading first segment 'data:audio/wav;base64,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#x.wav'
+  | /opt/app/media/19284cf8dca7db04/source.wav: Invalid data found when processing input
 
- file:///opt/app/flag.txt?x.wav OK False
-[hls @ 0x60845a1ccb80] Failed to open segment 0 of playlist 0
-[hls @ 0x60845a1ccb80] Error when loading first segment 'file:///opt/app/flag.txt?x.wav'
+#### B_concat_files ok=False  seg=concat:/opt/app/media/19284cf8dca7db04/source.wav|/opt/app/media/19284cf8dca7db04/source.wav
+  | [hls @ 0x56bc8da94b80] Skip ('#EXT-X-VERSION:3')
+  | [hls @ 0x56bc8da94b80] Failed to open segment 0 of playlist 0
+  | [hls @ 0x56bc8da94b80] Error when loading first segment 'concat:/opt/app/media/19284cf8dca7db04/source.wav|/opt/app/media/19284cf8dca7db04/source.wav'
+  | /opt/app/media/19284cf8dca7db04/source.wav: Invalid data found when processing input
 
- file:/opt/app/flag.txt#x.wav OK False
-[hls @ 0x58baedad2b80] Failed to open segment 0 of playlist 0
-[hls @ 0x58baedad2b80] Error when loading first segment 'file:/opt/app/flag.txt#x.wav'
+#### C_concat_filescheme ok=False  seg=concat:file:/opt/app/media/19284cf8dca7db04/source.wav|file:/opt/app/media/19284cf8dca7db04/source.wav
+  | [hls @ 0x58e47133ab80] Skip ('#EXT-X-VERSION:3')
+  | [hls @ 0x58e47133ab80] Failed to open segment 0 of playlist 0
+  | [hls @ 0x58e47133ab80] Error when loading first segment 'concat:file:/opt/app/media/19284cf8dca7db04/source.wav|file:/opt/app/media/19284cf8dca7db04/source.wav'
+  | /opt/app/media/19284cf8dca7db04/source.wav: Invalid data found when processing input
 
- file:/opt/app/flag.txt?x.wav OK False
-[hls @ 0x60497cb36b80] Failed to open segment 0 of playlist 0
-[hls @ 0x60497cb36b80] Error when loading first segment 'file:/opt/app/flag.txt?x.wav'
+#### D_subfile_self ok=False  seg=subfile,,start,0,end,1000,,:/opt/app/media/19284cf8dca7db04/source.wav
+  | [hls @ 0x563b0eb06b80] Skip ('#EXT-X-VERSION:3')
+  | [hls @ 0x563b0eb06b80] Failed to open segment 0 of playlist 0
+  | [hls @ 0x563b0eb06b80] Error when loading first segment 'subfile,,start,0,end,1000,,:/opt/app/media/19284cf8dca7db04/source.wav'
+  | /opt/app/media/19284cf8dca7db04/source.wav: Invalid data found when processing input
 
- /opt/app/flag.txt?x.wav OK False
-[hls @ 0x5d9f49ef9b80] Failed to open segment 0 of playlist 0
-[hls @ 0x5d9f49ef9b80] Error when loading first segment '/opt/app/flag.txt?x.wav'
+#### E_crypto_flag ok=False  seg=crypto:/opt/app/flag.txt
+  | [hls @ 0x61f308ad2b80] Skip ('#EXT-X-VERSION:3')
+  | [hls @ 0x61f308ad2b80] URL crypto:/opt/app/flag.txt is not in allowed_segment_extensions
+  | /opt/app/media/19284cf8dca7db04/source.wav: Invalid data found when processing input
 
- /opt/app/flag.txt#x.wav OK False
-[hls @ 0x63d58d9b9b80] Failed to open segment 0 of playlist 0
-[hls @ 0x63d58d9b9b80] Error when loading first segment '/opt/app/flag.txt#x.wav'
+#### F_map_then_flag ok=False  seg=/opt/app/flag.txt
+  | [hls @ 0x56565e958b80] Skip ('#EXT-X-VERSION:3')
+  | [hls @ 0x56565e958b80] URL /opt/app/flag.txt is not in allowed_segment_extensions
+  | /opt/app/media/19284cf8dca7db04/source.wav: Invalid data found when processing input
 
- http://127.0.0.1/opt/app/flag.txt#x.wav OK False
-[http @ 0x60c832f991c0] Protocol 'http' not on whitelist 'file,crypto,data'!
-[hls @ 0x60c832f94b80] Failed to open segment 0 of playlist 0
-[hls @ 0x60c832f94b80] Error when loading first segment 'http://127.0.0.1/opt/app/flag.txt#x.wav'
-
- file:///etc/hostname#x.wav OK False
-[hls @ 0x5c65086aeb80] Failed to open segment 0 of playlist 0
-[hls @ 0x5c65086aeb80] Error when loading first segment 'file:///etc/hostname#x.wav'
+DONE

