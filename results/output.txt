@@ -1,50 +1,18 @@
-== baseline static ==
-  /public/css/site.css                             ->  200 ct=text/css; charset=UTF-8    len=8761 @font-face{font-family:"Inter";font-weight:400;font-display:swap;src:url("/public/fonts/inter-400.woff2") format("woff2")} @font-face{font-family:"Inter";font-w
+Brute results (non-404):
+total hits: 0
 
-== /public traversal attempts ==
-  /public/                                         ->  404 ct=text/html; charset=utf-8   len=3274 
-  /public                                          ->  404 ct=text/html; charset=utf-8   len=3274 
-  /public/..                                       ->  404 ct=text/html; charset=utf-8   len=3274 
-  /public/../                                      ->  404 ct=text/html; charset=utf-8   len=3274 
-  /public/../server.js                             ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/..%2fserver.js                           ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/%2e%2e/server.js                         ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/..%2f..%2fserver.js                      ->  400 ct=text/html                  len=155 <html> <head><title>400 Bad Request</title></head> <body> <center><h1>400 Bad Request</h1></center> <hr><center>cloudflare</center> </body> </html> 
-  /public/....//server.js                          ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/..%2f..%2f..%2fetc%2fpasswd              ->  400 ct=text/html                  len=155 <html> <head><title>400 Bad Request</title></head> <body> <center><h1>400 Bad Request</h1></center> <hr><center>cloudflare</center> </body> </html> 
-  /public/..%5cserver.js                           ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/%2e%2e%2fserver.js                       ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/..%252fserver.js                         ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/.%2e/server.js                           ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/css/../../server.js                      ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/css/..%2f..%2fserver.js                  ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/css/%2e%2e/%2e%2e/flag.txt               ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/../flag.txt                              ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/../../flag.txt                           ->  400 ct=text/html                  len=155 <html> <head><title>400 Bad Request</title></head> <body> <center><h1>400 Bad Request</h1></center> <hr><center>cloudflare</center> </body> </html> 
-  /public/../app.js                                ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/../index.js                              ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/../package.json                          ->  404 ct=text/html; charset=utf-8   len=3274 
-  /public/../.env                                  ->  404 ct=text/html; charset=utf-8   len=3274 
-  /public/../render.js                             ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/../lib/render.js                         ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/../src/server.js                         ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/../routes/render.js                      ->  404 ct=text/html; charset=utf-8   len=2336 
-
-== common source/flag at web root & /public ==
-  /server.js                                       ->  404 ct=text/html; charset=utf-8   len=2336 
-  /app.js                                          ->  404 ct=text/html; charset=utf-8   len=2336 
-  /index.js                                        ->  404 ct=text/html; charset=utf-8   len=2336 
-  /package.json                                    ->  404 ct=text/html; charset=utf-8   len=3274 
-  /.env                                            ->  404 ct=text/html; charset=utf-8   len=3274 
-  /flag.txt                                        ->  404 ct=text/html; charset=utf-8   len=2336 
-  /flag                                            ->  404 ct=text/html; charset=utf-8   len=3274 
-  /public/flag.txt                                 ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/flag                                     ->  404 ct=text/html; charset=utf-8   len=3274 
-  /public/server.js                                ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/app.js                                   ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/js/studio.js                             ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/render.js                                ->  404 ct=text/html; charset=utf-8   len=2336 
-  /public/index.html                               ->  404 ct=text/html; charset=utf-8   len=3274 
-  /features                                        ->  200 ct=text/html; charset=utf-8   len=4186 <!doctype html> <html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title>Features — Tapedeck</
+Methods on /api/render and /studio/upload:
+  render GET     -> 404 b'<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="utf-8">\n  <meta name="v'
+  upload GET     -> 404 b'<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="utf'
+  render PUT     -> 404 b'<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="utf-8">\n  <meta name="v'
+  upload PUT     -> 404 b'<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="utf'
+  render DELETE  -> 404 b'<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="utf-8">\n  <meta name="v'
+  upload DELETE  -> 404 b'<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="utf'
+  render PATCH   -> 404 b'<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="utf-8">\n  <meta name="v'
+  upload PATCH   -> 404 b'<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="utf'
+  render OPTIONS -> 404 b'<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="utf-8">\n  <meta name="v'
+  upload OPTIONS -> 404 b'<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="utf'
+  render HEAD    -> 404 b''
+  upload HEAD    -> 404 b''
 
 DONE
