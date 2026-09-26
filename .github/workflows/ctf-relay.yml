@@ -3,27 +3,50 @@ name: ctf-relay
 on:
   push:
     branches: [arena/01a0dc09-ctf]
-  pull_request:
-    branches: [main]
+  workflow_dispatch: {}
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   relay:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Run relay command
+      - name: Run relay command and publish output
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
-          SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          SHA: ${{ github.sha }}
+          OUTBRANCH: relay-out
         run: |
+          set -x
+          exec 2>/tmp/diag.txt
           set -e
-          # list command files at this SHA, pick the newest
-          FILES=$(gh api "repos/$REPO/contents/relay/cmd?ref=$SHA" --jq '.[].name' | grep '\.py$' | sort | tail -1)
-          if [ -z "$FILES" ]; then echo "no command file at $SHA"; exit 0; fi
-          echo ">>> Running relay/cmd/$FILES"
-          gh api "repos/$REPO/contents/relay/cmd/$FILES?ref=$SHA" --jq '.content' | base64 -d > /tmp/cmd.py
-          python3 /tmp/cmd.py 2>&1
+          echo "=== relay start, SHA=$SHA"
+          CMD=$(gh api "repos/$REPO/contents/relay/cmd?ref=$SHA" --jq '.[].name' | grep '\.py$' | sort | tail -1 || true)
+          echo "CMD=[$CMD]"
+          OUTNAME=$(echo "$CMD" | sed 's/\.py$//')
+          if [ -z "$CMD" ]; then
+            echo "no command file" > /tmp/out.txt
+          else
+            gh api "repos/$REPO/contents/relay/cmd/$CMD?ref=$SHA" --jq '.content' | base64 -d > /tmp/cmd.py
+            set +e
+            timeout 300 python3 /tmp/cmd.py > /tmp/out.txt 2>&1
+            RC=$?
+            set -e
+            printf '\n__RELAY_EXIT__=%s\n' "$RC" >> /tmp/out.txt
+          fi
+          cat /tmp/diag.txt >> /tmp/out.txt
+          # publish to relay-out branch via git
+          rm -rf /tmp/outrepo && mkdir /tmp/outrepo && cd /tmp/outrepo
+          git config --global user.email relay@bot && git config --global user.name relay-bot
+          git init -q
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git"
+          git fetch --depth=1 origin "$OUTBRANCH" && git checkout -q -b "$OUTBRANCH" FETCH_HEAD || git checkout -q --orphan "$OUTBRANCH"
+          mkdir -p out
+          cp /tmp/out.txt "out/${OUTNAME}.txt"
+          git add -A
+          git commit -q -m "relay output for ${CMD}" || true
+          for i in 1 2 3; do git push -q origin "$OUTBRANCH" && break || sleep 5; done
+          echo "published out/${OUTNAME}.txt"
