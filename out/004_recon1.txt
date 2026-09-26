@@ -1,0 +1,67 @@
+SERVER HEADERS:
+  Date: Sat, 26 Sep 2026 05:22:12 GMT
+  Content-Type: application/octet-stream
+  Transfer-Encoding: chunked
+  Connection: keep-alive
+  Server: cloudflare
+  Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  cf-cache-status: DYNAMIC
+  Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=gAGQePvCSDG8a5%2B78kF4O0X0fqekkIUSLpnwsSM%2BXxWyMRp2pJVMUKQi5TpLWRudJMX5INzXDqpC0lqklzr8IQNkmk8K0rrRsv3f8HfvYU1i63U25zOmJEbnL%2FIz92GEWK5MbxlNEqB0z8R4j%2FAVK%2BC264QcYDKRBb6ASxjtT%2BiwXMUdPXrdIk5jZ9iWLOHlTecNroE%3D"}]}
+  CF-RAY: a40fd457dc1beac0-ORD
+  alt-svc: h3=":443"; ma=86400
+
+Cookies after GET /: {}
+
+======================================================================
+### GET /register: 404 https://fe91f95d-5707-merged-1a287.mystery-challenges.webverselabs-pro.com/register
+Mystery challenge not running
+
+
+INPUT TAGS ON /register:
+
+FORM TAG: None
+
+REGISTER POST DATA: {}
+
+======================================================================
+### POST register (followed): 404 https://fe91f95d-5707-merged-1a287.mystery-challenges.webverselabs-pro.com/register
+Mystery challenge not running
+
+
+Cookies now: {}
+GET /dashboard: 404  len=30
+GET /designer: 404  len=30
+GET /templates: 404  len=30
+GET /design: 404  len=30
+GET /certificates: 404  len=30
+GET /roster: 404  len=30
+GET /learners: 404  len=30
+GET /settings: 404  len=30
+GET /logout: 404  len=30
+GET /preview: 404  len=30
+
+__RELAY_EXIT__=0
++ set -e
++ echo '=== relay start, SHA=7b52cc0ca096fff20e5976c2ed36b39c153956be'
+++ sort
+++ grep '\.py$'
+++ tail -1
+++ gh api 'repos/ChandruMc0/CTF/contents/relay/cmd?ref=7b52cc0ca096fff20e5976c2ed36b39c153956be' --jq '.[].name'
++ CMD=004_recon1.py
++ echo 'CMD=[004_recon1.py]'
+++ echo 004_recon1.py
+++ sed 's/\.py$//'
++ OUTNAME=004_recon1
++ '[' -z 004_recon1.py ']'
++ gh api 'repos/ChandruMc0/CTF/contents/relay/cmd/004_recon1.py?ref=7b52cc0ca096fff20e5976c2ed36b39c153956be' --jq .content
++ base64 -d
++ set +e
++ timeout 300 python3 /tmp/cmd.py
++ RC=0
++ set -e
++ printf '\n__RELAY_EXIT__=%s\n' 0
++ cat /tmp/diag.txt
