@@ -1,72 +1,125 @@
-########## FULL STDERR on normal render ##########
-200 {"ok": true, "outputs": [{"file": "audiogram.png", "url": "/m/04e25d09fc067b46/audiogram.png"}], "errors": null}
 
---- traversal ../../server.js FULL errors ---
-{
- "ok": false,
- "outputs": [],
- "errors": "ffmpeg exited with code 0\nffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers\n  built with gcc 12 (Debian 12.2.0-14+deb12u1)\n  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librabbitmq --enable-librist --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opencl --enable-opengl --enable-sdl2 --disable-sndio --enable-libjxl --enable-pocketsphinx --enable-librsvg --enable-libmfx --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-libx264 --enable-libplacebo --enable-librav1e --enable-shared\n  libavutil      57. 28.100 / 57. 28.100\n  libavcodec     59. 37.100 / 59. 37.100\n  libavformat    59. 27.100 / 59. 27.100\n  libavdevice    59.  7.100 / 59.  7.100\n  libavfilter     8. 44.100 /  8. 44.100\n  libswscale      6.  7.100 /  6.  7.100\n  libswresample   4.  7.100 /  4.  7.100\n  libpostproc    56.  6.100 / 56.  6.100\nGuessed Channel Layout for Input Stream #0.0 : mono\nInput #0, wav, from '/opt/app/media/04e25d09fc067b46/source.wav':\n  Duration: 00:00:01.00, bitrate: 128 kb/s\n  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 8000 Hz, mono, s16, 128 kb/s\nInput #1, lavfi, from 'color=c=0x14181c:s=1200x675':\n  Duration: N/A, start: 0.000000, bitrate: N/A\n  Stream #1:0: Video: rawvideo (I420 / 0x30323449), yuv420p, 1200x674 [SAR 1:1 DAR 600:337], 25 tbr, 25 tbn\nStream mapping:\n  Stream #0:0 (pcm_s16le) -> showwavespic:default\n  Stream #1:0 (rawvideo) -> overlay\n  drawtext:default -> Stream #0:0 (png)\nPress [q] to stop, [?] for help\nOutput #0, image2, to '../../server.js.png':\n  Metadata:\n    encoder         : Lavf59.27.100\n  Stream #0:0: Video: png, rgb24(pc, gbr/unknown/unknown, progressive), 1200x674 [SAR 1:1 DAR 600:337], q=2-31, 200 kb/s, 25 fps, 25 tbn\n    Metadata:\n      encoder         : Lavc59.37.100 png\n[image2 @ 0x64e9d0100ec0] The specified filename '../../server.js.png' does not contain an image sequence pattern or a pattern is invalid.\n[image2 @ 0x64e9d0100ec0] Use a pattern such as %03d for an image sequence or use the -update option (with -frames:v 1 if needed) to write a single image.\nframe=    1 fps=0.0 q=-0.0 size=N/A time=00:00:00.04 bitrate=N/A speed=0.137x    \rframe=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:00.04 bitrate=N/A speed=0.0996x    \nvideo:8kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown"
-}
+################ slug='ok_baseline' ok=True ################
+(no errors; outputs: [{'file': 'ok_baseline.png', 'url': '/m/6b647558d42c04c2/ok_baseline.png'}] )
 
-########## render PARAM FUZZ ##########
+################ slug='a:b' ok=False ################
+ffmpeg exited with code 1
+ffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with gcc 12 (Debian 12.2.0-14+deb12u1)
+  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librabbitmq --enable-librist --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opencl --enable-opengl --enable-sdl2 --disable-sndio --enable-libjxl --enable-pocketsphinx --enable-librsvg --enable-libmfx --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-libx264 --enable-libplacebo --enable-librav1e --enable-shared
+  libavutil      57. 28.100 / 57. 28.100
+  libavcodec     59. 37.100 / 59. 37.100
+  libavformat    59. 27.100 / 59. 27.100
+  libavdevice    59.  7.100 / 59.  7.100
+  libavfilter     8. 44.100 /  8. 44.100
+  libswscale      6.  7.100 /  6.  7.100
+  libswresample   4.  7.100 /  4.  7.100
+  libpostproc    56.  6.100 / 56.  6.100
+Guessed Channel Layout for Input Stream #0.0 : mono
+Input #0, wav, from '/opt/app/media/6b647558d42c04c2/source.wav':
+  Duration: 00:00:01.00, bitrate: 128 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 8000 Hz, mono, s16, 128 kb/s
+Input #1, lavfi, from 'color=c=0x14181c:s=1200x675':
+  Duration: N/A, start: 0.000000, bitrate: N/A
+  Stream #1:0: Video: rawvideo (I420 / 0x30323449), yuv420p, 1200x674 [SAR 1:1 DAR 600:337], 25 tbr, 25 tbn
+Stream mapping:
+  Stream #0:0 (pcm_s16le) -> showwavespic:default
+  Stream #1:0 (rawvideo) -> overlay
+  drawtext:default -> Stream #0:0 (png)
+Press [q] to stop, [?] for help
+Output #0, image2, to 'a:b.png':
+  Metadata:
+    encoder         : Lavf59.27.100
+  Stream #0:0: Video: png, rgb24(pc, gbr/unknown/unknown, progressive), 1200x674 [SAR 1:1 DAR 600:337], q=2-31, 200 kb/s, 25 fps, 25 tbn
+    Metadata:
+      encoder         : Lavc59.37.100 png
+[image2 @ 0x5bf9a4674ec0] The specified filename 'a:b.png' does not contain an image sequence pattern or a pattern is invalid.
+[image2 @ 0x5bf9a4674ec0] Use a pattern such as %03d for an image sequence or use the -update option (with -frames:v 1 if needed) to write a single image.
+[image2 @ 0x5bf9a4674ec0] Could not open file : a:b.png
+av_interleaved_write_frame(): Input/output error
+frame=    1 fps=0.0 q=-0.0 size=N/A time=00:00:00.04 bitrate=N/A speed=0.202x    frame=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:00.04 bitrate=N/A speed=0.134x    
+video:8kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+Conversion failed!
 
->> {"slug": "x", "theme": "midnight", "format": "txt"} -> 200
-{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
+################ slug="a'b" ok=True ################
+(no errors; outputs: [{'file': "a'b.png", 'url': "/m/6b647558d42c04c2/a'b.png"}] )
 
->> {"slug": "x", "theme": "midnight", "formats": ["png", "mp3"]} -> 200
-{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
+################ slug='a"b' ok=True ################
+(no errors; outputs: [{'file': 'a"b.png', 'url': '/m/6b647558d42c04c2/a"b.png'}] )
 
->> {"slug": "x", "theme": "midnight", "ext": "mp3"} -> 200
-{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
+################ slug='a\\b' ok=True ################
+(no errors; outputs: [{'file': 'a\\b.png', 'url': '/m/6b647558d42c04c2/a\\b.png'}] )
 
->> {"slug": "x", "theme": "midnight", "input": "/etc/passwd"} -> 200
-{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
+################ slug='a]b' ok=True ################
+(no errors; outputs: [{'file': 'a]b.png', 'url': '/m/6b647558d42c04c2/a]b.png'}] )
 
->> {"slug": "x", "theme": "midnight", "source": "/etc/passwd"} -> 200
-{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
+################ slug='a[b' ok=True ################
+(no errors; outputs: [{'file': 'a[b.png', 'url': '/m/6b647558d42c04c2/a[b.png'}] )
 
->> {"slug": "x", "theme": "midnight", "clip": "/etc/passwd"} -> 200
-{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
+################ slug='a,b' ok=True ################
+(no errors; outputs: [{'file': 'a,b.png', 'url': '/m/6b647558d42c04c2/a,b.png'}] )
 
->> {"slug": "x", "theme": "../../../../etc/passwd"} -> 200
-{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
+################ slug='a;b' ok=True ################
+(no errors; outputs: [{'file': 'a;b.png', 'url': '/m/6b647558d42c04c2/a;b.png'}] )
 
->> {"slug": "x", "theme": "midnight", "width": 99999} -> 200
-{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
+################ slug='a=b' ok=True ################
+(no errors; outputs: [{'file': 'a=b.png', 'url': '/m/6b647558d42c04c2/a=b.png'}] )
 
->> {"slug": "x", "theme": "midnight", "args": ["-i", "/etc/passwd"]} -> 200
-{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
+################ slug='a%b' ok=True ################
+(no errors; outputs: [{'file': 'a%b.png', 'url': '/m/6b647558d42c04c2/a%b.png'}] )
 
->> {"slug": "x"} -> 200
-{"ok": true, "outputs": [{"file": "x.png", "url": "/m/04e25d09fc067b46/x.png"}], "errors": null}
+################ slug='a{b' ok=True ################
+(no errors; outputs: [{'file': 'a{b.png', 'url': '/m/6b647558d42c04c2/a{b.png'}] )
 
->> {"theme": "midnight"} -> 200
-{"ok": true, "outputs": [{"file": "audiogram.png", "url": "/m/04e25d09fc067b46/audiogram.png"}], "errors": null}
+################ slug='a}b' ok=True ################
+(no errors; outputs: [{'file': 'a}b.png', 'url': '/m/6b647558d42c04c2/a}b.png'}] )
 
->> {} -> 200
-{"ok": true, "outputs": [{"file": "audiogram.png", "url": "/m/04e25d09fc067b46/audiogram.png"}], "errors": null}
+################ slug='a:x=10' ok=False ################
+ffmpeg exited with code 1
+ffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers
+  built with gcc 12 (Debian 12.2.0-14+deb12u1)
+  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librabbitmq --enable-librist --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opencl --enable-opengl --enable-sdl2 --disable-sndio --enable-libjxl --enable-pocketsphinx --enable-librsvg --enable-libmfx --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-libx264 --enable-libplacebo --enable-librav1e --enable-shared
+  libavutil      57. 28.100 / 57. 28.100
+  libavcodec     59. 37.100 / 59. 37.100
+  libavformat    59. 27.100 / 59. 27.100
+  libavdevice    59.  7.100 / 59.  7.100
+  libavfilter     8. 44.100 /  8. 44.100
+  libswscale      6.  7.100 /  6.  7.100
+  libswresample   4.  7.100 /  4.  7.100
+  libpostproc    56.  6.100 / 56.  6.100
+Guessed Channel Layout for Input Stream #0.0 : mono
+Input #0, wav, from '/opt/app/media/6b647558d42c04c2/source.wav':
+  Duration: 00:00:01.00, bitrate: 128 kb/s
+  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 8000 Hz, mono, s16, 128 kb/s
+Input #1, lavfi, from 'color=c=0x14181c:s=1200x675':
+  Duration: N/A, start: 0.000000, bitrate: N/A
+  Stream #1:0: Video: rawvideo (I420 / 0x30323449), yuv420p, 1200x674 [SAR 1:1 DAR 600:337], 25 tbr, 25 tbn
+Stream mapping:
+  Stream #0:0 (pcm_s16le) -> showwavespic:default
+  Stream #1:0 (rawvideo) -> overlay
+  drawtext:default -> Stream #0:0 (png)
+Press [q] to stop, [?] for help
+Output #0, image2, to 'a:x=10.png':
+  Metadata:
+    encoder         : Lavf59.27.100
+  Stream #0:0: Video: png, rgb24(pc, gbr/unknown/unknown, progressive), 1200x674 [SAR 1:1 DAR 600:337], q=2-31, 200 kb/s, 25 fps, 25 tbn
+    Metadata:
+      encoder         : Lavc59.37.100 png
+[image2 @ 0x6189db50bec0] The specified filename 'a:x=10.png' does not contain an image sequence pattern or a pattern is invalid.
+[image2 @ 0x6189db50bec0] Use a pattern such as %03d for an image sequence or use the -update option (with -frames:v 1 if needed) to write a single image.
+[image2 @ 0x6189db50bec0] Could not open file : a:x=10.png
+av_interleaved_write_frame(): Input/output error
+frame=    1 fps=0.0 q=-0.0 size=N/A time=00:00:00.04 bitrate=N/A speed=0.19x    frame=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:00.04 bitrate=N/A speed= 0.1x    
+video:8kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+Conversion failed!
 
-########## ffmpeg argument injection via slug (output arg) ##########
+################ slug="'" ok=True ################
+(no errors; outputs: [{'file': "'.png", 'url': "/m/6b647558d42c04c2/'.png"}] )
 
->> slug='audiogram' -> 200
-{"ok": true, "outputs": [{"file": "audiogram.png", "url": "/m/04e25d09fc067b46/audiogram.png"}], "errors": null}
+################ slug=']' ok=True ################
+(no errors; outputs: [{'file': '].png', 'url': '/m/6b647558d42c04c2/].png'}] )
 
->> slug='audiogram.png -i /etc/passwd' -> 200
-{"ok": false, "outputs": [], "errors": "ffmpeg exited with code 1\nffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers\n  built with gcc 12 (Debian 12.2.0-14+deb12u1)\n  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-
-
->> slug='concat:/etc/passwd' -> 200
-{"ok": false, "outputs": [], "errors": "ffmpeg exited with code 1\nffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers\n  built with gcc 12 (Debian 12.2.0-14+deb12u1)\n  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-
-
->> slug='/etc/passwd' -> 200
-{"ok": false, "outputs": [], "errors": "ffmpeg exited with code 1\nffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers\n  built with gcc 12 (Debian 12.2.0-14+deb12u1)\n  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-
-
->> slug='audiogram|id' -> 200
-{"ok": true, "outputs": [{"file": "audiogram|id.png", "url": "/m/04e25d09fc067b46/audiogram|id.png"}], "errors": null}
-
->> slug='audiogram.mp3' -> 200
-{"ok": true, "outputs": [{"file": "audiogram.mp3.png", "url": "/m/04e25d09fc067b46/audiogram.mp3.png"}], "errors": null}
-
->> slug='a.png -frames 1 /tmp/x.png -y /etc/passwd' -> 200
-{"ok": false, "outputs": [], "errors": "ffmpeg exited with code 1\nffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers\n  built with gcc 12 (Debian 12.2.0-14+deb12u1)\n  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-
+################ slug='[in]' ok=True ################
+(no errors; outputs: [{'file': '[in].png', 'url': '/m/6b647558d42c04c2/[in].png'}] )
 
 DONE
