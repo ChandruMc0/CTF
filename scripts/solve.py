@@ -49,10 +49,12 @@ def trial(name, segment, show_png=False):
     print(f"\n######## {name} ok={ok}\nSEGMENT={segment[:160]}")
     if err:
         # show stream/duration + key hls/protocol messages
-        for key in ["Duration","Stream #0:0","allowed","not in","Protocol","protocol","Invalid","Too few","Error","No such","Unsafe","Skip","open"]:
-            for line in err.splitlines():
-                if key in line: print("  |",line.strip())
-                break if False else None
+        keys=["Duration","Stream #0:0","allowed","not in","Protocol","protocol","Invalid","Too few","Error","No such","Unsafe","Skip","open","concat","subfile","data:"]
+        seen=set()
+        for line in err.splitlines():
+            for key in keys:
+                if key in line and line not in seen:
+                    print("  |",line.strip()); seen.add(line); break
     if ok and show_png:
         st,h,png=do(o,j["outputs"][0]["url"])
         print(f"B64_{name}_START"); print(base64.b64encode(png).decode()); print(f"B64_{name}_END")
