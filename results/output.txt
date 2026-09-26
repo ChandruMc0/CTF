@@ -1,125 +1,20 @@
 
-################ slug='ok_baseline' ok=True ################
-(no errors; outputs: [{'file': 'ok_baseline.png', 'url': '/m/6b647558d42c04c2/ok_baseline.png'}] )
+################ filename='probe.wav' chip='probe.wav' render_ok=True
 
-################ slug='a:b' ok=False ################
-ffmpeg exited with code 1
-ffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers
-  built with gcc 12 (Debian 12.2.0-14+deb12u1)
-  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librabbitmq --enable-librist --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opencl --enable-opengl --enable-sdl2 --disable-sndio --enable-libjxl --enable-pocketsphinx --enable-librsvg --enable-libmfx --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-libx264 --enable-libplacebo --enable-librav1e --enable-shared
-  libavutil      57. 28.100 / 57. 28.100
-  libavcodec     59. 37.100 / 59. 37.100
-  libavformat    59. 27.100 / 59. 27.100
-  libavdevice    59.  7.100 / 59.  7.100
-  libavfilter     8. 44.100 /  8. 44.100
-  libswscale      6.  7.100 /  6.  7.100
-  libswresample   4.  7.100 /  4.  7.100
-  libpostproc    56.  6.100 / 56.  6.100
-Guessed Channel Layout for Input Stream #0.0 : mono
-Input #0, wav, from '/opt/app/media/6b647558d42c04c2/source.wav':
-  Duration: 00:00:01.00, bitrate: 128 kb/s
-  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 8000 Hz, mono, s16, 128 kb/s
-Input #1, lavfi, from 'color=c=0x14181c:s=1200x675':
-  Duration: N/A, start: 0.000000, bitrate: N/A
-  Stream #1:0: Video: rawvideo (I420 / 0x30323449), yuv420p, 1200x674 [SAR 1:1 DAR 600:337], 25 tbr, 25 tbn
-Stream mapping:
-  Stream #0:0 (pcm_s16le) -> showwavespic:default
-  Stream #1:0 (rawvideo) -> overlay
-  drawtext:default -> Stream #0:0 (png)
-Press [q] to stop, [?] for help
-Output #0, image2, to 'a:b.png':
-  Metadata:
-    encoder         : Lavf59.27.100
-  Stream #0:0: Video: png, rgb24(pc, gbr/unknown/unknown, progressive), 1200x674 [SAR 1:1 DAR 600:337], q=2-31, 200 kb/s, 25 fps, 25 tbn
-    Metadata:
-      encoder         : Lavc59.37.100 png
-[image2 @ 0x5bf9a4674ec0] The specified filename 'a:b.png' does not contain an image sequence pattern or a pattern is invalid.
-[image2 @ 0x5bf9a4674ec0] Use a pattern such as %03d for an image sequence or use the -update option (with -frames:v 1 if needed) to write a single image.
-[image2 @ 0x5bf9a4674ec0] Could not open file : a:b.png
-av_interleaved_write_frame(): Input/output error
-frame=    1 fps=0.0 q=-0.0 size=N/A time=00:00:00.04 bitrate=N/A speed=0.202x    frame=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:00.04 bitrate=N/A speed=0.134x    
-video:8kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
-Conversion failed!
+################ filename='pr:obe.wav' chip='pr:obe.wav' render_ok=True
 
-################ slug="a'b" ok=True ################
-(no errors; outputs: [{'file': "a'b.png", 'url': "/m/6b647558d42c04c2/a'b.png"}] )
+################ filename="pr'obe.wav" chip='pr&#39;obe.wav' render_ok=True
 
-################ slug='a"b' ok=True ################
-(no errors; outputs: [{'file': 'a"b.png', 'url': '/m/6b647558d42c04c2/a"b.png'}] )
+################ filename='pr\\obe.wav' chip='obe.wav' render_ok=True
 
-################ slug='a\\b' ok=True ################
-(no errors; outputs: [{'file': 'a\\b.png', 'url': '/m/6b647558d42c04c2/a\\b.png'}] )
+################ filename='a=b.wav' chip='a=b.wav' render_ok=True
 
-################ slug='a]b' ok=True ################
-(no errors; outputs: [{'file': 'a]b.png', 'url': '/m/6b647558d42c04c2/a]b.png'}] )
+################ filename='cap[tion].wav' chip='cap[tion].wav' render_ok=True
 
-################ slug='a[b' ok=True ################
-(no errors; outputs: [{'file': 'a[b.png', 'url': '/m/6b647558d42c04c2/a[b.png'}] )
+################ filename='x,y.wav' chip='x,y.wav' render_ok=True
 
-################ slug='a,b' ok=True ################
-(no errors; outputs: [{'file': 'a,b.png', 'url': '/m/6b647558d42c04c2/a,b.png'}] )
+################ filename='he:llo:wav' chip='he:llo:wav' render_ok=True
 
-################ slug='a;b' ok=True ################
-(no errors; outputs: [{'file': 'a;b.png', 'url': '/m/6b647558d42c04c2/a;b.png'}] )
-
-################ slug='a=b' ok=True ################
-(no errors; outputs: [{'file': 'a=b.png', 'url': '/m/6b647558d42c04c2/a=b.png'}] )
-
-################ slug='a%b' ok=True ################
-(no errors; outputs: [{'file': 'a%b.png', 'url': '/m/6b647558d42c04c2/a%b.png'}] )
-
-################ slug='a{b' ok=True ################
-(no errors; outputs: [{'file': 'a{b.png', 'url': '/m/6b647558d42c04c2/a{b.png'}] )
-
-################ slug='a}b' ok=True ################
-(no errors; outputs: [{'file': 'a}b.png', 'url': '/m/6b647558d42c04c2/a}b.png'}] )
-
-################ slug='a:x=10' ok=False ################
-ffmpeg exited with code 1
-ffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers
-  built with gcc 12 (Debian 12.2.0-14+deb12u1)
-  configuration: --prefix=/usr --extra-version=0+deb12u1 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --enable-gnutls --enable-ladspa --enable-libaom --enable-libass --enable-libbluray --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libjack --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-libpulse --enable-librabbitmq --enable-librist --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-libzmq --enable-libzvbi --enable-lv2 --enable-omx --enable-openal --enable-opencl --enable-opengl --enable-sdl2 --disable-sndio --enable-libjxl --enable-pocketsphinx --enable-librsvg --enable-libmfx --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-libx264 --enable-libplacebo --enable-librav1e --enable-shared
-  libavutil      57. 28.100 / 57. 28.100
-  libavcodec     59. 37.100 / 59. 37.100
-  libavformat    59. 27.100 / 59. 27.100
-  libavdevice    59.  7.100 / 59.  7.100
-  libavfilter     8. 44.100 /  8. 44.100
-  libswscale      6.  7.100 /  6.  7.100
-  libswresample   4.  7.100 /  4.  7.100
-  libpostproc    56.  6.100 / 56.  6.100
-Guessed Channel Layout for Input Stream #0.0 : mono
-Input #0, wav, from '/opt/app/media/6b647558d42c04c2/source.wav':
-  Duration: 00:00:01.00, bitrate: 128 kb/s
-  Stream #0:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 8000 Hz, mono, s16, 128 kb/s
-Input #1, lavfi, from 'color=c=0x14181c:s=1200x675':
-  Duration: N/A, start: 0.000000, bitrate: N/A
-  Stream #1:0: Video: rawvideo (I420 / 0x30323449), yuv420p, 1200x674 [SAR 1:1 DAR 600:337], 25 tbr, 25 tbn
-Stream mapping:
-  Stream #0:0 (pcm_s16le) -> showwavespic:default
-  Stream #1:0 (rawvideo) -> overlay
-  drawtext:default -> Stream #0:0 (png)
-Press [q] to stop, [?] for help
-Output #0, image2, to 'a:x=10.png':
-  Metadata:
-    encoder         : Lavf59.27.100
-  Stream #0:0: Video: png, rgb24(pc, gbr/unknown/unknown, progressive), 1200x674 [SAR 1:1 DAR 600:337], q=2-31, 200 kb/s, 25 fps, 25 tbn
-    Metadata:
-      encoder         : Lavc59.37.100 png
-[image2 @ 0x6189db50bec0] The specified filename 'a:x=10.png' does not contain an image sequence pattern or a pattern is invalid.
-[image2 @ 0x6189db50bec0] Use a pattern such as %03d for an image sequence or use the -update option (with -frames:v 1 if needed) to write a single image.
-[image2 @ 0x6189db50bec0] Could not open file : a:x=10.png
-av_interleaved_write_frame(): Input/output error
-frame=    1 fps=0.0 q=-0.0 size=N/A time=00:00:00.04 bitrate=N/A speed=0.19x    frame=    1 fps=0.0 q=-0.0 Lsize=N/A time=00:00:00.04 bitrate=N/A speed= 0.1x    
-video:8kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
-Conversion failed!
-
-################ slug="'" ok=True ################
-(no errors; outputs: [{'file': "'.png", 'url': "/m/6b647558d42c04c2/'.png"}] )
-
-################ slug=']' ok=True ################
-(no errors; outputs: [{'file': '].png', 'url': '/m/6b647558d42c04c2/].png'}] )
-
-################ slug='[in]' ok=True ################
-(no errors; outputs: [{'file': '[in].png', 'url': '/m/6b647558d42c04c2/[in].png'}] )
+################ filename='name%{n}.wav' chip='name%{n}.wav' render_ok=True
 
 DONE
