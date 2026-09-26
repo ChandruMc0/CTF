@@ -1,20 +1,63 @@
+########## PAGES ##########
 
-################ filename='probe.wav' chip='probe.wav' render_ok=True
+== /about 200 ==
+ About — Tapedeck Tapedeck Features Pricing About Sign in Open Studio About Independent since 2016 Tapedeck started because the tools for hosting a show were either bloated or built to lock creators in. We wanted something calm and dependable that treats the feed as yours. Today a small team in Providence keeps the lights on for fourteen thousand shows, from kitchen-table hobbies to newsroom dailies. We are self-funded and plan to stay that way. We build slowly and on purpose. If a feature does not help you make or grow the show, it does not ship. Tapedeck Podcast hosting, analytics, and shareable audiograms. Independent since 2016. Product Features Pricing Studio Company About Careers Contact Creators Open Studio Audiograms Plans &copy; 2016&ndash;2026 Tapedeck Media. Hosting for people who take the show seriously. (function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.co
 
-################ filename='pr:obe.wav' chip='pr:obe.wav' render_ok=True
+== /pricing 200 ==
+ Pricing — Tapedeck Tapedeck Features Pricing About Sign in Open Studio Pricing Straightforward plans Pick a plan by how much you publish. Change or cancel any time. Starter $9 /mo 2 hours of new audio a month Unlimited downloads Audiograms Basic analytics Start free Producer $19 /mo Unlimited audio Advanced analytics Private feeds 3 team seats Choose Producer Studio $49 /mo Everything in Producer Dynamic ad insertion Unlimited seats Priority support Choose Studio Tapedeck Podcast hosting, analytics, and shareable audiograms. Independent since 2016. Product Features Pricing Studio Company About Careers Contact Creators Open Studio Audiograms Plans &copy; 2016&ndash;2026 Tapedeck Media. Hosting for people who take the show seriously. (function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$
 
-################ filename="pr'obe.wav" chip='pr&#39;obe.wav' render_ok=True
+########## ROUTE FUZZ (GET & POST) ##########
+    /splice                GET= 404 POST= 404
+    /api/splice            GET= 404 POST= 404
+    /studio/splice         GET= 404 POST= 404
+    /combine               GET= 404 POST= 404
+    /api/combine           GET= 404 POST= 404
+    /merge                 GET= 404 POST= 404
+    /api/merge             GET= 404 POST= 404
+    /join                  GET= 404 POST= 404
+    /api/join              GET= 404 POST= 404
+    /concat                GET= 404 POST= 404
+    /api/concat            GET= 404 POST= 404
+    /clips                 GET= 404 POST= 404
+    /api/clips             GET= 404 POST= 404
+    /api/workspace         GET= 404 POST= 404
+    /workspace             GET= 404 POST= 404
+    /api/clip              GET= 404 POST= 404
+    /clip                  GET= 404 POST= 404
+    /studio/clips          GET= 404 POST= 404
+    /studio/clip           GET= 404 POST= 404
+    /api/upload            GET= 404 POST= 404
+*** /api/render            GET= 404 POST= 200  POSTbody={"ok":false,"outputs":[],"errors":"No clip uploaded."}
+    /render                GET= 404 POST= 404
+    /api/preview           GET= 404 POST= 404
+    /preview               GET= 404 POST= 404
+    /api/export            GET= 404 POST= 404
+    /export                GET= 404 POST= 404
+    /api/jobs              GET= 404 POST= 404
+    /jobs                  GET= 404 POST= 404
+    /api/media             GET= 404 POST= 404
+    /media                 GET= 404 POST= 404
+    /api/session           GET= 404 POST= 404
+    /api/studio            GET= 404 POST= 404
+    /api/audiograms        GET= 404 POST= 404
+    /audiograms            GET= 404 POST= 404
+    /api/posters           GET= 404 POST= 404
+    /posters               GET= 404 POST= 404
 
-################ filename='pr\\obe.wav' chip='obe.wav' render_ok=True
+########## render with multi-clip / playlist style params ##########
 
-################ filename='a=b.wav' chip='a=b.wav' render_ok=True
+>> {"slug": "p", "theme": "midnight", "clips": ["a", "b"]} -> 200 {"ok":true,"outputs":[{"file":"p.png","url":"/m/c832343233c402e7/p.png"}],"errors":null}
 
-################ filename='cap[tion].wav' chip='cap[tion].wav' render_ok=True
+>> {"slug": "p", "theme": "midnight", "tracks": ["a", "b"]} -> 200 {"ok":true,"outputs":[{"file":"p.png","url":"/m/c832343233c402e7/p.png"}],"errors":null}
 
-################ filename='x,y.wav' chip='x,y.wav' render_ok=True
+>> {"slug": "p", "theme": "midnight", "segments": [{"start": 0, "end": 5} -> 200 {"ok":true,"outputs":[{"file":"p.png","url":"/m/c832343233c402e7/p.png"}],"errors":null}
 
-################ filename='he:llo:wav' chip='he:llo:wav' render_ok=True
+>> {"slug": "p", "theme": "midnight", "splice": [{"start": 0, "end": 5}]} -> 200 {"ok":true,"outputs":[{"file":"p.png","url":"/m/c832343233c402e7/p.png"}],"errors":null}
 
-################ filename='name%{n}.wav' chip='name%{n}.wav' render_ok=True
+>> {"slug": "p", "theme": "midnight", "start": 0, "end": 9999} -> 200 {"ok":true,"outputs":[{"file":"p.png","url":"/m/c832343233c402e7/p.png"}],"errors":null}
+
+>> {"slug": "p", "theme": "midnight", "trim": {"start": 0, "end": 5}} -> 200 {"ok":true,"outputs":[{"file":"p.png","url":"/m/c832343233c402e7/p.png"}],"errors":null}
+
+>> {"slug": "p", "theme": "midnight", "duration": 9999} -> 200 {"ok":true,"outputs":[{"file":"p.png","url":"/m/c832343233c402e7/p.png"}],"errors":null}
 
 DONE
