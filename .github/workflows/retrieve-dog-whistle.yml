@@ -77,8 +77,11 @@ jobs:
                   w.setnchannels(1);w.setsampwidth(3);w.setframerate(96000);w.writeframes(pcm)
               return base64.b64encode(out.getvalue()).decode()
           s=socket.create_connection(('pwn.h7tex.com',42356),timeout=15)
-          for payload in [b'\x10', b'\x01\x01\x0e']:
-              s.sendall((wav_for(payload)+'\n').encode())
+          with open('extracted/reference_ping.wav','rb') as f:
+              captures=[base64.b64encode(f.read()).decode()]
+          captures += [wav_for(b'\x10'), wav_for(b'\x01\x01\x0e')]
+          for capture in captures:
+              s.sendall((capture+'\n').encode())
               result=b''
               while b'----\n' not in result:
                   z=s.recv(65536)
