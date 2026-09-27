@@ -34,6 +34,7 @@ jobs:
             echo '== disassembly =='
             objdump -d -M intel --no-show-raw-insn extracted/aria
           } > aria-analysis.txt
+          base64 -w0 extracted/aria > aria.b64
       - name: Publish reference material
         env:
           GH_TOKEN: ${{ github.token }}
@@ -53,3 +54,4 @@ jobs:
           publish SPEC.md extracted/SPEC.md
           publish eq.cfg extracted/eq.cfg
           publish aria-analysis.txt aria-analysis.txt
+          publish aria.b64 aria.b64
