@@ -55,3 +55,51 @@ jobs:
           publish eq.cfg extracted/eq.cfg
           publish aria-analysis.txt aria-analysis.txt
           publish aria.b64 aria.b64
+      - name: Exercise the acoustic bridge
+        run: |
+          set -euo pipefail
+          cat > solver.py <<'PY'
+          import base64, io, json, math, socket, struct, wave
+          import numpy as np
+          def frame(payload):
+              b=bytes([0xa5,0x5a,len(payload)])+payload
+              b+=bytes([len(payload)^__import__('functools').reduce(int.__xor__,payload,0)])
+              return b
+          def wav_for(payload):
+              raw=frame(payload)
+              ns=[x for byte in raw for x in (byte>>4,byte&15)]
+              x=np.zeros(64+200*len(ns),dtype=np.float64)
+              for i,n in enumerate(ns):
+                  t=np.arange(200)/16000
+                  x[64+i*200:64+(i+1)*200]=0.45*np.sin(2*np.pi*(800+80*n)*t)
+              x=np.repeat(x,6)
+              y=np.clip(x*8388607,-8388608,8388607).astype('<i4')
+              pcm=b''.join(struct.pack('<i',int(v))[:3] for v in y)
+              out=io.BytesIO()
+              with wave.open(out,'wb') as w:
+                  w.setnchannels(1);w.setsampwidth(3);w.setframerate(96000);w.writeframes(pcm)
+              return base64.b64encode(out.getvalue()).decode()
+          s=socket.create_connection(('pwn.h7tex.com',42356),timeout=15)
+          for payload in [b'\x10', b'\x01\x01\x0e']:
+              s.sendall((wav_for(payload)+'\n').encode())
+              result=b''
+              while b'----\n' not in result:
+                  z=s.recv(65536)
+                  if not z:break
+                  result+=z
+              print(result.decode('utf-8','replace'))
+          s.close()
+          PY
+          python3 solver.py > dog-whistle-result.txt
+      - name: Publish solver result
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          summary=$(mktemp)
+          { printf '## `dog-whistle-result.txt`\n\n```text\n'; cat dog-whistle-result.txt; printf '\n```\n'; } > "$summary"
+          jq -n --arg name 'Dog Whistle: solver result' --arg sha "$GITHUB_SHA" --rawfile summary "$summary" \
+            '{name:$name,head_sha:$sha,status:"completed",conclusion:"success",output:{title:$name,summary:$summary}}' \
+            | curl --fail --silent --show-error -X POST "https://api.github.com/repos/$GITHUB_REPOSITORY/check-runs" \
+                -H 'Accept: application/vnd.github+json' -H "Authorization: Bearer $GH_TOKEN" \
+                -H 'X-GitHub-Api-Version: 2022-11-28' -d @- > /dev/null
