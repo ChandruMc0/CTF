@@ -1,0 +1,29 @@
+name: Retrieve Formwork source
+
+on:
+  push:
+    branches: ["arena/01a0e21b-ctf"]
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download attached source archive
+        run: |
+          curl --fail --location --retry 3 --retry-delay 3 \
+            'https://ctf.h7tex.com/api/v1/challenges/formwork/attachments/5ee7f1e3-16bd-4e41-9bcf-3c976f042ea1/download?t=1790542917.c7e2aa8ed73ff8f150f8d0929568da243a5131bcf3ad409989701bb0e5f578cb' \
+            --output formwork-source.bin
+          ls -lh formwork-source.bin
+          sha256sum formwork-source.bin
+          file formwork-source.bin
+          mkdir extracted
+          if unzip -q formwork-source.bin -d extracted; then :; else tar -xf formwork-source.bin -C extracted; fi
+          find extracted -maxdepth 3 -type f -print | sort
+      - uses: actions/upload-artifact@v4
+        with:
+          name: formwork-source
+          path: |
+            formwork-source.bin
+            extracted
+          if-no-files-found: error
+          retention-days: 1
