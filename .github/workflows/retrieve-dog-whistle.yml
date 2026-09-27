@@ -60,7 +60,6 @@ jobs:
           set -euo pipefail
           cat > solver.py <<'PY'
           import base64, io, json, math, socket, struct, wave
-          import numpy as np
           def frame(payload):
               b=bytes([0xa5,0x5a,len(payload)])+payload
               b+=bytes([len(payload)^__import__('functools').reduce(int.__xor__,payload,0)])
@@ -68,13 +67,11 @@ jobs:
           def wav_for(payload):
               raw=frame(payload)
               ns=[x for byte in raw for x in (byte>>4,byte&15)]
-              x=np.zeros(64+200*len(ns),dtype=np.float64)
+              samples=[0.0]* (64+200*len(ns))
               for i,n in enumerate(ns):
-                  t=np.arange(200)/16000
-                  x[64+i*200:64+(i+1)*200]=0.45*np.sin(2*np.pi*(800+80*n)*t)
-              x=np.repeat(x,6)
-              y=np.clip(x*8388607,-8388608,8388607).astype('<i4')
-              pcm=b''.join(struct.pack('<i',int(v))[:3] for v in y)
+                  for j in range(200):
+                      samples[64+i*200+j]=0.45*math.sin(2*math.pi*(800+80*n)*j/16000)
+              pcm=b''.join(struct.pack('<i',int(max(-8388608,min(8388607,v*8388607))))[:3] for v in samples for _ in range(6))
               out=io.BytesIO()
               with wave.open(out,'wb') as w:
                   w.setnchannels(1);w.setsampwidth(3);w.setframerate(96000);w.writeframes(pcm)
