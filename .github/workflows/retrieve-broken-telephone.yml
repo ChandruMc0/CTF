@@ -45,9 +45,5 @@ jobs:
                   -H 'X-GitHub-Api-Version: 2022-11-28' -d @- > /dev/null
           }
           publish manifest.txt manifest.txt
-          while IFS= read -r -d '' source; do
-            if file --brief --mime-type "$source" | grep -Eq '^(text/|application/(json|xml|javascript|x-sh|octet-stream)$'; then
-              relative="${source#extracted/}"
-              publish "$relative" "$source"
-            fi
-          done < <(find extracted -type f -print0 | sort -z)
+          publish MURMUR-1.2.md extracted/MURMUR-1.2.md
+          publish murmur_crypto.py extracted/murmur_crypto.py
