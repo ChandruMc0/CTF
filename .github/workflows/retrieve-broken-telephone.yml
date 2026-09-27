@@ -53,6 +53,151 @@ jobs:
               print(buf.decode('utf-8', 'backslashreplace'))
           s.close()
           PY
+      - name: Forge an admin provisioning request
+        run: |
+          python3 - <<'PY' > extracted/exploit.txt
+          import json, select, socket, struct, sys, time
+          sys.path.insert(0, 'extracted')
+          import murmur_crypto as mc
+
+          P = (1 << 130) - 5
+          MOD128 = 1 << 128
+
+          def trim(a):
+              a = a[:]
+              while a and a[-1] % P == 0:
+                  a.pop()
+              return a or [0]
+
+          def sub(a, b):
+              out = [0] * max(len(a), len(b))
+              for i in range(len(out)):
+                  out[i] = ((a[i] if i < len(a) else 0) - (b[i] if i < len(b) else 0)) % P
+              return trim(out)
+
+          def divmodp(a, b):
+              a, b = trim(a), trim(b)
+              q = [0] * max(1, len(a) - len(b) + 1)
+              ib = pow(b[-1], -1, P)
+              while a != [0] and len(a) >= len(b):
+                  degree = len(a) - len(b)
+                  scale = a[-1] * ib % P
+                  q[degree] = scale
+                  for i in range(len(b)):
+                      a[i + degree] = (a[i + degree] - scale * b[i]) % P
+                  a = trim(a)
+              return trim(q), a
+
+          def gcd(a, b):
+              while b != [0]:
+                  a, b = b, divmodp(a, b)[1]
+              inv = pow(a[-1], -1, P)
+              return trim([x * inv % P for x in a])
+
+          def mac_poly(aad, ciphertext):
+              wire = mc.aead_mac_data(aad, ciphertext)
+              blocks = [int.from_bytes(wire[i:i + 16], 'little') + MOD128 for i in range(0, len(wire), 16)]
+              out = [0] * (len(blocks) + 1)
+              for i, block in enumerate(blocks):
+                  out[len(blocks) - i] = block % P
+              return trim(out)
+
+          def evaluate(poly, x):
+              total = 0
+              for coefficient in reversed(poly):
+                  total = (total * x + coefficient) % P
+              return total
+
+          def recover_poly_key(frames):
+              ciphers = [frame[1] for frame in frames]
+              tags = [int.from_bytes(frame[2], 'little') for frame in frames]
+              polys = [mac_poly(b'\x01', ciphertext) for ciphertext in ciphers]
+              for carry_a in range(-5, 6):
+                  one = sub(polys[0], polys[1])
+                  one[0] = (one[0] - (tags[0] - tags[1]) - carry_a * MOD128) % P
+                  for carry_b in range(-5, 6):
+                      two = sub(polys[0], polys[2])
+                      two[0] = (two[0] - (tags[0] - tags[2]) - carry_b * MOD128) % P
+                      common = gcd(one, two)
+                      if len(common) != 2:
+                          continue
+                      r = (-common[0] * pow(common[1], -1, P)) % P
+                      offsets = [(tags[i] - evaluate(polys[i], r)) % MOD128 for i in range(len(frames))]
+                      if len(set(offsets)) == 1:
+                          return r, offsets[0]
+              raise RuntimeError('could not recover the reused Poly1305 key')
+
+          def tag_for(r, s, aad, ciphertext):
+              return ((evaluate(mac_poly(aad, ciphertext), r) + s) % MOD128).to_bytes(16, 'little')
+
+          sock = socket.create_connection(('pwn.h7tex.com', 40631), timeout=10)
+          sock.setblocking(False)
+          events, buf = [], b''
+          deadline = time.monotonic() + 15
+          while time.monotonic() < deadline:
+              readable, _, _ = select.select([sock], [], [], 1)
+              if not readable:
+                  continue
+              chunk = sock.recv(65536)
+              if not chunk:
+                  raise RuntimeError('tap closed before ready')
+              buf += chunk
+              while b'\n' in buf:
+                  line, buf = buf.split(b'\n', 1)
+                  event = json.loads(line)
+                  events.append(event)
+                  if event.get('event') == 'ready':
+                      deadline = 0
+                      break
+
+          wires = [event for event in events if event.get('event') == 'wire']
+          msg1 = bytes.fromhex(wires[0]['data'])
+          msg2 = bytes.fromhex(wires[1]['data'])
+          static = bytes.fromhex('15e8896ef9b0d92253ba8e4f8b96d8600648a4b4f2f299ae1a4ece8c6db71b16')
+          ss = mc.SymmetricState()
+          ss.mix_hash(b'')
+          ss.mix_hash(static)
+          ss.mix_hash(msg1[:32])
+          ss.mix_hash(msg1[32:])
+          ss.mix_hash(msg2[:32])
+          ss.mix_hash(msg2[32:])
+          h2 = ss.h
+
+          inbound = b''.join(bytes.fromhex(event['data']) for event in wires[3:] if event['dir'] == 'n2g')
+          frames, offset, index = [], 0, 0
+          while offset < len(inbound):
+              size = int.from_bytes(inbound[offset:offset + 2], 'little') ^ mc.length_mask(h2, index)
+              body = inbound[offset + 2:offset + 2 + size]
+              frames.append((body[0], body[1:-16], body[-16:]))
+              offset += 2 + size
+              index += 1
+
+          controls = [frame for frame in frames if frame[0] == mc.TYPE_CONTROL]
+          r, s = recover_poly_key(controls[:4])
+          stream = max((frame[1] for frame in controls), key=len)
+          plaintext = b'\x01\x01\x00\x00' + b'\x00' * 96
+          ciphertext = bytes(a ^ b for a, b in zip(stream[:len(plaintext)], plaintext))
+          body = bytes([mc.TYPE_CONTROL]) + ciphertext + tag_for(r, s, bytes([mc.TYPE_CONTROL]), ciphertext)
+          forged = struct.pack('<H', len(body) ^ mc.length_mask(h2, 0)) + body
+          sock.sendall(json.dumps({'cmd': 'inject', 'data': forged.hex()}).encode() + b'\n')
+
+          print('h2', h2.hex())
+          print('poly_r', hex(r))
+          print('injected', forged.hex())
+          deadline = time.monotonic() + 12
+          while time.monotonic() < deadline:
+              readable, _, _ = select.select([sock], [], [], 1)
+              if not readable:
+                  continue
+              chunk = sock.recv(65536)
+              if not chunk:
+                  break
+              buf += chunk
+              while b'\n' in buf:
+                  line, buf = buf.split(b'\n', 1)
+                  print(line.decode('utf-8', 'backslashreplace'))
+          sock.close()
+          PY
       - name: Publish manifest and textual challenge files
         env:
           GH_TOKEN: ${{ github.token }}
@@ -76,3 +221,4 @@ jobs:
           publish MURMUR-1.2.md extracted/MURMUR-1.2.md
           publish murmur_crypto.py extracted/murmur_crypto.py
           publish live-tap.txt extracted/live-tap.txt
+          publish exploit.txt extracted/exploit.txt
