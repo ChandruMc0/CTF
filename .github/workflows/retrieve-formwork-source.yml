@@ -33,7 +33,7 @@ jobs:
             echo '== import =='
             curl --silent --show-error --include -X POST \
               -H 'Content-Type: application/json' \
-              --data '{"fields":[{"label":"marker","col_ident":"marker","position":0}]}' \
+              --data '{"fields":[{"label":"probe","col_ident":"x) FROM vault --","position":0}]}' \
               "$site/api/bases/$id/import"
             echo
             echo '== seal =='
