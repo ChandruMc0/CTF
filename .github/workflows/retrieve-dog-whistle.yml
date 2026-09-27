@@ -72,7 +72,7 @@ jobs:
               samples=[0.0]* (200+200*len(ns))
               for i,n in enumerate(ns):
                   for j in range(200):
-                      samples[200+i*200+j]=amp*math.sin(2*math.pi*(800+80*n)*j/16000)+0.45*math.sin(2*math.pi*3000*j/16000)
+                      samples[200+i*200+j]=amp*math.sin(2*math.pi*(800+80*n)*j/16000 + (i*1.234567 % 6.283185))
               pcm=b''.join(struct.pack('<i',int(max(-8388608,min(8388607,v*8388607))))[:3] for v in samples for _ in range(6))
               out=io.BytesIO()
               with wave.open(out,'wb') as w:
