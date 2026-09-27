@@ -82,7 +82,8 @@ jobs:
           with open('extracted/reference_ping.wav','rb') as f:
               captures=[base64.b64encode(f.read()).decode()]
           captures += [wav_for(b'\x10')]
-          captures += [wav_for(b'\x01\x01\x0e', a) for a in [0.01,0.03,0.06,0.1,0.15,0.2]]
+          captures += [wav_for(b'\x01\x01\x0e\x10\x00', a) for a in [0.03,0.1,0.2]]
+          captures += [wav_for(b'\x01\x01\x0e\x02\x01\x00\x00', a) for a in [0.03,0.1,0.2]]
           for capture in captures:
               s.sendall((capture+'\n').encode())
               result=b''
