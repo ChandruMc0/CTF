@@ -18,6 +18,33 @@ jobs:
             --output formwork-source.bin
           mkdir extracted
           if unzip -q formwork-source.bin -d extracted; then :; else tar -xf formwork-source.bin -C extracted; fi
+      - name: Probe the live Formwork interface
+        run: |
+          set -euo pipefail
+          site='https://web-379f4d432edec08d.web.h7tex.com'
+          headers=$(mktemp)
+          curl --fail --silent --show-error -D "$headers" -o /dev/null \
+            -X POST --data-urlencode "name=probe-$GITHUB_RUN_ID" "$site/bases"
+          id=$(sed -nE 's#^[Ll]ocation: /bases/([0-9a-f]+)\r?$#\1#p' "$headers")
+          test -n "$id"
+          {
+            echo "Base: $id"
+            echo
+            echo '== import =='
+            curl --silent --show-error --include -X POST \
+              -H 'Content-Type: application/json' \
+              --data '{"fields":[{"label":"marker","col_ident":"marker","position":0}]}' \
+              "$site/api/bases/$id/import"
+            echo
+            echo '== seal =='
+            curl --silent --show-error --include -X POST "$site/bases/$id/seal"
+            echo
+            echo '== page =='
+            curl --silent --show-error --include "$site/bases/$id"
+            echo
+            echo '== blueprint =='
+            curl --silent --show-error --include "$site/api/bases/$id/export"
+          } > extracted/probe.txt
       - name: Publish source to check output
         env:
           GH_TOKEN: ${{ github.token }}
