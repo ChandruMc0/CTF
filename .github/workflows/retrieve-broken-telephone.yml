@@ -25,6 +25,34 @@ jobs:
             echo
             find extracted -type f -print0 | xargs -0 file
           } > manifest.txt
+      - name: Capture a fresh tap transcript
+        run: |
+          python3 - <<'PY' > extracted/live-tap.txt
+          import select, socket, time
+          s = socket.create_connection(('pwn.h7tex.com', 40631), timeout=10)
+          s.setblocking(False)
+          end = time.monotonic() + 15
+          buf = b''
+          while time.monotonic() < end:
+              readable, _, _ = select.select([s], [], [], 1)
+              if not readable:
+                  continue
+              chunk = s.recv(65536)
+              if not chunk:
+                  print('EOF')
+                  break
+              buf += chunk
+              while b'\n' in buf:
+                  line, buf = buf.split(b'\n', 1)
+                  print(line.decode('utf-8', 'backslashreplace'))
+                  if b'"event":"ready"' in line:
+                      s.sendall(b'{"cmd":"close"}\n')
+                      s.close()
+                      raise SystemExit
+          if buf:
+              print(buf.decode('utf-8', 'backslashreplace'))
+          s.close()
+          PY
       - name: Publish manifest and textual challenge files
         env:
           GH_TOKEN: ${{ github.token }}
@@ -47,3 +75,4 @@ jobs:
           publish manifest.txt manifest.txt
           publish MURMUR-1.2.md extracted/MURMUR-1.2.md
           publish murmur_crypto.py extracted/murmur_crypto.py
+          publish live-tap.txt extracted/live-tap.txt
